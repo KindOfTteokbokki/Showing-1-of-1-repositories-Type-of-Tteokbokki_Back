@@ -1,3 +1,44 @@
 
-0
-java:S1220""Move this file to a named package.
+g	java:S112<"FDefine and throw a dedicated exception instead of using a generic one.(é‹º¼ıÿÿÿÿ8¬Ç‰ÛÔ1
+b	java:S112J"FDefine and throw a dedicated exception instead of using a generic one.(†³¿û8¬Ç‰ÛÔ1
+{
+java:S2293C"YReplace the type specification in this constructor call with the diamond operator ("<>").(øš®úÿÿÿÿ8­Ç‰ÛÔ1
+{
+java:S2293M"YReplace the type specification in this constructor call with the diamond operator ("<>").(øš®úÿÿÿÿ8­Ç‰ÛÔ1
+r	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÿÇ÷ôùÿÿÿÿ8­Ç‰ÛÔ1
+r	java:S117#"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÿÇ÷ôùÿÿÿÿ8­Ç‰ÛÔ1
+r	java:S117)"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÿÇ÷ôùÿÿÿÿ8­Ç‰ÛÔ1
+t	java:S116"XRename this field "BA0010Service" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÏÔÇ½8·Ç‰ÛÔ1
+_
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8·Ç‰ÛÔ1
+H
+java:S1452"&Remove usage of generic wildcard type.(ÈáàÔıÿÿÿÿ8ºÇ‰ÛÔ1
+]	java:S125"<This block of commented-out lines of code should be removed.(ÆË¡‰şÿÿÿÿ8ºÇ‰ÛÔ1
+]	java:S125"<This block of commented-out lines of code should be removed.(Ì¨ş¹ùÿÿÿÿ8»Ç‰ÛÔ1
+T
+java:S1135"2Complete the task associated to this TODO comment.(Ì¨ş¹ùÿÿÿÿ8»Ç‰ÛÔ1
+C
+java:S1452!"&Remove usage of generic wildcard type.(ÿ‰Œ«8½Ç‰ÛÔ1
+]	java:S125""<This block of commented-out lines of code should be removed.(Ì¨ş¹ùÿÿÿÿ8½Ç‰ÛÔ1
+T
+java:S1135""2Complete the task associated to this TODO comment.(Ì¨ş¹ùÿÿÿÿ8½Ç‰ÛÔ1
+]	java:S125("<This block of commented-out lines of code should be removed.(Ì¨ş¹ùÿÿÿÿ8¿Ç‰ÛÔ1
+T
+java:S1135("2Complete the task associated to this TODO comment.(Ì¨ş¹ùÿÿÿÿ8¿Ç‰ÛÔ1
+
+java:S1130<"lRemove the declaration of thrown exception 'java.lang.Exception', as it cannot be thrown from method's body.(é‹º¼ıÿÿÿÿ8ÀÇ‰ÛÔ1
+X	java:S1251"<This block of commented-out lines of code should be removed.(ªëÆÑ8ÀÇ‰ÛÔ1
+T
+java:S11352"2Complete the task associated to this TODO comment.(¯Êá±ûÿÿÿÿ8ÀÇ‰ÛÔ1
+O
+java:S11353"2Complete the task associated to this TODO comment.(‘Ù£8ÀÇ‰ÛÔ1
+]	java:S125="<This block of commented-out lines of code should be removed.(²àÔêøÿÿÿÿ8ÁÇ‰ÛÔ1
+T
+java:S1135="2Complete the task associated to this TODO comment.(²àÔêøÿÿÿÿ8ÁÇ‰ÛÔ1
+O
+java:S1135?"2Complete the task associated to this TODO comment.(°õš¼8ÁÇ‰ÛÔ1
+T
+java:S1135@"2Complete the task associated to this TODO comment.(ß¹Öæúÿÿÿÿ8ÁÇ‰ÛÔ1
+‰
+java:S1130J"lRemove the declaration of thrown exception 'java.lang.Exception', as it cannot be thrown from method's body.(†³¿û8ÄÇ‰ÛÔ1
+X	java:S125K"<This block of commented-out lines of code should be removed.(¬µªÕ8ÅÇ‰ÛÔ1

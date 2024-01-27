@@ -44,3 +44,13 @@ n
 .src/main/java/domain/LG0010/dao/LG0010Dao.java,a\d\add4c3fc28d4fc910b1dbd7c7c6a373444846e58
 ^
 .src/main/java/domain/LG0010/dto/LG0010Dto.java,e\2\e2e593342c125f990f9973a96c3ffff31fc78492
+e
+5src/main/java/com/config/security/SecurityConfig.java,d\6\d6608b17819e6de81f648c64af40d567903557e5
+X
+(src/main/java/com/util/jwt/JwtUtils.java,a\0\a0257dbc900383117a5aa0656d907f0eaa90fd1f
+]
+-.idea/sonarlint/securityhotspotstore/index.pb,8\8\88a9255124c95bdc913197c120a8d560edc59c8e
+w
+G.idea/sonarlint/issuestore/e/d/ed2f13c6f5ba78e87eb85ac445c4b908e53067e8,f\4\f43fc70cfdcdda3935abcc7c92384068348bc460
+S
+#.idea/sonarlint/issuestore/index.pb,9\f\9fe84ebb15faf917b7def6236dba604453cc61e0
