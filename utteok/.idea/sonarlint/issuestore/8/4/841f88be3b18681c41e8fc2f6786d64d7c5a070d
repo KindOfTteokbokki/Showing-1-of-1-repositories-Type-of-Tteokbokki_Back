@@ -1,3 +1,15 @@
 
-0
-java:S1220""Move this file to a named package.
+{
+java:S2293%"YReplace the type specification in this constructor call with the diamond operator ("<>").(øš®úÿÿÿÿ8÷ÇŒÛÔ1
+_
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8ıÇŒÛÔ1
+_
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8ıÇŒÛÔ1
+_
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ8ıÇŒÛÔ1
+H
+java:S1452!"&Remove usage of generic wildcard type.(áççüøÿÿÿÿ8ÈŒÛÔ1
+L	java:S106("+Replace this use of System.out by a logger.(¨¶ÑÍşÿÿÿÿ8¬û¿ÛÔ1
+H
+java:S14522"&Remove usage of generic wildcard type.(ÊÒäŠúÿÿÿÿ8®û¿ÛÔ1
+L	java:S106<"+Replace this use of System.out by a logger.(¨¶ÑÍşÿÿÿÿ8¯û¿ÛÔ1
