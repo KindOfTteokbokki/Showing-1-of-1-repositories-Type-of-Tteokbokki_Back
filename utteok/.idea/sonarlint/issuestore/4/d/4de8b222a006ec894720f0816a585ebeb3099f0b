@@ -1,0 +1,14 @@
+
+Û
+java:S1598"ÄThis file "JwtInterceptor.java" should be located in "com\example\demo\com\config\interceptor" directory, not in "C:\workspace\Type-of-Tteokbokki_Back\utteok\src\main\java\com\config\interceptor".(ÝçÉ‹
+X
+java:S6813"BRemove this field injection and use constructor injection instead.(êæÄÞ
+E	java:S106"+Replace this use of System.out by a logger.(¸íÌõúÿÿÿÿ
+@	java:S106 "+Replace this use of System.out by a logger.(ç©È¤
+@	java:S106&"+Replace this use of System.out by a logger.(‹€ø¼
+Q	java:S125""<This block of commented-out lines of code should be removed.(…É·ã
+E	java:S106)"+Replace this use of System.out by a logger.(÷ú…Ðúÿÿÿÿ
+@	java:S1060"+Replace this use of System.out by a logger.(ÔÕ¬Ó
+E	java:S1064"+Replace this use of System.out by a logger.(‹±Ùÿÿÿÿÿ
+@	java:S1068"+Replace this use of System.out by a logger.(ºíð»
+?	java:S106="+Replace this use of System.out by a logger.(ÆøÀ
