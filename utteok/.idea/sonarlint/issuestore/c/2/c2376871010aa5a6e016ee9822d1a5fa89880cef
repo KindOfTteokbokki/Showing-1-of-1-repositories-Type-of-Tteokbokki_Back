@@ -1,0 +1,9 @@
+
+n	java:S116"TRename this field "member_id" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÏÓÃÇûÿÿÿÿ
+o	java:S116"ZRename this field "member_password" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ñôŒ
+l	java:S116"WRename this field "member_email" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(²ñ¥å
+k	java:S116"VRename this field "member_name" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(è“ËÇ
+n	java:S116"ZRename this field "member_nickname" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÀóÌ)
+y	java:S116"_Rename this field "member_profile_image" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÖØ¢¾ûÿÿÿÿ
+o	java:S116"[Rename this field "member_introduce" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(˜»_
+o	java:S116"URename this field "member_sns" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ó—Ôıÿÿÿÿ
