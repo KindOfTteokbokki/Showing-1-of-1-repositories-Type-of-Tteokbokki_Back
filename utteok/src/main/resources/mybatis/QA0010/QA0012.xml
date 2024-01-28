@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="halfandhalf.domain.QA0010.dao.QA0010Dao">
+	<select id="findAnswer" resultType="halfandhalf.domain.QA0010.dto.QA0012Dto">
+		SELECT
+			  CODE
+			, NAME_KO
+		FROM
+			PUBLIC_CODE
+		WHERE
+			1=1
+			AND CODE_CATEGORY_ID = 102
+			AND USE_YN  = 'Y'
+	</select>
+</mapper>
