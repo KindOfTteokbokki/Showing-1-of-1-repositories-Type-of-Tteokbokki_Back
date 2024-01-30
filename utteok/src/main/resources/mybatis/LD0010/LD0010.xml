@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="halfandhalf.domain.LD0010.dao.LD0010Dao">
+	<select id="findLoading" resultType="halfandhalf.domain.LD0010.dto.LD0010Dto">
+		SELECT
+			  PHRASES
+			, file_path
+			, file_original_name
+			, file_masking_name
+		FROM
+			LOADING_FOR_ANALYZE
+		WHERE
+			1=1
+			AND USE_YN  = 'Y'
+		ORDER BY
+			RAND()
+		limit 1
+	</select>
+</mapper>

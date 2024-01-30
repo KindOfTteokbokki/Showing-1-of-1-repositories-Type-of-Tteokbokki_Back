@@ -1,31 +1,0 @@
-
-`	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(ÈáàÔıÿÿÿÿ
-‡
-java:S1130"lRemove the declaration of thrown exception 'java.lang.Exception', as it cannot be thrown from method's body.(ÈáàÔıÿÿÿÿ
-A
-java:S1452"&Remove usage of generic wildcard type.(ÈáàÔıÿÿÿÿ
-V	java:S125"<This block of commented-out lines of code should be removed.(Ì¨ş¹ùÿÿÿÿ
-M
-java:S1135"2Complete the task associated to this TODO comment.(Ì¨ş¹ùÿÿÿÿ
-]	java:S125-"<This block of commented-out lines of code should be removed.(Õ‘²øÿÿÿÿ8ŸŸŠÕ1
-Q	java:S125C"<This block of commented-out lines of code should be removed.(ªëÆÑ
-X	java:S125N"<This block of commented-out lines of code should be removed.(Áä÷³8Ã– ŠÕ1
-X	java:S125\"<This block of commented-out lines of code should be removed.(ÜØÄ›8°ŸŠÕ1
-M
-java:S1135."2Complete the task associated to this TODO comment.(Ì¨ş¹ùÿÿÿÿ
-T
-java:S11354"2Complete the task associated to this TODO comment.(Ì¨ş¹ùÿÿÿÿ8…¿šŠÕ1
-T
-java:S1135:"2Complete the task associated to this TODO comment.(Ì¨ş¹ùÿÿÿÿ8£¨›ŠÕ1
-M
-java:S1135D"2Complete the task associated to this TODO comment.(Íşà¸ùÿÿÿÿ
-H
-java:S1135E"2Complete the task associated to this TODO comment.(¿ğ¾Ú
-T
-java:S1135O"2Complete the task associated to this TODO comment.(²àÔêøÿÿÿÿ8Ä– ŠÕ1
-O
-java:S1135Q"2Complete the task associated to this TODO comment.(°õš¼8Ä– ŠÕ1
-T
-java:S1135R"2Complete the task associated to this TODO comment.(ß¹Öæúÿÿÿÿ8Ä– ŠÕ1
-N
-java:S1068"1Remove this unused "sT0010Service" private field.(­…¡¬8‘­™ŠÕ1

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="halfandhalf.domain.RV0010.dao.RV0010Dao">
+	<select id="findRecommend" resultType="halfandhalf.domain.RV0010.dto.RV0010Dto">
+		SELECT
+			  CONTENT
+			, file_path
+			, file_original_name
+			, file_masking_name
+			, CREATE_DATE
+		FROM
+			REVIEW_FOR_STORE
+		ORDER BY
+			CREATE_DATE DESC
+	</select>
+
+	<insert id="saveRecommend" parameterType="halfandhalf.domain.RV0010.dto.RV0010Dto">
+		insert into
+			review_for_store
+			(content, file_path, file_original_name, file_masking_name, create_date)
+		values
+			(#{content}, #{file_path}, #{file_original_name}, #{file_masking_name}, SYSDATE());
+	</insert>
+</mapper>

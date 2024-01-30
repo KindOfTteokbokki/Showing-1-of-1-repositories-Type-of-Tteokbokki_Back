@@ -1,0 +1,12 @@
+
+u	java:S116"TRename this field "file_path" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(øÃýˆúÿÿÿÿ8ŒÍï©Õ1
+~	java:S116"]Rename this field "file_original_name" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÆÇöíýÿÿÿÿ8Ðå®«Õ1
+}	java:S116"\Rename this field "file_masking_name" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Îì¡öøÿÿÿÿ8ßÞ¦«Õ1
+a
+java:S1128"DRemove this unused import 'halfandhalf.domain.QA0010.dto.QA0011Dto'.(§Ðžß8Ÿœé›Õ1
+a
+java:S1128"DRemove this unused import 'halfandhalf.domain.QA0010.dto.QA0012Dto'.(Œ¨“º8Ÿœé›Õ1
+H
+java:S1128"+Remove this unused import 'lombok.Builder'.(§’Ðß8 œé›Õ1
+M
+java:S1128	"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8 œé›Õ1

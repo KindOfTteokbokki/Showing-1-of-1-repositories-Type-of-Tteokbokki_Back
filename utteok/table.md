@@ -74,7 +74,7 @@ code 					varchar(10) not null
 )
 ;
 select * from public_code_category pcc ;
-select * from public_code pc ;
+select * from public_code pc where 1=1 and code_category_id = 102;
 insert into public_code_category values(101, '떡볶이 선택 질문', 'Tteokbokki selection question');
 insert into public_code_category values(102, '떡볶이 선택 값', 'Tteokbokki selection value');
 insert into public_code_category values(103, '가게 이름', 'store name');
@@ -197,7 +197,7 @@ values('TITLE', 'TT005', 'CH102', 'CH200', 'CH301', 'CH401', 'CH501', 'CH601', '
 * 03_MO. 가게 정보
 *
 * table name : store_info
-* column	  : store_seq(pk), question_seq(fk), store_name, menu_name, review, img_url, count
+* column	  : store_seq(pk), question_seq(fk), store_name, menu_name, review, img_path, count
 *
 * 질문지에 중복이나 값이 없을 경우 무작위로 하나 뽑아 가져온다.
 * 가게와 메뉴 이름이 중복이 있을 수 있기에 공통 코드로 가게 이름을 담아둔다.
@@ -212,7 +212,9 @@ store_seq				int				not null auto_increment
 , store_address			varchar(200)
 , menu_name				varchar(100)
 , review				varchar(500)
-, img_url				varchar(500)
+, file_path				varchar(500)
+, file_original_name	varchar(500)
+, file_masking_name		varchar(500)
 , count_store			int
 , franchise_yn			char(1)
 , PRIMARY KEY (store_seq)
@@ -225,15 +227,15 @@ create sequence store_seq start with 1 increment by 1 maxvalue 999999;
 select * from store_info;
 select * from store_seq;
 
-insert into store_info (question_seq, store_code, store_name, store_address, menu_name, review, img_url, count_store, franchise_yn)
+insert into store_info (question_seq, store_code, store_name, store_address, menu_name, review, img_path, count_store, franchise_yn)
 values(4, 'ST001', '할매 떡볶이', '서울 성북구 월곡동', '떡볶이', '주문 즉시 새로 조리해서 판떡볶이인데도 갓 끓인 떡볶이를 맛볼 수 있어', '이미지 아직 없음', 0, 'N');
-insert into store_info (question_seq, store_code, store_name, store_address, menu_name, review, img_url, count_store, franchise_yn)
+insert into store_info (question_seq, store_code, store_name, store_address, menu_name, review, img_path, count_store, franchise_yn)
 values(5, 'ST002', '빨간 부산오뎅', '서울 송파구 방이시장', '떡볶이', '시그니처 메뉴인 매운어묵도 무조건 같이 먹어!', '이미지 아직 없음', 0, 'N');
-insert into store_info (question_seq, store_code, store_name, store_address, menu_name, review, img_url, count_store, franchise_yn)
+insert into store_info (question_seq, store_code, store_name, store_address, menu_name, review, img_path, count_store, franchise_yn)
 values(6, 'ST003', '오빠네 옛날 떡볶이', '경기 일산 웨스턴돔', '떡볶이', '떡이 하얘보여도 한입 먹어보면 반전 매력이 있는 국물떡볶이야! 달달하고 매콤하고 다해', '이미지 아직 없음', 0, 'N');
-insert into store_info (question_seq, store_code, store_name, store_address, menu_name, review, img_url, count_store, franchise_yn)
+insert into store_info (question_seq, store_code, store_name, store_address, menu_name, review, img_path, count_store, franchise_yn)
 values(7, 'ST004', '옥이떡볶이', '경기 화성 동탄2신도시', '떡볶이', '수제 오징어튀김을 양념에 찍어 먹으면 더 맛있어', '이미지 아직 없음', 0, 'N');
-insert into store_info (question_seq, store_code, store_name, store_address, menu_name, review, img_url, count_store, franchise_yn)
+insert into store_info (question_seq, store_code, store_name, store_address, menu_name, review, img_path, count_store, franchise_yn)
 values(8, 'ST005', '6.25 떡볶이', '6.25 떡볶이 경남 마산 부림시장마산 부림시장', '떡볶이', '어묵이 80%라서 떡 좋아하면 주문할 때 미리 말해', '이미지 아직 없음', 0, 'N');
 
 /*
@@ -250,7 +252,9 @@ title_seq		int	not null auto_increment
 , question_seq 	int	not null
 , title_code	varchar(100)
 , title_name	varchar(100)
-, img_path		varchar(500)
+, file_path				varchar(500)
+, file_original_name	varchar(500)
+, file_masking_name		varchar(500)
 , PRIMARY KEY (title_seq)
 , FOREIGN KEY (question_seq) REFERENCES question_for_select(question_seq)
 , FOREIGN KEY (title_code) REFERENCES public_code(code)
@@ -288,8 +292,10 @@ values(13, 'TT005', '돌고 돌아 다시 엽떡', '이미지 아직 없음');
 drop table loading_for_analyze;
 create table loading_for_analyze(
 loading_seq	int				not null auto_increment
-, phrases		varchar(500)
-, img_path		varchar(500)
+, PHRASES		VARCHAR(500)
+, file_path				varchar(500)
+, file_original_name	varchar(500)
+, file_masking_name		varchar(500)
 , use_yn		char(1)
 , PRIMARY KEY (loading_seq)
 )
@@ -305,7 +311,6 @@ values('오징어 올려진 떡볶이도 맛있다더라 2', '아직 이미지 �
 insert into loading_for_analyze (phrases, img_path, use_yn)
 values('오징어 올려진 떡볶이도 맛있다더라 3', '아직 이미지 없음 3', 'Y');
 
-
 /*
 *
 * 06_MO. 꿀조합
@@ -318,7 +323,9 @@ values('오징어 올려진 떡볶이도 맛있다더라 3', '아직 이미지 �
 */
 create table utteok_combination(
 combination_seq	int				not null auto_increment
-, img_path			varchar(500)	not null
+, file_path				varchar(500)	NOT NULL
+, file_original_name	varchar(500)	NOT null
+, file_masking_name		varchar(500)	NOT null
 , PRIMARY KEY (combination_seq)
 )
 ;
@@ -344,14 +351,33 @@ values('conbination_img_path 3');
 create table review_for_store(
 review_seq	int				not null auto_increment
 , content		varchar(1000)
-, img_path		varchar(500)
+, file_path				varchar(500)
+, file_original_name	varchar(500)
+, file_masking_name		varchar(500)
 , create_date	date
 , PRIMARY KEY (review_seq)
 )
 ;
 create sequence review_seq start with 1 increment by 1 maxvalue 999999;
 
-select * from review_for_store ;
+SELECT
+CONTENT
+, file_path			
+, file_original_name
+, file_masking_name
+, CREATE_DATE
+FROM
+REVIEW_FOR_STORE
+ORDER BY CREATE_DATE DESC
+;
+-- 			, file_path
+-- 			, file_original_name
+-- 			, file_masking_name
+
+ALTER TABLE REVIEW_FOR_STORE ADD COLUMN file_path varchar(1000) NOT NULL;
+ALTER TABLE REVIEW_FOR_STORE ADD COLUMN file_original_name varchar(1000) NOT NULL;
+ALTER TABLE REVIEW_FOR_STORE ADD COLUMN file_masking_name varchar(1000) NOT NULL;
+;
 
 insert into review_for_store (content, img_path, create_date)
 values('재료들의 맛조화가 절묘하게 좋았다', 'review_img_path 1', SYSDATE());
@@ -359,3 +385,4 @@ insert into review_for_store (content, img_path, create_date)
 values('맛있어요', 'review_img_path 1', SYSDATE());
 insert into review_for_store (content, img_path, create_date)
 values('시금치 베이글 처음 먹어봤는데, 생각보다 맛있고 제 스타일이었어요 !!', 'review_img_path 2', SYSDATE());
+

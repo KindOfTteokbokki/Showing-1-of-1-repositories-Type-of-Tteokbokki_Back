@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface QA0010Service {
 
-    List<QA0011Dto> findQuestion();
+    List<QA0011Dto> findQuestion() throws Exception;
 
-    List<QA0012Dto> findAnswer();
+    List<QA0012Dto> findAnswer() throws Exception;
 }

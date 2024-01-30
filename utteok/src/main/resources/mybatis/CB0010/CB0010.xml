@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="halfandhalf.domain.CB0010.dao.CB0010Dao">
+	<select id="findCombination" resultType="halfandhalf.domain.CB0010.dto.CB0010Dto">
+		SELECT
+			  file_path
+			, file_original_name
+			, file_masking_name
+		FROM
+			UTTEOK_COMBINATION
+		WHERE
+			1=1
+		ORDER BY
+			RAND()
+		limit 4
+	</select>
+</mapper>

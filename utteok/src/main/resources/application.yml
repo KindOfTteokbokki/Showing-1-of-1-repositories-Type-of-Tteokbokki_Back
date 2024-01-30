@@ -13,3 +13,10 @@ mybatis:
 #  type-aliases-package: com.example.demo.mvc.**.vo  # entity? ???? ????.
   mapper-locations: mybatis/**/*.xml                  # XmlMapper.xml? ???? ????.
 
+api:
+  upload:
+    dir:
+      RV0010: C:\Users\Hwang\Desktop\upload\review
+
+user:
+  home:

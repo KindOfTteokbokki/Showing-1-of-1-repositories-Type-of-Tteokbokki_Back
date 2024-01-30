@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="halfandhalf.domain.TT0010.dao.TT0010Dao">
+	<select id="findTitle" resultType="halfandhalf.domain.TT0010.dto.TT0010Dto">
+		SELECT
+			  TITLE_NAME
+			, file_path
+			, file_original_name
+			, file_masking_name
+			, (SELECT NAME_KO FROM public_code pc WHERE 1=1 AND pc.code_category_id = 102 AND pc.CODE = qs.question1) AS question1
+			, (SELECT NAME_KO FROM public_code pc WHERE 1=1 AND pc.code_category_id = 102 AND pc.CODE = qs.question2) AS question2
+			, (SELECT NAME_KO FROM public_code pc WHERE 1=1 AND pc.code_category_id = 102 AND pc.CODE = qs.question3) AS question3
+			, (SELECT NAME_KO FROM public_code pc WHERE 1=1 AND pc.code_category_id = 102 AND pc.CODE = qs.question4) AS question4
+			, (SELECT NAME_KO FROM public_code pc WHERE 1=1 AND pc.code_category_id = 102 AND pc.CODE = qs.question5) AS question5
+			, (SELECT NAME_KO FROM public_code pc WHERE 1=1 AND pc.code_category_id = 102 AND pc.CODE = qs.question6) AS question6
+			, (SELECT NAME_KO FROM public_code pc WHERE 1=1 AND pc.code_category_id = 102 AND pc.CODE = qs.question7) AS question7
+		FROM
+			TITLE_INFO TI
+			JOIN QUESTION_FOR_SELECT QS ON TI.QUESTION_SEQ = QS.QUESTION_SEQ
+		WHERE
+			1=1
+			<if test='question1 != null  and question2 != null  and question3 != null  and question4 != null  and question5 != null  and question6 != null  and question7 != null'>
+				AND qs.question1 = #{question1}
+				AND qs.question2 = #{question2}
+				AND qs.question3 = #{question3}
+				AND qs.question4 = #{question4}
+				AND qs.question5 = #{question5}
+				AND qs.question6 = #{question6}
+				AND qs.question7 = #{question7}
+			</if>
+		ORDER BY rand()
+		LIMIT 1
+	</select>
+</mapper>

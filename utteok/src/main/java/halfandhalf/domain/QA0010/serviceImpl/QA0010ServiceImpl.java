@@ -22,13 +22,13 @@ public class QA0010ServiceImpl implements QA0010Service {
 
     @Override
     @Transactional(readOnly = true)
-    public List<QA0011Dto> findQuestion() {
+    public List<QA0011Dto> findQuestion() throws Exception {
         return qA0010Dao.findQuestion();
     }
 
     @Override
     @Transactional(readOnly = true)
-    public List<QA0012Dto> findAnswer() {
+    public List<QA0012Dto> findAnswer() throws Exception {
         return qA0010Dao.findAnswer();
     }
 }
