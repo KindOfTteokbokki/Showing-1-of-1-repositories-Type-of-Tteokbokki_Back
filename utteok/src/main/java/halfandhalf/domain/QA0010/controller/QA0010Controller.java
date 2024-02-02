@@ -9,14 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {"http://localhost:3000", "http://www.utteok.com"}, allowCredentials = "true")
 @RestController
 @RequestMapping("/api")
 public class QA0010Controller {
@@ -31,6 +28,8 @@ public class QA0010Controller {
     /*
      *  질문 및 답 가져오기
      */
+//    //@CrossOrigin(origins = {"118.67.132.171:3000"},allowCredentials = "true")
+//    @RequestMapping(value = "/getQA", method = {RequestMethod.GET, RequestMethod.OPTIONS})
     @GetMapping(value="/getQA", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getTodos1() {
         try {

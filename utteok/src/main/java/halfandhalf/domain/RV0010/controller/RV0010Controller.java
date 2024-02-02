@@ -16,7 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {"http://localhost:3000", "http://www.utteok.com"}, allowCredentials = "true")
 @RestController
 @RequestMapping("/api")
 public class RV0010Controller {
@@ -46,7 +46,7 @@ public class RV0010Controller {
     /*
      *  나도 추천할래 가져오기 to MainPage
      */
-    @GetMapping("/getRecommendToPage")
+    @PostMapping("/getRecommendToPage")
     public ResponseEntity<?> getRecommendToPage(@RequestBody RV0011Dto rv0011Dto) {
 //        https://epozen-dt.github.io/SpringBoot-pagination/
         try {

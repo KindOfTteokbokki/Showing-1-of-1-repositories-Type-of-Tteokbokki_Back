@@ -3,14 +3,14 @@
 
 <mapper namespace="halfandhalf.domain.QA0010.dao.QA0010Dao">
 	<select id="findQuestion" resultType="halfandhalf.domain.QA0010.dto.QA0011Dto">
-		SELECT
-			  CODE
-			, NAME_KO
-		FROM
-			PUBLIC_CODE
-		WHERE
+		select
+			  code
+			, name_ko
+		from
+			public_code
+		where
 			1=1
-			AND CODE_CATEGORY_ID = 101
-			AND USE_YN  = 'Y'
+			and code_category_id = 101
+			and use_yn  = 'y'
 	</select>
 </mapper>

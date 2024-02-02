@@ -9,7 +9,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins = "http://localhost:3000")
+
+@CrossOrigin(origins = {"http://localhost:3000", "http://www.utteok.com"}, allowCredentials = "true")
 @RestController
 @RequestMapping("/api")
 public class TT0010Controller {
@@ -24,7 +25,7 @@ public class TT0010Controller {
     /*
      *  질문 및 답 가져오기
      */
-    @GetMapping(value="/findTitle", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value="/findTitle", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getTodos1(@RequestBody TT0010Dto st0010Dto) {
         try {
             TT0010Dto title_info = tT0010Service.findTitle(st0010Dto);

@@ -4,11 +4,11 @@ server:
 
 spring:
   datasource:
-    url: jdbc:log4jdbc:mariadb://localhost:3306/utteok?serverTimezone=UTC&characterEncoding=UTF-8&allowMultiQueries=true
+    url: jdbc:log4jdbc:mariadb://118.67.132.171:3306/utteok?serverTimezone=UTC&characterEncoding=UTF-8&allowMultiQueries=true
 #   url=jdbc:mariadb://<DB ??>:<?? ??>/<DatabaseName>
     driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
-    username: root
-    password: root
+    username: utteok
+    password: halfandhalf401!!
 mybatis:
 #  type-aliases-package: com.example.demo.mvc.**.vo  # entity? ???? ????.
   mapper-locations: mybatis/**/*.xml                  # XmlMapper.xml? ???? ????.
@@ -16,7 +16,7 @@ mybatis:
 api:
   upload:
     dir:
-      RV0010: C:\Users\Hwang\Desktop\upload\review
+      RV0010: \app\fronted\public\image\review
 
 user:
   home:

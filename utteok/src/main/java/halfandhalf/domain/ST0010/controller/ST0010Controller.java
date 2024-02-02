@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {"http://localhost:3000", "http://www.utteok.com"}, allowCredentials = "true")
 @RestController
 @RequestMapping("/api")
 public class ST0010Controller {
@@ -26,7 +26,7 @@ public class ST0010Controller {
     /*
      *  가게 정보 가져오기
      */
-    @GetMapping(value="/findStore", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value="/findStore", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getStoreInfo(@RequestBody ST0010Dto st0010Dto) {
         try {
             ST0010Dto store_info = sT0010Service.findStore(st0010Dto);
