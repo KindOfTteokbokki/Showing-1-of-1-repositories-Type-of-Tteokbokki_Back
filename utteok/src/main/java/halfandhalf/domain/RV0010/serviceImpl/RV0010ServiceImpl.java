@@ -50,6 +50,7 @@ public class RV0010ServiceImpl implements RV0010Service {
     }
 
     @Override
+    @Transactional
     public List<RV0010Dto> findRecommendByPage(RV0011Dto rv0011Dto) {
         System.out.println("get List with rv0011Dto: " + rv0011Dto);
 
@@ -58,6 +59,7 @@ public class RV0010ServiceImpl implements RV0010Service {
         return rV0010Dao.findRecommendByPage(rv0011Dto);
     }
 
+    @Transactional
     public RV0010Dto uploadImage(MultipartFile file) throws Exception {
         RV0010Dto rv0010Dto = null;
         try{

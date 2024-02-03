@@ -4,10 +4,7 @@
 <mapper namespace="halfandhalf.domain.LD0010.dao.LD0010Dao">
 	<select id="findLoading" resultType="halfandhalf.domain.LD0010.dto.LD0010Dto">
 		SELECT
-			  PHRASES
-			, file_path
-			, file_original_name
-			, file_masking_name
+			PHRASES
 		FROM
 			LOADING_FOR_ANALYZE
 		WHERE

@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
 
 import javax.security.auth.login.LoginException;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 @Service("loginServiceImpl")
+@Transactional
 public class LG0010ServiceImpl implements LG0010Service, UserDetailsService {
 
     private final LG0010Dao loginMapper;

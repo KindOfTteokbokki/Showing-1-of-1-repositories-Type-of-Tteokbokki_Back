@@ -5,9 +5,6 @@
 	<select id="findTitle" resultType="halfandhalf.domain.TT0010.dto.TT0010Dto">
 		SELECT
 			  TITLE_NAME
-			, file_path
-			, file_original_name
-			, file_masking_name
 			, (SELECT NAME_KO FROM public_code pc WHERE 1=1 AND pc.code_category_id = 102 AND pc.CODE = qs.question1) AS question1
 			, (SELECT NAME_KO FROM public_code pc WHERE 1=1 AND pc.code_category_id = 102 AND pc.CODE = qs.question2) AS question2
 			, (SELECT NAME_KO FROM public_code pc WHERE 1=1 AND pc.code_category_id = 102 AND pc.CODE = qs.question3) AS question3
@@ -15,18 +12,37 @@
 			, (SELECT NAME_KO FROM public_code pc WHERE 1=1 AND pc.code_category_id = 102 AND pc.CODE = qs.question5) AS question5
 			, (SELECT NAME_KO FROM public_code pc WHERE 1=1 AND pc.code_category_id = 102 AND pc.CODE = qs.question6) AS question6
 			, (SELECT NAME_KO FROM public_code pc WHERE 1=1 AND pc.code_category_id = 102 AND pc.CODE = qs.question7) AS question7
+			, TM.ICORN_FILE_PATH
+			, TM.ICORN_FILE_ORIGINAL_NAME
+			, TM.ICORN_FILE_MASKING_NAME
+			, TM.IMG_FILE_PATH
+			, TM.IMG_FILE_ORIGINAL_NAME
+			, TM.IMG_FILE_MASKING_NAME
 		FROM
 			TITLE_INFO TI
 			JOIN QUESTION_FOR_SELECT QS ON TI.QUESTION_SEQ = QS.QUESTION_SEQ
+			JOIN TITLE_IMG TM ON TI.TITLE_CODE = TM.TITLE_CODE
 		WHERE
 			1=1
-			<if test='question1 != null  and question2 != null  and question3 != null  and question4 != null  and question5 != null  and question6 != null  and question7 != null'>
+			<if test="question1 != 'ch100'">
 				AND qs.question1 = #{question1}
+			</if>
+			<if test="question2 != 'ch200'">
 				AND qs.question2 = #{question2}
+			</if>
+			<if test="question3 != 'ch300'">
 				AND qs.question3 = #{question3}
+			</if>
+			<if test="question4 != 'ch400'">
 				AND qs.question4 = #{question4}
+			</if>
+			<if test="question5 != 'ch500'">
 				AND qs.question5 = #{question5}
+			</if>
+			<if test="question6 != 'ch600'">
 				AND qs.question6 = #{question6}
+			</if>
+			<if test="question7 != 'ch700'">
 				AND qs.question7 = #{question7}
 			</if>
 		ORDER BY rand()

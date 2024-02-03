@@ -12,7 +12,4 @@ import java.util.List;
 @Setter
 public class LD0010Dto {
     private String phrases;
-    private String file_path;
-    private String file_original_name;
-    private String file_masking_name;
 }

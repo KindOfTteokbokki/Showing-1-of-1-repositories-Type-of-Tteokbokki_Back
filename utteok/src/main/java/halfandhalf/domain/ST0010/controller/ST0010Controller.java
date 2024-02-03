@@ -34,6 +34,7 @@ public class ST0010Controller {
         }
         catch(Exception e){
             // 그 외 에러의 경우 500 메세지
+            e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("서버 내부 오류");
         }
     }

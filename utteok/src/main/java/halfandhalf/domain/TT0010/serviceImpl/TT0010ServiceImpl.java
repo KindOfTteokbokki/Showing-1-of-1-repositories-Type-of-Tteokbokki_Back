@@ -23,10 +23,10 @@ public class TT0010ServiceImpl implements TT0010Service {
     @Transactional(readOnly = true)
     public TT0010Dto findTitle(TT0010Dto tT0010Dto) throws Exception {
         TT0010Dto store = tT0010Dao.findTitle(tT0010Dto);
-        if(ObjectUtils.isEmpty(store)) {
-            tT0010Dto = new TT0010Dto();
-            store = tT0010Dao.findTitle(tT0010Dto);
-        }
+//        if(ObjectUtils.isEmpty(store)) {
+//            tT0010Dto = new TT0010Dto();
+//            store = tT0010Dao.findTitle(tT0010Dto);
+//        }
         return store;
     }
 }

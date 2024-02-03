@@ -7,9 +7,12 @@ import lombok.Setter;
 @Setter
 public class TT0010Dto {
     private String title_name;
-    private String file_path;
-    private String file_original_name;
-    private String file_masking_name;
+    private String icorn_file_path;
+    private String icorn_file_original_name;
+    private String icorn_file_masking_name;
+    private String img_file_path;
+    private String img_file_original_name;
+    private String img_file_masking_name;
     private String question1;
     private String question2;
     private String question3;

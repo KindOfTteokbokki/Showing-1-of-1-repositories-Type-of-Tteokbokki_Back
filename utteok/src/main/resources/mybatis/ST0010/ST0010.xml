@@ -10,9 +10,9 @@
 			, SI.STORE_ADDRESS
 			, SI.MENU_NAME
 			, SI.REVIEW
-			, SI.file_path
-			, file_original_name
-			, SI.file_masking_name
+			, MI.FILE_PATH
+			, MI.FILE_ORIGINAL_NAME
+			, MI.FILE_MASKING_NAME
 			, (SELECT NAME_KO FROM public_code pc WHERE 1=1 AND pc.code_category_id = 102 AND pc.CODE = qs.question1) AS question1
 			, (SELECT NAME_KO FROM public_code pc WHERE 1=1 AND pc.code_category_id = 102 AND pc.CODE = qs.question2) AS question2
 			, (SELECT NAME_KO FROM public_code pc WHERE 1=1 AND pc.code_category_id = 102 AND pc.CODE = qs.question3) AS question3
@@ -22,16 +22,29 @@
 			, (SELECT NAME_KO FROM public_code pc WHERE 1=1 AND pc.code_category_id = 102 AND pc.CODE = qs.question7) AS question7
 		FROM
 			STORE_INFO SI
-			JOIN QUESTION_FOR_SELECT QS ON SI.question_seq = qs.question_seq
+			JOIN QUESTION_FOR_SELECT QS ON SI.QUESTION_SEQ = QS.QUESTION_SEQ
+			JOIN MENU_IMG MI ON MI.QUESTION_SEQ = QS.QUESTION_SEQ
 		WHERE
 			1=1
-			<if test='question1 != null  and question2 != null  and question3 != null  and question4 != null  and question5 != null  and question6 != null  and question7 != null'>
+			<if test="question1 != 'ch100'">
 				AND qs.question1 = #{question1}
+			</if>
+			<if test="question2 != 'ch200'">
 				AND qs.question2 = #{question2}
+			</if>
+			<if test="question3 != 'ch300'">
 				AND qs.question3 = #{question3}
+			</if>
+			<if test="question4 != 'ch400'">
 				AND qs.question4 = #{question4}
+			</if>
+			<if test="question5 != 'ch500'">
 				AND qs.question5 = #{question5}
+			</if>
+			<if test="question6 != 'ch600'">
 				AND qs.question6 = #{question6}
+			</if>
+			<if test="question7 != 'ch700'">
 				AND qs.question7 = #{question7}
 			</if>
 		ORDER BY rand()
@@ -43,11 +56,12 @@
 			  STORE_SEQ
 			, COUNT_STORE
 			, STORE_NAME
-			, file_path
-			, file_original_name
-			, file_masking_name
+			, MI.FILE_PATH
+			, MI.FILE_ORIGINAL_NAME
+			, MI.FILE_MASKING_NAME
 		FROM
-			STORE_INFO
+			STORE_INFO SI
+			JOIN MENU_IMG MI ON MI.QUESTION_SEQ = SI.QUESTION_SEQ
 		WHERE
 			1=1
 		ORDER BY
