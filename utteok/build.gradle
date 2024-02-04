@@ -15,6 +15,9 @@ configurations {
     compileOnly {
         extendsFrom annotationProcessor
     }
+    all {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+    }
 }
 
 bootJar {
@@ -40,6 +43,8 @@ dependencies {
     implementation 'org.mariadb.jdbc:mariadb-java-client:2.1.2'
     // log4jdbc	의존성 추가
     implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
+    implementation 'org.springframework.boot:spring-boot-starter-log4j2'
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml'
     // JSON
     implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
     //시큐리티

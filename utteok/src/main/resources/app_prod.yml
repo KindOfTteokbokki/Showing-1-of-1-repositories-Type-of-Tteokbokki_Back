@@ -1,0 +1,39 @@
+spring:
+  datasource:  # ** 실서버에 업데이트 반영됨 환경 분리 필요 **
+    url: jdbc:log4jdbc:mariadb://118.67.132.171:3306/utteok?serverTimezone=UTC&characterEncoding=UTF-8&allowMultiQueries=true
+    #   url=jdbc:mariadb://<DB ??>:<?? ??>/<DatabaseName>
+    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    username: utteok
+    password: halfandhalf401!!
+mybatis:
+  mapper-locations: mybatis/**/*.xml
+
+logging:
+  config: classpath:log4j2_prod.yml
+  level:  # log4jdbc, Mybatis Console Log
+    com:
+      zaxxer:
+        hikari: INFO
+    javax:
+      sql:
+        DataSource: OFF
+    jdbc:
+      audit: OFF
+      resultset: OFF
+      resultsettable: INFO  #SQL 결과 데이터 Table을 로그로 남긴다.
+      sqlonly: OFF     #SQL만 로그로 남긴다.
+      sqltiming: INFO    #SQL과 소요시간을 표기한다.
+      connection : OFF  # 커넥션 확인가능
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
+
+api:
+  upload:
+    dir:
+      review: \app\fronted\public\image\review
+

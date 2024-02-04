@@ -3,8 +3,9 @@
 
 <mapper namespace="halfandhalf.domain.ST0010.dao.ST0010Dao">
 	<select id="findStore" resultType="halfandhalf.domain.ST0010.dto.ST0010Dto">
+		-- findStore resultType ST0010Dto
 		SELECT
-			  SI.STORE_SEQ
+			SI.STORE_SEQ
 			, SI.COUNT_STORE
 			, SI.STORE_NAME
 			, SI.STORE_ADDRESS
@@ -13,38 +14,39 @@
 			, MI.FILE_PATH
 			, MI.FILE_ORIGINAL_NAME
 			, MI.FILE_MASKING_NAME
+			, (SELECT NAME_KO FROM public_code pc WHERE 1=1 AND pc.code_category_id = 102 AND pc.CODE = qs.question4) AS question4
 			, (SELECT NAME_KO FROM public_code pc WHERE 1=1 AND pc.code_category_id = 102 AND pc.CODE = qs.question1) AS question1
 			, (SELECT NAME_KO FROM public_code pc WHERE 1=1 AND pc.code_category_id = 102 AND pc.CODE = qs.question2) AS question2
-			, (SELECT NAME_KO FROM public_code pc WHERE 1=1 AND pc.code_category_id = 102 AND pc.CODE = qs.question3) AS question3
-			, (SELECT NAME_KO FROM public_code pc WHERE 1=1 AND pc.code_category_id = 102 AND pc.CODE = qs.question4) AS question4
-			, (SELECT NAME_KO FROM public_code pc WHERE 1=1 AND pc.code_category_id = 102 AND pc.CODE = qs.question5) AS question5
-			, (SELECT NAME_KO FROM public_code pc WHERE 1=1 AND pc.code_category_id = 102 AND pc.CODE = qs.question6) AS question6
-			, (SELECT NAME_KO FROM public_code pc WHERE 1=1 AND pc.code_category_id = 102 AND pc.CODE = qs.question7) AS question7
+			, (SELECT NAME_KO FROM publIC_CODE PC WHERE 1=1 AND PC.CODE_CATEGORY_ID = 102 AND PC.CODE = QS.QUESTION3) AS QUESTION3
+			, (SELECT NAME_KO FROM PUBLIC_CODE PC WHERE 1=1 AND PC.CODE_CATEGORY_ID = 102 AND PC.CODE = QS.QUESTION4) AS QUESTION4
+			, (SELECT NAME_KO FROM PUBLIC_CODE PC WHERE 1=1 AND PC.CODE_CATEGORY_ID = 102 AND PC.CODE = QS.QUESTION5) AS QUESTION5
+			, (SELECT NAME_KO FROM PUBLIC_CODE PC WHERE 1=1 AND PC.CODE_CATEGORY_ID = 102 AND PC.CODE = QS.QUESTION6) AS QUESTION6
+			, (SELECT NAME_KO FROM PUBLIC_CODE PC WHERE 1=1 AND PC.CODE_CATEGORY_ID = 102 AND PC.CODE = QS.QUESTION7) AS QUESTION7
 		FROM
 			STORE_INFO SI
 			JOIN QUESTION_FOR_SELECT QS ON SI.QUESTION_SEQ = QS.QUESTION_SEQ
 			JOIN MENU_IMG MI ON MI.QUESTION_SEQ = QS.QUESTION_SEQ
 		WHERE
 			1=1
-			<if test="question1 != 'ch100'">
+			<if test="question1 != 'ch100' and question1 != 'ch103' and question1 != null">
 				AND qs.question1 = #{question1}
 			</if>
-			<if test="question2 != 'ch200'">
+			<if test="question2 != 'ch200' and question2 != null">
 				AND qs.question2 = #{question2}
 			</if>
-			<if test="question3 != 'ch300'">
+			<if test="question3 != 'ch300' and question3 != null">
 				AND qs.question3 = #{question3}
 			</if>
-			<if test="question4 != 'ch400'">
+			<if test="question4 != 'ch400' and question4 != null">
 				AND qs.question4 = #{question4}
 			</if>
-			<if test="question5 != 'ch500'">
+			<if test="question5 != 'ch500' and question5 != null">
 				AND qs.question5 = #{question5}
 			</if>
-			<if test="question6 != 'ch600'">
+			<if test="question6 != 'ch600' and question6 != null">
 				AND qs.question6 = #{question6}
 			</if>
-			<if test="question7 != 'ch700'">
+			<if test="question7 != 'ch700' and question7 != null">
 				AND qs.question7 = #{question7}
 			</if>
 		ORDER BY rand()

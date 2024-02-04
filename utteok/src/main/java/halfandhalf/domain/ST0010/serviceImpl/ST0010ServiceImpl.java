@@ -26,13 +26,9 @@ public class ST0010ServiceImpl implements ST0010Service {
     public ST0010Dto findStore(ST0010Dto sT0010Dto) throws Exception {
         ST0010Dto store = sT0010Dao.findStore(sT0010Dto);
 
-        // 선택이 없는 경우, 카운팅을 하지 않음
-        if("".equals(sT0010Dto.getQuestion1()) && "".equals(sT0010Dto.getQuestion2()) && "".equals(sT0010Dto.getQuestion3()) &&
-                "".equals(sT0010Dto.getQuestion4()) && "".equals(sT0010Dto.getQuestion5()) &&
-                "".equals(sT0010Dto.getQuestion6()) && "".equals(sT0010Dto.getQuestion7())){
-            store.setCount_store(store.getCount_store() + 1);
-            sT0010Dao.updateStoreCount(store);
-        }
+        if(ObjectUtils.isEmpty(store)) store = sT0010Dao.findStore(new ST0010Dto());
+        // 자료가 없는 경우, 카운팅을 하지 않음
+        else sT0010Dao.updateStoreCount(store);
 
         return store;
     }

@@ -20,31 +20,46 @@
 			, TM.IMG_FILE_MASKING_NAME
 		FROM
 			TITLE_INFO TI
-			JOIN QUESTION_FOR_SELECT QS ON TI.QUESTION_SEQ = QS.QUESTION_SEQ
+			JOIN QUESTION_FOR_SELECT QS ON TI.TITLE_CODE = QS.CODE
 			JOIN TITLE_IMG TM ON TI.TITLE_CODE = TM.TITLE_CODE
 		WHERE
 			1=1
-			<if test="question1 != 'ch100'">
-				AND qs.question1 = #{question1}
-			</if>
-			<if test="question2 != 'ch200'">
-				AND qs.question2 = #{question2}
-			</if>
-			<if test="question3 != 'ch300'">
-				AND qs.question3 = #{question3}
-			</if>
-			<if test="question4 != 'ch400'">
-				AND qs.question4 = #{question4}
-			</if>
-			<if test="question5 != 'ch500'">
-				AND qs.question5 = #{question5}
-			</if>
-			<if test="question6 != 'ch600'">
-				AND qs.question6 = #{question6}
-			</if>
-			<if test="question7 != 'ch700'">
-				AND qs.question7 = #{question7}
-			</if>
+			<choose>
+				<when test="question1 == null and question2 == null and question3 == null and question4 == null
+						and question5 == null and question6 == null and question6 == null">
+					AND qs.question1 = 'ch100'
+					AND qs.question2 = 'ch200'
+					AND qs.question3 = 'ch300'
+					AND qs.question4 = 'ch400'
+					AND qs.question5 = 'ch500'
+					AND qs.question6 = 'ch600'
+					AND qs.question7 = 'ch700'
+				</when>
+				<otherwise>
+					<if test="question1 != 'ch100' and question1 != 'ch103' and question1 != null">
+						AND qs.question1 = #{question1}
+					</if>
+					<if test="question2 != 'ch200' and question2 != null">
+						AND qs.question2 = #{question2}
+					</if>
+					<if test="question3 != 'ch300' and question3 != null">
+						AND qs.question3 = #{question3}
+					</if>
+					<if test="question4 != 'ch400' and question4 != null">
+						AND qs.question4 = #{question4}
+					</if>
+					<if test="question5 != 'ch500' and question5 != null">
+						AND qs.question5 = #{question5}
+					</if>
+					<if test="question6 != 'ch600' and question6 != null">
+						AND qs.question6 = #{question6}
+					</if>
+					<if test="question7 != 'ch700' and question7 != null">
+						AND qs.question7 = #{question7}
+					</if>
+				</otherwise>
+			</choose>
+		GROUP BY QS.QUESTION_SEQ
 		ORDER BY rand()
 		LIMIT 1
 	</select>

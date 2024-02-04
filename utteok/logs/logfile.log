@@ -1,0 +1,20 @@
+2024-02-04 19:23:29.221 [INFO ] [org.springframework.boot.StartupInfoLogger] [restartedMain]- Starting halfandhalf using Java 18.0.2.1 on DESKTOP-26RQTJI with PID 14508 (C:\workspace\Type-of-Tteokbokki_Back\utteok\build\classes\java\main started by Hwang in C:\workspace\Type-of-Tteokbokki_Back\utteok)
+2024-02-04 19:23:29.232 [INFO ] [org.springframework.boot.SpringApplication] [restartedMain]- No active profile set, falling back to 1 default profile: "default"
+2024-02-04 19:23:29.292 [INFO ] [org.springframework.boot.logging.DeferredLog] [restartedMain]- Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2024-02-04 19:23:29.292 [INFO ] [org.springframework.boot.logging.DeferredLog] [restartedMain]- For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2024-02-04 19:23:31.865 [INFO ] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [restartedMain]- Tomcat initialized with port(s): 8080 (http)
+2024-02-04 19:23:31.881 [INFO ] [org.apache.juli.logging.DirectJDKLog] [restartedMain]- Initializing ProtocolHandler ["http-nio-8080"]
+2024-02-04 19:23:31.897 [INFO ] [org.apache.juli.logging.DirectJDKLog] [restartedMain]- Starting service [Tomcat]
+2024-02-04 19:23:31.897 [INFO ] [org.apache.juli.logging.DirectJDKLog] [restartedMain]- Starting Servlet engine: [Apache Tomcat/9.0.83]
+2024-02-04 19:23:32.029 [INFO ] [org.apache.juli.logging.DirectJDKLog] [restartedMain]- Initializing Spring embedded WebApplicationContext
+2024-02-04 19:23:32.030 [INFO ] [org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext] [restartedMain]- Root WebApplicationContext: initialization completed in 2736 ms
+2024-02-04 19:23:33.324 [INFO ] [org.springframework.security.web.DefaultSecurityFilterChain] [restartedMain]- Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@25203dbc, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7382425c, org.springframework.security.web.context.SecurityContextPersistenceFilter@252134a3, org.springframework.security.web.header.HeaderWriterFilter@7beec9df, org.springframework.security.web.authentication.logout.LogoutFilter@3ed166c4, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3e925c8a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@23f11acf, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@66761807, org.springframework.security.web.session.SessionManagementFilter@5a825b6f, org.springframework.security.web.access.ExceptionTranslationFilter@3837bc04, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7580bd18]
+2024-02-04 19:23:34.120 [INFO ] [org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer] [restartedMain]- LiveReload server is running on port 35729
+2024-02-04 19:23:34.217 [INFO ] [org.apache.juli.logging.DirectJDKLog] [restartedMain]- Starting ProtocolHandler ["http-nio-8080"]
+2024-02-04 19:23:34.302 [INFO ] [org.springframework.boot.web.embedded.tomcat.TomcatWebServer] [restartedMain]- Tomcat started on port(s): 8080 (http) with context path ''
+2024-02-04 19:23:34.330 [INFO ] [org.springframework.boot.StartupInfoLogger] [restartedMain]- Started halfandhalf in 5.504 seconds (JVM running for 6.761)
+2024-02-04 19:23:37.344 [INFO ] [org.apache.juli.logging.DirectJDKLog] [http-nio-8080-exec-4]- Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-02-04 19:23:37.344 [INFO ] [org.springframework.web.servlet.FrameworkServlet] [http-nio-8080-exec-4]- Initializing Servlet 'dispatcherServlet'
+2024-02-04 19:23:37.345 [INFO ] [org.springframework.web.servlet.FrameworkServlet] [http-nio-8080-exec-4]- Completed initialization in 1 ms
+2024-02-04 19:23:37.541 [INFO ] [com.zaxxer.hikari.HikariDataSource] [http-nio-8080-exec-4]- HikariPool-1 - Starting...
+2024-02-04 19:23:37.756 [INFO ] [com.zaxxer.hikari.HikariDataSource] [http-nio-8080-exec-4]- HikariPool-1 - Start completed.

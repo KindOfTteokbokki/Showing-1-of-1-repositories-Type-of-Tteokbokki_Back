@@ -20,7 +20,7 @@ import java.util.List;
 @Service
 public class RV0010ServiceImpl implements RV0010Service {
 
-    @Value("${api.upload.dir.RV0010}")
+    @Value("${api.upload.dir.review}")
     private String uploadDir;
 
     private final RV0010Dao rV0010Dao;
@@ -66,7 +66,7 @@ public class RV0010ServiceImpl implements RV0010Service {
             String nowDate = getDate.getCurrentTime("YYYYMMDD");
             // uploadDir을 사용하면 static처럼 뒤에 계속 날짜가 붙는다.
             String dirPath = uploadDir + "\\" + nowDate;
-            File folder = new File(uploadDir);
+            File folder = new File(dirPath);
 
             if (!folder.exists()) {
                 folder.mkdirs();
