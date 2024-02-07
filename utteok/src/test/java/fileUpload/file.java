@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.UUID;
 
 public class file {
 //    1.1. MultipartFile
@@ -18,11 +19,21 @@ public class file {
 //    주로 파일 시스템에서 파일을 읽거나 쓸 때 사용
     @Test
     void upload() {
-        String nowTime = getCurrentTime("YYYYMMDDHHmmss");
-        System.out.println("nowTime : " + nowTime);
+
+        String fileName = "upload";
+        System.out.println("fileName : " + fileName);
+
+//        String extension = fileName.substring(fileName.lastIndexOf("."), fileName.length());
+        UUID uuid = UUID.randomUUID();
+        System.out.println(uuid);
+        String uuidName = uuid.toString();
+        int fileIndex = uuidName.indexOf("-");
+        String newFileName = uuidName.substring(fileIndex);
+
+        System.out.println("newFileName : " + newFileName);
+//        System.out.println("new dir : " + dir);
+
+
     }
 
-    public String getCurrentTime(String timeFormat){
-        return new SimpleDateFormat(timeFormat).format(java.lang.System.currentTimeMillis());
-    }
 }

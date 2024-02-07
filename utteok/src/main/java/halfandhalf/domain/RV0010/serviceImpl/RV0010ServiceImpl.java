@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class RV0010ServiceImpl implements RV0010Service {
@@ -52,7 +53,6 @@ public class RV0010ServiceImpl implements RV0010Service {
         } catch (NullPointerException e) {
             rV0010Dao.saveRecommend(rv0010Dto);
         } catch (Exception e) {
-            log.error("에러 : ", e.getMessage());
             throw new FileUploadException("파일 업로드 오류");
         }
     }
@@ -69,7 +69,7 @@ public class RV0010ServiceImpl implements RV0010Service {
         try{
             String nowDate = getDate.getCurrentTime("YYYYMMDD");
             // uploadDir을 사용하면 static처럼 뒤에 계속 날짜가 붙는다.
-            String dirPath = uploadDir + nowDate;
+            String dirPath = uploadDir + nowDate + File.separator;
             File folder = new File(dirPath);
 
             if (!folder.exists()) {
@@ -77,15 +77,22 @@ public class RV0010ServiceImpl implements RV0010Service {
             }
 
             String nowTime = getDate.getCurrentTime("HHmmss");
-            String fileName = nowTime + file.getOriginalFilename();
+            // 파일명 난수화
+            UUID uuid = UUID.randomUUID();
+            String maskingFileName = uuid.toString().substring(0, 5) + nowTime;
+            int fileIndex = file.getOriginalFilename().indexOf(".");
+            String fileNameComplete = dirPath.substring(fileIndex);
 
-            File destination = new File(dirPath + File.separator + fileName);
+            File destination = new File(dirPath + maskingFileName);
             file.transferTo(destination);
 
-            rv0010Dto = new RV0010Dto(dirPath, file.getOriginalFilename(), fileName);
+            // 디렉토리 심볼릭링크 기준으로 저장
+            int dirIndex = dirPath.indexOf("/src/");
+            String dirPathComplete = dirPath.substring(dirIndex);
+
+            rv0010Dto = new RV0010Dto(dirPathComplete, file.getOriginalFilename(), maskingFileName);
         }
         catch (Exception e){
-            log.error("에러 : ", e.getMessage());
             throw new FileUploadException("파일 업로드 오류");
         }
         finally {

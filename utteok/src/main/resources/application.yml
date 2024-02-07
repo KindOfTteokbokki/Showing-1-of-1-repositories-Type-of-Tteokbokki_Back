@@ -12,6 +12,11 @@ spring:
     driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
     username: root
     password: root
+  servlet:
+    multipart:
+      maxFileSize: 10MB
+      maxRequestSize: 10MB
+
 mybatis:
   mapper-locations: mybatis/**/*.xml
 
@@ -30,5 +35,10 @@ spring:
     driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
     username: utteok
     password: halfandhalf401!!
+  servlet:
+    multipart:
+      maxFileSize: 10MB
+      maxRequestSize: 10MB
+
 mybatis:
   mapper-locations: mybatis/**/*.xml

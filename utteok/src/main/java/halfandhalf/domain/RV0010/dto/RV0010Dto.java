@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Date;
+
 @Getter
 @Setter
 public class RV0010Dto {
@@ -12,6 +14,7 @@ public class RV0010Dto {
     private String file_path;
     private String file_original_name;
     private String file_masking_name;
+    private Date create_date;
 
     @Builder
     public RV0010Dto(String file_path, String file_original_name, String file_masking_name) {
