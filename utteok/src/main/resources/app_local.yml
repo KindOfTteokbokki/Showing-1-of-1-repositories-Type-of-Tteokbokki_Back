@@ -25,4 +25,4 @@ logging:
 api:
   upload:
     dir:
-      review: C:\workspace\Type-of-Tteokbokki_Back\utteok\image\review
+      review: C:\workspace\Type-of-Tteokbokki_Back\utteok\image\review\

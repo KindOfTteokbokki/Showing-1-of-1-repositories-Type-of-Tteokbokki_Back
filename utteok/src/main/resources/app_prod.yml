@@ -25,5 +25,5 @@ logging:
 api:
   upload:
     dir:
-      review: \app\fronted\public\image\review
+      review: /app/fronted/src/assets/upload/review/
 

@@ -63,7 +63,8 @@ public class RV0010Controller {
      *  나도 추천할래 등록하기
      */
     @PostMapping(value="/saveRecommend", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> saveRecommend(@ModelAttribute RV0010Dto rv0010Dto, @RequestParam("file") MultipartFile file) {
+    public ResponseEntity<?> saveRecommend(@ModelAttribute RV0010Dto rv0010Dto,
+                                           @RequestPart(value = "file", required=false) MultipartFile file) {
         try {
             rV0010Service.saveRecommend(rv0010Dto, file);
             return ResponseEntity.ok("SUCCESS");
@@ -71,11 +72,6 @@ public class RV0010Controller {
             // 파일 업로드 실패한 경우 에러 메세지 + 400 상태 코드 반환
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("파일 업로드 오류");
         }
-//        catch (SQLIntegrityConstraintViolationException e) {
-//          DB에 의해서 SQLException이 발생하지만, 스프링은 오류나봤자 어찌할 도리가 없는 DB에러에 대해 try catch로 도배되는것을 막기위해,
-//          의식적으로 처리할 필요가 없는 RuntimeException으로 랩핑하여 re throw하는 방식을 취한다.
-//          제약조건 위반시 DataIntegrityViolationException이, 좀 더 포괄적으로는 DataAccessException이 발생합니다.
-//          따라서 DataIntegrityViolationException 으로 교체하면 된다.
         catch (DataIntegrityViolationException e) {
             // 인증 실패한 경우 에러 메세지 + 400 상태 코드 반환
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("내용을 입력해 주세요");
