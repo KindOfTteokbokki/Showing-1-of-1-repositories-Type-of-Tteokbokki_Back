@@ -1,11 +1,0 @@
-
-X
-java:S6813"BRemove this field injection and use constructor injection instead.(êæÄŞ
-E	java:S106"+Replace this use of System.out by a logger.(¸íÌõúÿÿÿÿ
-@	java:S106 "+Replace this use of System.out by a logger.(ç©È¤
-@	java:S106#"+Replace this use of System.out by a logger.(‹€ø¼
-E	java:S106&"+Replace this use of System.out by a logger.(÷ú…Ğúÿÿÿÿ
-@	java:S106-"+Replace this use of System.out by a logger.(ÔÕ¬Ó
-E	java:S1061"+Replace this use of System.out by a logger.(‹±Ùÿÿÿÿÿ
-@	java:S1065"+Replace this use of System.out by a logger.(ºíğ»
-?	java:S106:"+Replace this use of System.out by a logger.(ÆøÀ
