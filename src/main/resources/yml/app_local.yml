@@ -1,5 +1,7 @@
 logging:
-  config: classpath:log4j2.yml  # log4j2_prod 쿼리 로그가 안보임
+  config:
+    import:
+      - classpath:/yml/log4j2_local.yml
   level:  # log4jdbc, Mybatis Console Log
     com:
       zaxxer:
@@ -25,5 +27,4 @@ logging:
 api:
   upload:
     dir:
-      review: /app/fronted/src/assets/upload/review/
-
+      review: C:\workspace\Type-of-Tteokbokki_Back\utteok\image\review\
