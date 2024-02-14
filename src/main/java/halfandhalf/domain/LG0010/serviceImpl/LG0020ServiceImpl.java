@@ -26,7 +26,8 @@ public class LG0020ServiceImpl {
     }
 
     private Long findOrCreateMember(OAuthInfoResponse oAuthInfoResponse) {
-        return Optional.ofNullable(memberRepository.findByNickname(oAuthInfoResponse.getNickname()))
+        return Optional.ofNullable(memberRepository.findByNickname(oAuthInfoResponse.getNickname()
+                        , String.valueOf(oAuthInfoResponse.getOAuthProvider())))
                 .map(LG0020Dto::getId)
                 .orElseGet(() -> newMember(oAuthInfoResponse));
     }
@@ -38,7 +39,7 @@ public class LG0020ServiceImpl {
                 .oAuthProvider(oAuthInfoResponse.getOAuthProvider())
                 .build();
         memberRepository.save(member);
-        return memberRepository.findByNickname(member.getNickname()).getId();
+        return memberRepository.findByNickname(member.getNickname(), String.valueOf(member.getOAuthProvider())).getId();
     }
 
     public LG0020Dto findById(Long id){

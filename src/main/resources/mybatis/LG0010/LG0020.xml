@@ -3,17 +3,31 @@
 	
 <mapper namespace="halfandhalf.domain.LG0010.dao.LG0020Dao">
 	<select id="findById" resultType="halfandhalf.domain.LG0010.dto.LG0020Dto">
-		SELECT * FROM oauth_login WHERE id  = #{id}
+		SELECT
+			*
+		FROM
+			oauth_login
+		WHERE
+			1=1
+			AND id  = #{id}
 	</select>
 
 	<select id="findByNickname" resultType="halfandhalf.domain.LG0010.dto.LG0020Dto">
-		SELECT * FROM oauth_login WHERE nickname  = #{nickname}
+		SELECT
+			*
+		FROM
+			oauth_login
+		WHERE
+			1=1
+			AND nickname  = #{nickname}
+			AND oAuthProvider = #{oAuthProvider}
 	</select>
 
 	<insert id="save">
 		insert into
 			oauth_login
-		(email, nickname, oAuthProvider)
-		values (#{email}, #{nickname}, #{oAuthProvider})
+			(email, nickname, oAuthProvider, create_date)
+		values
+			(#{email}, #{nickname}, #{oAuthProvider}, SYSDATE())
 	</insert>
 </mapper>

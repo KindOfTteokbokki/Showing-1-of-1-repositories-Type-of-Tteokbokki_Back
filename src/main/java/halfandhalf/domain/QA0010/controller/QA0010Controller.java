@@ -11,9 +11,10 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
-@CrossOrigin(origins = {"http://localhost:3000", "http://www.utteok.com"}, allowCredentials = "true")
+@CrossOrigin(origins = {"http://www.utteok.com"}, allowCredentials = "true")
 @RestController
 @RequestMapping("/api")
 public class QA0010Controller {
@@ -31,7 +32,7 @@ public class QA0010Controller {
 //    //@CrossOrigin(origins = {"118.67.132.171:3000"},allowCredentials = "true")
 //    @RequestMapping(value = "/getQA", method = {RequestMethod.GET, RequestMethod.OPTIONS})
     @GetMapping(value="/getQA", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> getTodos1() {
+    public ResponseEntity<?> getTodos1(HttpServletRequest request) {
         try {
             List<QA0011Dto> qA0011Dto = qA0010Service.findQuestion();
             List<QA0012Dto> qA0012Dto = qA0010Service.findAnswer();

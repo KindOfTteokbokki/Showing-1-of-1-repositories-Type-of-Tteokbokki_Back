@@ -12,8 +12,8 @@ oauth:
       auth: https://kauth.kakao.com
       api: https://kapi.kakao.com
   naver:
-    secret: W_2DmcLfYU
-    client-id: Y2i4SlApP7A1KZsUoott
+    secret: LfFTrtr85i
+    client-id: 4BvPetl_frDoq0DDMhbD
     url:
       auth: https://nid.naver.com
       api: https://openapi.naver.com

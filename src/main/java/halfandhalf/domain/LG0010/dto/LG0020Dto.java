@@ -4,6 +4,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Getter
 @NoArgsConstructor
 public class LG0020Dto {
@@ -15,6 +17,8 @@ public class LG0020Dto {
     private String nickname;
 
     private LG0021Dto oAuthProvider;
+
+    private Date create_date;
 
     @Builder
     public LG0020Dto(String email, String nickname, LG0021Dto oAuthProvider) {

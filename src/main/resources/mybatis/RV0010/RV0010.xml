@@ -13,6 +13,7 @@
 			REVIEW_FOR_STORE
 		ORDER BY
 			CREATE_DATE DESC
+		LIMIT 4
 	</select>
 
 	<insert id="saveRecommend" parameterType="halfandhalf.domain.RV0010.dto.RV0010Dto">
