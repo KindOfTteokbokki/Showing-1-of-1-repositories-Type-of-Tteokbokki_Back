@@ -1,18 +1,15 @@
 package halfandhalf.com.config.interceptor;
 
-import halfandhalf.com.util.jwt.JwtUtils;
 import halfandhalf.domain.LG0010.oauth.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
@@ -20,7 +17,6 @@ public class JwtInterceptor implements HandlerInterceptor {
 
     private static final Logger logger = LoggerFactory.getLogger(JwtInterceptor.class);
 
-    private final JwtUtils jwtUtils; //JWT 유틸리티 객체 주입
     private final JwtTokenProvider jwtProvider; //JWT 유틸리티 객체 주입
 
     @Override

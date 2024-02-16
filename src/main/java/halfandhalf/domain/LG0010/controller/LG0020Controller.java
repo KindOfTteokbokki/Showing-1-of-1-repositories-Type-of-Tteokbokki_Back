@@ -25,11 +25,6 @@ public class LG0020Controller {
         return code;
     }
 
-    @GetMapping("/tokenForGoogle")
-    public String loginGoogle(@RequestParam(value = "code", required = false) String code) {
-        return code;
-    }
-
     @PostMapping("/kakao")
     public ResponseEntity<AuthTokens> loginKakao(@RequestBody KakaoLoginParams params) {
 //        토큰으로 회원 정보 얻는 두가지 방법
