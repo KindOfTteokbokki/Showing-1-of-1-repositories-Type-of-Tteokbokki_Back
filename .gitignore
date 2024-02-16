@@ -3,6 +3,9 @@ build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
+*.log
+
+oauth_secret.yml
 
 ### IntelliJ IDEA ###
 .idea/modules.xml

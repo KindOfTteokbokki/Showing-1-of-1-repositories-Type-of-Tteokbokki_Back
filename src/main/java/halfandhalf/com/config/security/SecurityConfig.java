@@ -4,6 +4,7 @@ package halfandhalf.com.config.security;
 import halfandhalf.com.config.AppConfig;
 import halfandhalf.com.util.jwt.JwtUtils;
 import halfandhalf.domain.LG0010.serviceImpl.LG0010ServiceImpl;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,20 +19,20 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 
 @Configuration // 해당 클래스를 Spring Configuration으로 등록
 @EnableWebSecurity // Spring Security를 활성화
+@RequiredArgsConstructor
 @EnableGlobalMethodSecurity(prePostEnabled = true) // 메소드 수준에서의 보안을 활성화
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final JwtUtils jwtUtils;
     private final LG0010ServiceImpl loginService;
-
     private final AppConfig appConfig;
 
-    @Autowired
-    public SecurityConfig(@Lazy JwtUtils jwtUtils, LG0010ServiceImpl loginService, AppConfig appConfig) {
-        this.jwtUtils = jwtUtils;
-        this.loginService = loginService;
-        this.appConfig = appConfig;
-    }
+//    @Autowired
+//    public SecurityConfig(@Lazy JwtUtils jwtUtils, LG0010ServiceImpl loginService, AppConfig appConfig) {
+//        this.jwtUtils = jwtUtils;
+//        this.loginService = loginService;
+//        this.appConfig = appConfig;
+//    }
 
     @Override // HttpSecurity를 사용하여 Web Security 설정을 오버라이드한다.
     protected void configure(HttpSecurity http) throws Exception {

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@CrossOrigin(origins = {"http://localhost:3000", "http://www.utteok.com"}, allowCredentials = "true")
+@CrossOrigin(origins = {"http://www.utteok.com"}, allowCredentials = "true")
 @RestController
 @RequestMapping("/api")
 public class LD0010Controller {

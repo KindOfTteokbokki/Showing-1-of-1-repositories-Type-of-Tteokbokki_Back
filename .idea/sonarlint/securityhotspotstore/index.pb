@@ -48,8 +48,6 @@ j
 :src/main/java/halfandhalf/domain/LG0010/dto/LG0011Dto.java,c\2\c2376871010aa5a6e016ee9822d1a5fa89880cef
 r
 Bsrc/main/java/halfandhalf/domain/LG0010/service/LG0010Service.java,9\9\996623e9a4a811e7dad8981c142504bf66b779d1
-Z
-*src/main/java/halfandhalf/halfandhalf.java,f\6\f67073e99f10e0c6c8d3d653743905a3294d06d4
 j
 :src/main/java/halfandhalf/domain/QA0010/dto/QA0012Dto.java,7\c\7c34a26d0852ff74d27d59c99783d0431ed42268
 j
@@ -132,12 +130,6 @@ j
 :src/main/java/halfandhalf/domain/LG0010/dto/LG0020Dto.java,6\6\6686580de71dd5ab8dac5f870908c8653162fcf8
 j
 :src/main/java/halfandhalf/domain/LG0010/dto/LG0021Dto.java,4\c\4ce18d82774aac9d9b2b1e9b2365b72de44ea821
-s
-Csrc/main/java/halfandhalf/domain/LG0010/oauth/OAuthLoginParams.java,3\3\33b036ce171ffde03b0de456cb1d37018344bdaa
-s
-Csrc/main/java/halfandhalf/domain/LG0010/oauth/KakaoLoginParams.java,f\a\fa233c7a2cf22e6ba7b2c97033e4ce4d7b0441a9
-s
-Csrc/main/java/halfandhalf/domain/LG0010/oauth/NaverLoginParams.java,5\9\597247815186829dad93c635541ec421b7991c63
 y
 Isrc/main/java/halfandhalf/domain/LG0010/oauth/param/OAuthLoginParams.java,a\a\aa79a0aecf1de563d74ced39348541aca7196d9a
 t
@@ -176,9 +168,9 @@ d
 4src/main/java/halfandhalf/domain/testController.java,8\0\8028902c6e8e6167d59102e7e3282c7c56c1777b
 N
 src/test/java/oauth/login.java,7\8\784159fb138e1939122ef3b6c471664f1b80f0e5
-`
-0src/test/java/oauth/jwt/AuthTokensGenerator.java,3\a\3a5f67919774b3f8ff7f97f4ef055b5c86b9a633
-q
-Asrc/main/java/halfandhalf/com/filter/JwtAuthenticationFilter.java,b\a\ba9f4c828ccd194f7447c7f4ba735478b18ad13f
 U
 %src/main/java/halfandhalf/utteok.java,0\4\04e0152ae27645fcc8b3c5f81922acb0a6ba84d7
+9
+	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+B
+troubleshooting.md,9\f\9f50835d850a66cd1691d62d63a29b42f359cd46

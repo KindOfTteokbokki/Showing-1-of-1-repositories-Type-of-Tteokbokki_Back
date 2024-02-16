@@ -1,26 +1,32 @@
 package halfandhalf.domain.LG0010.controller;
 
-import halfandhalf.domain.LG0010.dto.LG0020Dto;
 import halfandhalf.domain.LG0010.oauth.jwt.AuthTokens;
-import halfandhalf.domain.LG0010.oauth.jwt.AuthTokensGenerator;
-import halfandhalf.domain.LG0010.oauth.jwt.JwtTokenProvider;
 import halfandhalf.domain.LG0010.oauth.param.KakaoLoginParams;
 import halfandhalf.domain.LG0010.oauth.param.NaverLoginParams;
 import halfandhalf.domain.LG0010.serviceImpl.LG0020ServiceImpl;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/auth")
-@CrossOrigin(origins = {"http://localhost:3000", "http://www.utteok.com"}, allowCredentials = "true")
+@CrossOrigin(origins = {"http://www.utteok.com"}, allowCredentials = "true")
 public class LG0020Controller {
     private final LG0020ServiceImpl oAuthLoginService;
 
     @GetMapping("/tokenForKakao")
     public String loginKakao(@RequestParam(value = "code", required = false) String code) {
+        return code;
+    }
+
+    @GetMapping("/tokenForNaver")
+    public String loginNaver(@RequestParam(value = "code", required = false) String code) {
+        return code;
+    }
+
+    @GetMapping("/tokenForGoogle")
+    public String loginGoogle(@RequestParam(value = "code", required = false) String code) {
         return code;
     }
 

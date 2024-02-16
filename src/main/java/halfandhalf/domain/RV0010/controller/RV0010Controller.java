@@ -16,7 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
-@CrossOrigin(origins = {"http://localhost:3000", "http://www.utteok.com"}, allowCredentials = "true")
+@CrossOrigin(origins = {"http://www.utteok.com"}, allowCredentials = "true")
 @RestController
 @RequestMapping("/api")
 public class RV0010Controller {

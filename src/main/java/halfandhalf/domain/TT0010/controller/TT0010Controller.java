@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
-@CrossOrigin(origins = {"http://localhost:3000", "http://www.utteok.com"}, allowCredentials = "true")
+@CrossOrigin(origins = {"http://www.utteok.com"}, allowCredentials = "true")
 @RestController
 @RequestMapping("/api")
 public class TT0010Controller {

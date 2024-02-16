@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.security.auth.login.LoginException;
 
 @RestController
-@CrossOrigin(origins = {"http://localhost:3000", "http://www.utteok.com"}, allowCredentials = "true")
+@CrossOrigin(origins = {"http://www.utteok.com"}, allowCredentials = "true")
 @RequestMapping("/api/login")
 public class LG0010Controller {
 
