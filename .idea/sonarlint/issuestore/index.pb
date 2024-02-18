@@ -174,3 +174,7 @@ U
 	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
 B
 troubleshooting.md,9\f\9f50835d850a66cd1691d62d63a29b42f359cd46
+T
+$src/test/java/oauth/oauth_secret.yml,4\9\495443d146f455846cb6efe29eb20df3dea450e8
+O
+src/test/java/oauth/jasypy.java,1\b\1be51df9c380a2407c24c7959e9416ca139fef24
