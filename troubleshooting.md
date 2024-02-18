@@ -30,6 +30,10 @@
     database 는 살아 있는데, 모든 데이터가 삭제되었다.
     작은 프로젝트라고 보안을 신경쓰지않은 내 탓이다.
     1) 허용된 IP(개발자)만 Spring FTP SSH 접근 가능
+       /etc/ssh/sshd_config MaxAuthTries 6(6번이상실패시 차단)
+        vi /etc/hosts.allow 해당 광역대는 허용
+        vi /etc/hosts.deny 거부할 광역대
+       yum install fail2ban jwhois
     2) Nginx port 외에 접근 불허
 3. deploy spring using jenkins
     1) nohup & kill -9 not working
