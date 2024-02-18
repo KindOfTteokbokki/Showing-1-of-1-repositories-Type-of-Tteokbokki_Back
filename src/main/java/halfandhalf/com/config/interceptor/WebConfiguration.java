@@ -1,6 +1,5 @@
 package halfandhalf.com.config.interceptor;
 
-import halfandhalf.com.interceptor.LoginInterceptor;
 import halfandhalf.com.util.jwt.JwtUtils;
 import halfandhalf.domain.LG0010.oauth.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +17,7 @@ public class WebConfiguration implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new JwtInterceptor(jwtUtils, jwtProvider))
+        registry.addInterceptor(new JwtInterceptor(jwtProvider))
                 .addPathPatterns("/**");
         System.out.println("WebConfiguration addInterceptors");
     }
