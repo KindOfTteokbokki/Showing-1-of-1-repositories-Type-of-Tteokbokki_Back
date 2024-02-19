@@ -166,15 +166,11 @@ y
 Isrc/main/java/halfandhalf/domain/LG0010/oauth/param/NaverLoginParams.java,8\6\86c76b693f077a9ffb1ecd63f33b80796f95e3de
 d
 4src/main/java/halfandhalf/domain/testController.java,8\0\8028902c6e8e6167d59102e7e3282c7c56c1777b
-N
-src/test/java/oauth/login.java,7\8\784159fb138e1939122ef3b6c471664f1b80f0e5
 U
 %src/main/java/halfandhalf/utteok.java,0\4\04e0152ae27645fcc8b3c5f81922acb0a6ba84d7
 9
 	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
 B
 troubleshooting.md,9\f\9f50835d850a66cd1691d62d63a29b42f359cd46
-T
-$src/test/java/oauth/oauth_secret.yml,4\9\495443d146f455846cb6efe29eb20df3dea450e8
 O
 src/test/java/oauth/jasypy.java,1\b\1be51df9c380a2407c24c7959e9416ca139fef24

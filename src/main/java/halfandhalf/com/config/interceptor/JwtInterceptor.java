@@ -23,16 +23,12 @@ public class JwtInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         System.out.println("JwtInterceptor preHandle");
 
-        String uri = request.getRequestURI();
-        System.out.println("uri : "+ uri);
+        String requestURI = request.getRequestURI();
+        System.out.println("JwtInterceptor uri : "+ requestURI);
 
-        // 토큰 받기
-        System.out.println("JwtInterceptor preHandle 실행");
         // 요청이 들어오면 실행되는 메서드
         String accessToken = jwtProvider.getAccessToken(request);
-        System.out.println("Interceptor accessToken : "+ accessToken); //요청 url 로깅을 위해 가져옴
-        //로깅용 URI
-        String requestURI = request.getRequestURI();
+        System.out.println("JwtInterceptor Interceptor accessToken : "+ accessToken); //요청 url 로깅을 위해 가져옴
 
         // 비회원일 때(액세스 토큰이 없을 때)
         if (!StringUtils.hasText(accessToken)) {
