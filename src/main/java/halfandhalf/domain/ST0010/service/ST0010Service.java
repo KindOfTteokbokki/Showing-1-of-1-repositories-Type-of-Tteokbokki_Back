@@ -8,4 +8,6 @@ public interface ST0010Service {
     ST0010Dto findStore(ST0010Dto sT0010Dto) throws Exception;
 
     List<ST0010Dto> findByCount();
+
+    ST0010Dto findOneFromMyTaste(ST0010Dto st0010Dto);
 }

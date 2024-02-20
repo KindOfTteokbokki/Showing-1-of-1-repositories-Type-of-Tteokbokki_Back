@@ -24,6 +24,22 @@ public class ST0010Controller {
     }
 
     /*
+     *  내입맛 데이터 하나 가져오기
+     */
+    @PostMapping(value="/viewOneFromMyTaste", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> viewOneFromMyTaste(@RequestBody ST0010Dto st0010Dto) {
+        try {
+            ST0010Dto store_info = sT0010Service.findOneFromMyTaste(st0010Dto);
+            return ResponseEntity.ok(store_info);
+        }
+        catch(Exception e){
+            // 그 외 에러의 경우 500 메세지
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("서버 내부 오류");
+        }
+    }
+
+    /*
      *  가게 정보 가져오기
      */
     @PostMapping(value="/findStore", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -43,7 +59,7 @@ public class ST0010Controller {
      *  내 입맛 가져오기
      */
     @GetMapping(value="/myTaste", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> getTodos1() {
+    public ResponseEntity<?> getTodos() {
         try {
             List<ST0010Dto> myTaste = sT0010Service.findByCount();
             return ResponseEntity.ok(myTaste);
