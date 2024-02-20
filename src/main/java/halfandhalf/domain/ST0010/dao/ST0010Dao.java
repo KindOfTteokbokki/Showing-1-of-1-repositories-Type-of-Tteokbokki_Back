@@ -11,6 +11,8 @@ import java.util.List;
 @Repository
 @Mapper
 public interface ST0010Dao {
+    ST0010Dto findOneFromMyTaste(ST0010Dto st0010Dto);
+
     ST0010Dto findStore(ST0010Dto sT0010Dto);
 
     void updateStoreCount(ST0010Dto store);

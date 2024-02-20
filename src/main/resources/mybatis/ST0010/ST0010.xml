@@ -3,6 +3,25 @@
 
 <mapper namespace="halfandhalf.domain.ST0010.dao.ST0010Dao">
 	<select id="findStore" resultType="halfandhalf.domain.ST0010.dto.ST0010Dto">
+		SELECT
+			  SI.STORE_SEQ
+			, SI.COUNT_STORE
+			, SI.STORE_NAME
+			, SI.STORE_ADDRESS
+			, SI.MENU_NAME
+			, SI.REVIEW
+			, MI.FILE_PATH
+			, MI.FILE_ORIGINAL_NAME
+			, MI.FILE_MASKING_NAME
+		FROM
+			STORE_INFO SI
+			JOIN MENU_IMG MI ON MI.QUESTION_SEQ = SI.QUESTION_SEQ
+		WHERE
+			1=1
+			AND SI.STORE_SEQ = #{store_seq}
+	</select>
+
+	<select id="findStore" resultType="halfandhalf.domain.ST0010.dto.ST0010Dto">
 		-- findStore resultType ST0010Dto
 		SELECT
 			SI.STORE_SEQ

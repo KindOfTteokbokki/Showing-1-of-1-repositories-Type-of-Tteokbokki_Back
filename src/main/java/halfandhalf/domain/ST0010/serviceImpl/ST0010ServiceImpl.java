@@ -23,6 +23,12 @@ public class ST0010ServiceImpl implements ST0010Service {
 
     @Override
     @Transactional(readOnly = true)
+    public ST0010Dto findOneFromMyTaste(ST0010Dto st0010Dto) {
+        return sT0010Dao.findOneFromMyTaste(st0010Dto);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
     public ST0010Dto findStore(ST0010Dto sT0010Dto) throws Exception {
         ST0010Dto store = sT0010Dao.findStore(sT0010Dto);
 
