@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="halfandhalf.domain.ST0010.dao.ST0010Dao">
-	<select id="findStore" resultType="halfandhalf.domain.ST0010.dto.ST0010Dto">
+	<select id="findOneFromMyTaste" resultType="halfandhalf.domain.ST0010.dto.ST0010Dto">
 		SELECT
 			  SI.STORE_SEQ
 			, SI.COUNT_STORE
