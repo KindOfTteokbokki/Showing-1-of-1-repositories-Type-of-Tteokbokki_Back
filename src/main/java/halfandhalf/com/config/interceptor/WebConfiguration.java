@@ -1,6 +1,7 @@
 package halfandhalf.com.config.interceptor;
 
 import halfandhalf.com.util.jwt.JwtUtils;
+import halfandhalf.domain.LG0010.oauth.jwt.AuthTokensGenerator;
 import halfandhalf.domain.LG0010.oauth.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
@@ -14,12 +15,14 @@ public class WebConfiguration implements WebMvcConfigurer {
 
     private final JwtUtils jwtUtils;
     private final JwtTokenProvider jwtProvider; //JWT 유틸리티 객체 주입
+    private final AuthTokensGenerator authTokensGenerator;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new JwtInterceptor(jwtProvider))
-                .addPathPatterns()
-                .addPathPatterns("/rv/**"); // 나도추천할래 페이지
+        registry.addInterceptor(new JwtInterceptor(jwtProvider, authTokensGenerator))
+                .addPathPatterns("/api/myTaste")
+                .addPathPatterns("/api/saveRecommend")
+                .addPathPatterns("/api/getRecommendToPage"); // 나도추천할래 페이지
         System.out.println("WebConfiguration addInterceptors");
     }
 

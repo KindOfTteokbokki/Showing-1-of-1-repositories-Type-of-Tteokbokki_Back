@@ -1,5 +1,6 @@
 package halfandhalf.com.config.interceptor;
 
+import halfandhalf.domain.LG0010.oauth.jwt.AuthTokensGenerator;
 import halfandhalf.domain.LG0010.oauth.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -10,6 +11,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
@@ -18,6 +20,7 @@ public class JwtInterceptor implements HandlerInterceptor {
     private static final Logger logger = LoggerFactory.getLogger(JwtInterceptor.class);
 
     private final JwtTokenProvider jwtProvider; //JWT 유틸리티 객체 주입
+    private final AuthTokensGenerator authTokensGenerator;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -33,11 +36,12 @@ public class JwtInterceptor implements HandlerInterceptor {
         // 비회원일 때(액세스 토큰이 없을 때)
         if (!StringUtils.hasText(accessToken)) {
             System.out.println("비회원 유저입니다 URI : {}"+ requestURI);
-            return true;
+            return false;
         } else {
             System.out.println("access 존재합니다.");
+            Optional<Long> user_id = Optional.ofNullable(authTokensGenerator.extractMemberId(accessToken));
             // 액세스 토큰이 유효 시
-            if ("1".equals(jwtProvider.extractSubject(accessToken))) {
+            if (user_id.isPresent() && user_id.get().intValue() == Integer.valueOf(jwtProvider.extractSubject(accessToken))) {
                 System.out.println("유효한 토큰 정보입니다. URI : {}"+ requestURI);
                 return true;
             } else {

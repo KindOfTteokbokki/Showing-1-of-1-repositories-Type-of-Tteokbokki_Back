@@ -32,7 +32,7 @@ public class ST0010ServiceImpl implements ST0010Service {
     public ST0010Dto findStore(ST0010Dto sT0010Dto, Long user_id) throws Exception {
         ST0010Dto store = sT0010Dao.findStore(sT0010Dto);
 
-        if(!"0".equals(user_id)) {
+        if(0 != user_id.intValue()) {
             ST0011Dto st0011Dto = new ST0011Dto(user_id, store.getStore_seq());
 
             Optional<ST0011Dto> optional = Optional.ofNullable(sT0010Dao.findMyTasteByIdSeq(st0011Dto));

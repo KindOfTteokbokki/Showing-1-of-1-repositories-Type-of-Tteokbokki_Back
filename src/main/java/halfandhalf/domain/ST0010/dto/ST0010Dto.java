@@ -19,7 +19,6 @@ public class ST0010Dto {
     private String file_path;
     private String file_original_name;
     private String file_masking_name;
-    private int count_store;
     private String question1;
     private String question2;
     private String question3;

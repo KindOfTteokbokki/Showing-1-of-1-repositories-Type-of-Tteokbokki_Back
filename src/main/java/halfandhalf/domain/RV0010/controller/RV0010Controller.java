@@ -21,7 +21,7 @@ import java.util.List;
 
 @CrossOrigin(origins = {"http://www.utteok.com"}, allowCredentials = "true")
 @RestController
-@RequestMapping("/api/rv")
+@RequestMapping("/api")
 @RequiredArgsConstructor
 public class RV0010Controller {
 
@@ -30,7 +30,7 @@ public class RV0010Controller {
     private final AuthTokensGenerator authTokensGenerator;
 
     /*
-     *  나도 추천할래 가져오기 to MainPage
+     *  나도 추천할래 하나 가져오기
      */
     @GetMapping(value="/ViewOneFromRecommend", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> ViewToOne(@RequestBody RV0010Dto rv0010Dto) {
