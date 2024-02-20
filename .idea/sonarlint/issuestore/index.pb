@@ -180,3 +180,5 @@ U
 %src/test/java/oauth/jasypy_local.java,b\4\b417d212f980abed7f798a4ee1006df07314ec32
 T
 $src/test/java/oauth/jasypy_prod.java,a\a\aa9689ea01d22d1997ddf917c21a5c789fee1867
+j
+:src/main/java/halfandhalf/domain/ST0010/dto/ST0011Dto.java,c\d\cd772908421c786d742a7970288efc5b40b4d57c

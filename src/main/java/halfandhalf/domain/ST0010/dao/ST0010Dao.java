@@ -1,6 +1,7 @@
 package halfandhalf.domain.ST0010.dao;
 
 import halfandhalf.domain.ST0010.dto.ST0010Dto;
+import halfandhalf.domain.ST0010.dto.ST0011Dto;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -13,7 +14,11 @@ public interface ST0010Dao {
 
     ST0010Dto findStore(ST0010Dto sT0010Dto);
 
-    void updateStoreCount(ST0010Dto store);
+    ST0011Dto findMyTasteByIdSeq(ST0011Dto st0011Dto);
 
-    List<ST0010Dto> findByCount();
+    List<ST0010Dto> findMyTasteByCount(Long user_id);
+
+    void updateStoreCount(ST0011Dto store);
+
+    void insertStoreCount(ST0011Dto st0011Dto);
 }

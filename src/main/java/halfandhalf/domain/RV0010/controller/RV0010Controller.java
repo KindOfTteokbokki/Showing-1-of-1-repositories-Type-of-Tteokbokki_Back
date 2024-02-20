@@ -26,7 +26,7 @@ import java.util.List;
 public class RV0010Controller {
 
     private final RV0010Service rV0010Service;
-    private final JwtTokenProvider jwtProvider; //JWT 유틸리티 객체 주입
+    private final JwtTokenProvider jwtProvider;
     private final AuthTokensGenerator authTokensGenerator;
 
     /*
