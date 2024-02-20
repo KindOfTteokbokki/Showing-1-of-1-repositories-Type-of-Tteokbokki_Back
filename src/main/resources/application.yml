@@ -6,7 +6,7 @@ spring:
     activate:
       on-profile: local
     import:
-      - classpath:/yml/app_local.yml
+      - classpath:/yml/local/app_local.yml
       - classpath:/yml/oauth_secret.yml
   datasource:
     url: ENC(g+oHeXHg38s7tzbn27pEaqZZFEWdymmd94fQJQiVDNe0MeYpARdQC//keGyq2c8Nd3xTvrK+mOmz7tsGijDM7c7mzW5ADllUBT6qbOJ8f2j9587ZPtKhgMJ5M2n/8U19H4n80u6gmHt2dIpSvVZcC2GQXPOhsV9U)
@@ -38,7 +38,7 @@ spring:
     activate:
       on-profile: dev
     import:
-      - classpath:/yml/app_prod.yml
+      - classpath:/yml/dev/app_dev.yml
       - classpath:/yml/oauth_secret.yml
   datasource:
     url: ENC(FK77sKsKkFqcwdm9pRgWaA44DzKwjsGvvN2w3Xge+Kc3vZc/90+JeEWO1/GXxh5//Tk3JgCo9pSkL8/wBPe9KJuw3ZAzf6l1gkgL9NWAn9tjhsEL/Dp94w1bm6uu4tD1t0mGqzED5oixu0iTnpdlLllf0fzRJ0FL8Ygj5BlsU9M=)
@@ -62,7 +62,7 @@ spring:
     activate:
       on-profile: prod
     import:
-      - classpath:/yml/app_prod.yml
+      - classpath:/yml/prod/app_prod.yml
       - classpath:/yml/oauth_secret.yml
   datasource:
     url: ENC(G9K5wvH6aBi7hJH/b3b3XU5RdMI6nDQzsgC2ZNX1IEUWu46xpk1WDGv1NXFbDfeM/dwi7gHsTGs2hm13U5Tt623cNMkUqcQ3+Ta4jQ1Su4eaadG7LnJTnxuRXTm/MFtN/LTExBhPePCilBTUdjgRN5R3N8G0mAyO67O9z3aZO5E=)

@@ -22,6 +22,12 @@ public class CB0010ServiceImpl implements CB0010Service {
 
     @Override
     @Transactional(readOnly = true)
+    public CB0010Dto findOneFromCombination(CB0010Dto cb0010Dto) {
+        return cB0010Dao.findOneFromCombination(cb0010Dto);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
     public List<CB0010Dto> findCombination() {
         return cB0010Dao.findCombination();
     }

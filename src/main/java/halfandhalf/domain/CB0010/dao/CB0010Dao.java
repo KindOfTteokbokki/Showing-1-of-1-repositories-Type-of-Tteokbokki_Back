@@ -9,5 +9,6 @@ import java.util.List;
 @Repository
 @Mapper
 public interface CB0010Dao {
+    CB0010Dto findOneFromCombination(CB0010Dto cb0010Dto);
     List<CB0010Dto> findCombination();
 }

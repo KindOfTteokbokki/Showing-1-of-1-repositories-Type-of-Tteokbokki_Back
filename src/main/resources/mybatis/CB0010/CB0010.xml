@@ -2,9 +2,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="halfandhalf.domain.CB0010.dao.CB0010Dao">
+	<select id="findOneFromCombination" resultType="halfandhalf.domain.CB0010.dto.CB0010Dto">
+		SELECT
+			  combination_seq
+			, content
+			, file_path
+			, file_original_name
+			, file_masking_name
+		FROM
+			UTTEOK_COMBINATION
+		WHERE
+			1=1
+			AND combination_seq = #{combination_seq}
+	</select>
 	<select id="findCombination" resultType="halfandhalf.domain.CB0010.dto.CB0010Dto">
 		SELECT
-			  file_path
+			  combination_seq
+			, content
+			, file_path
 			, file_original_name
 			, file_masking_name
 		FROM

@@ -18,7 +18,8 @@ public class WebConfiguration implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new JwtInterceptor(jwtProvider))
-                .addPathPatterns("/**");
+                .addPathPatterns()
+                .addPathPatterns("/rv/**"); // 나도추천할래 페이지
         System.out.println("WebConfiguration addInterceptors");
     }
 

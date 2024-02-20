@@ -2,25 +2,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="halfandhalf.domain.RV0010.dao.RV0010Dao">
-	<select id="findRecommend" resultType="halfandhalf.domain.RV0010.dto.RV0010Dto">
+	<select id="findOneFromRecommend" parameterType="halfandhalf.domain.RV0010.dto.RV0010Dto" resultType="halfandhalf.domain.RV0010.dto.RV0010Dto">
 		SELECT
-			  CONTENT
+			  review_seq
+			, CONTENT
+			, user_id
 			, file_path
 			, file_original_name
 			, file_masking_name
 			, CREATE_DATE
 		FROM
 			REVIEW_FOR_STORE
-		ORDER BY
-			CREATE_DATE DESC
-		LIMIT 4
+		WHERE
+			1=1
+			AND review_seq = #{review_seq}
 	</select>
 
 	<insert id="saveRecommend" parameterType="halfandhalf.domain.RV0010.dto.RV0010Dto">
 		insert into
 			review_for_store
-			(content, file_path, file_original_name, file_masking_name, create_date)
+			(user_id, content, file_path, file_original_name, file_masking_name, create_date)
 		values
-			(#{content}, #{file_path}, #{file_original_name}, #{file_masking_name}, SYSDATE());
+			(#{user_id}, #{content}, #{file_path}, #{file_original_name}, #{file_masking_name}, SYSDATE());
 	</insert>
 </mapper>
