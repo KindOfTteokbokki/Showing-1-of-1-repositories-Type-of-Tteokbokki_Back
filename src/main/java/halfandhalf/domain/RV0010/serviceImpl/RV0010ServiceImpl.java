@@ -36,14 +36,13 @@ public class RV0010ServiceImpl implements RV0010Service {
 
     @Override
     @Transactional(readOnly = true)
-    public List<RV0010Dto> findRecommend() {
-        return rV0010Dao.findRecommend();
+    public RV0010Dto findOneFromRecommend(RV0010Dto rv0010Dto) {
+        return rV0010Dao.findOneFromRecommend(rv0010Dto);
     }
 
     @Override
     @Transactional
     public void saveRecommend(RV0010Dto rv0010Dto, MultipartFile file) throws Exception{
-
         if(StringUtils.isEmpty(rv0010Dto.getContent())) throw new DataIntegrityViolationException("내용을 입력해 주세요");
 
         try {
@@ -59,9 +58,19 @@ public class RV0010ServiceImpl implements RV0010Service {
 
     @Override
     @Transactional
-    public List<RV0010Dto> findRecommendByPage(RV0011Dto rv0011Dto) {
+    public List<RV0010Dto> findRecommendByPage(RV0011Dto rv0011Dto, Long user_id) {
         rv0011Dto.setPageNum(rv0011Dto.getSize() * rv0011Dto.getPageNum());
-        return rV0010Dao.findRecommendByPage(rv0011Dto);
+        List<RV0010Dto> result = rV0010Dao.findRecommendByPage(rv0011Dto);
+        // 내가 추천한 글이면 true 반환 / 내 글에 대해 표시를 프론트단에서 처리하기 위함
+        for(RV0010Dto dto : result) {
+            if(user_id.equals(dto.getUser_id())) {
+                dto.setMy_recommend(true);
+            }
+            else {
+                dto.setMy_recommend(false);
+            }
+        }
+        return result;
     }
 
     public RV0010Dto uploadImage(MultipartFile file) throws Exception {

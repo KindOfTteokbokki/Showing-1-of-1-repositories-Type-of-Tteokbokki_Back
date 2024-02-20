@@ -20,20 +20,6 @@ public class file {
     @Test
     void upload() {
 
-        String fileName = "upload";
-        System.out.println("fileName : " + fileName);
-
-//        String extension = fileName.substring(fileName.lastIndexOf("."), fileName.length());
-        UUID uuid = UUID.randomUUID();
-        System.out.println(uuid);
-        String uuidName = uuid.toString();
-        int fileIndex = uuidName.indexOf("-");
-        String newFileName = uuidName.substring(fileIndex);
-
-        System.out.println("newFileName : " + newFileName);
-//        System.out.println("new dir : " + dir);
-
-
     }
 
 }

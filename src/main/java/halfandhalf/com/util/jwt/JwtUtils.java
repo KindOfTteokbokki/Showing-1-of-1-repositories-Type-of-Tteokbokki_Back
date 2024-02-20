@@ -5,8 +5,10 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
@@ -15,6 +17,7 @@ import java.security.Key;
 import java.util.Date;
 
 @Component
+@RequiredArgsConstructor
 public class JwtUtils {
     private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
 
@@ -24,7 +27,7 @@ public class JwtUtils {
     //accessToken 만료시간 설정
     public final static long ACCESS_TOKEN_VALIDATION_SECOND = 1000L*60*60*12; //12시간
     public static final String AUTHORIZATION_HEADER = "Authorization"; //헤더 이름
-
+    @Value("${jwt.secret-key}") String secretKey1;
     //액세스 토큰 생성 메서드
     public String createAccessToken(String member_id, String name){
         System.out.println("createAccessToken");
@@ -41,14 +44,13 @@ public class JwtUtils {
                 .setExpiration(expiration)
                 .signWith(secretKey)
                 .compact();
-
     }
 
     //토큰 유효성 검증 메서드
     public boolean validateToken(String token){
         //토큰 파싱 후 발생하는 예외를 캐치하여 문제가 있으면 false, 정상이면 true 반환
         try{
-            Jwts.parserBuilder().setSigningKey(secretKey).build().parseClaimsJws(token);
+            Jwts.parserBuilder().setSigningKey(secretKey1).build().parseClaimsJws(token);
             return true;
         }
 //        catch (SignatureException e){

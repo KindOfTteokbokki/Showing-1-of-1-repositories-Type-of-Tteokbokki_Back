@@ -6,6 +6,8 @@
 		<![CDATA[
 			SELECT
 				  @ROWNUM:=@ROWNUM+1 ROWNUM
+				, review_seq
+				, user_id
 				, CONTENT
 				, FILE_PATH
 				, FILE_ORIGINAL_NAME

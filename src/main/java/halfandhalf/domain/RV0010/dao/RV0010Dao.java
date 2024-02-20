@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 @Mapper
 public interface RV0010Dao {
-    List<RV0010Dto> findRecommend();
+    RV0010Dto findOneFromRecommend(RV0010Dto rv0010Dto);
 
     void saveRecommend(RV0010Dto rv0010Dto);
 

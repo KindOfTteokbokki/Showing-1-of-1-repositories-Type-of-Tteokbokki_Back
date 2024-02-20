@@ -6,14 +6,13 @@ spring:
     activate:
       on-profile: local
     import:
-      - classpath:/yml/app_local.yml
-      - classpath:/yml/oauth.yml
-  datasource:  # ** 실서버에 업데이트 반영됨 환경 분리 필요 **
-    url: jdbc:log4jdbc:mariadb://localhost:3306/utteok?serverTimezone=UTC&characterEncoding=UTF-8&allowMultiQueries=true
-    #   url=jdbc:mariadb://<DB ??>:<?? ??>/<DatabaseName>
-    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
-    username: root
-    password: root
+      - classpath:/yml/local/app_local.yml
+      - classpath:/yml/oauth_secret.yml
+  datasource:
+    url: ENC(g+oHeXHg38s7tzbn27pEaqZZFEWdymmd94fQJQiVDNe0MeYpARdQC//keGyq2c8Nd3xTvrK+mOmz7tsGijDM7c7mzW5ADllUBT6qbOJ8f2j9587ZPtKhgMJ5M2n/8U19H4n80u6gmHt2dIpSvVZcC2GQXPOhsV9U)
+    driver-class-name: ENC(P+qoQ6otgdgb7YSE5oGBKVg4Q1KamafLbM//PsNXzjRwVK1tyDf7KzIFSdSpuQTD)
+    username: ENC(7xND1ctY7oYzewlhaDOzKw==)
+    password: ENC(l8XpYjraQk1aqWzcvZogDA==)
   servlet:
     multipart:
       maxFileSize: 10MB
@@ -37,15 +36,39 @@ server:
 spring:
   config:
     activate:
+      on-profile: dev
+    import:
+      - classpath:/yml/dev/app_dev.yml
+      - classpath:/yml/oauth_secret.yml
+  datasource:
+    url: ENC(FK77sKsKkFqcwdm9pRgWaA44DzKwjsGvvN2w3Xge+Kc3vZc/90+JeEWO1/GXxh5//Tk3JgCo9pSkL8/wBPe9KJuw3ZAzf6l1gkgL9NWAn9tjhsEL/Dp94w1bm6uu4tD1t0mGqzED5oixu0iTnpdlLllf0fzRJ0FL8Ygj5BlsU9M=)
+    driver-class-name: ENC(PC+w/GluiRRQe4l1OCsYdrNBwq2gIXXN4fFiLzD4nU/iv1iTgLDaXdWuFZmlEDgh)
+    username: ENC(eGXC/tJOX8AcdvPfk/5dDQ==)
+    password: ENC(SoqXRXCmr+mCuSAFUyRsg/L5YLZ3BznSqhODQKWvMy0=)
+  servlet:
+    multipart:
+      maxFileSize: 10MB
+      maxRequestSize: 10MB
+
+mybatis:
+  mapper-locations: mybatis/**/*.xml
+
+---
+server:
+  port: 8080
+
+spring:
+  config:
+    activate:
       on-profile: prod
     import:
-      - classpath:/yml/app_prod.yml
-      - classpath:/yml/oauth.yml
+      - classpath:/yml/prod/app_prod.yml
+      - classpath:/yml/oauth_secret.yml
   datasource:
-    url: jdbc:log4jdbc:mariadb://118.67.132.171:3306/utteok?serverTimezone=UTC&characterEncoding=UTF-8&allowMultiQueries=true
-    driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
-    username: utteok
-    password: halfandhalf401!!
+    url: ENC(G9K5wvH6aBi7hJH/b3b3XU5RdMI6nDQzsgC2ZNX1IEUWu46xpk1WDGv1NXFbDfeM/dwi7gHsTGs2hm13U5Tt623cNMkUqcQ3+Ta4jQ1Su4eaadG7LnJTnxuRXTm/MFtN/LTExBhPePCilBTUdjgRN5R3N8G0mAyO67O9z3aZO5E=)
+    driver-class-name: ENC(Q7aacrG/d5Dvmq5pNyGUFiPyWCmEl8m47swVvL7MB/j1/q+UA/7h3HUuOVM6nqbD)
+    username: ENC(f/Pkq6cdnf3GACuADn0szw==)
+    password: ENC(E46XvrcH5eFbNlMQugbwuIzMLjS20ftYDaK9qnRKjrk=)
   servlet:
     multipart:
       maxFileSize: 10MB

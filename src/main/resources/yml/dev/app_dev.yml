@@ -1,7 +1,7 @@
 logging:
   config:
     import:
-      - classpath:/yml/log4j2_local.yml
+      - classpath:/yml/log4j2.yml
   level:  # log4jdbc, Mybatis Console Log
     com:
       zaxxer:

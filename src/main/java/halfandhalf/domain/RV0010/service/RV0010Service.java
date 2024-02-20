@@ -8,9 +8,9 @@ import java.util.List;
 
 public interface RV0010Service {
 
-    List<RV0010Dto> findRecommend();
+    RV0010Dto findOneFromRecommend(RV0010Dto rv0010Dto);
 
     void saveRecommend(RV0010Dto rv0010Dto, MultipartFile file) throws Exception;
 
-    List<RV0010Dto> findRecommendByPage(RV0011Dto rv0011Dto);
+    List<RV0010Dto> findRecommendByPage(RV0011Dto rv0011Dto, Long user_id);
 }
