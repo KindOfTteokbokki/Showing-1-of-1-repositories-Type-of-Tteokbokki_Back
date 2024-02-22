@@ -4,7 +4,8 @@
 <mapper namespace="halfandhalf.domain.TT0010.dao.TT0010Dao">
 	<select id="findTitle" resultType="halfandhalf.domain.TT0010.dto.TT0010Dto">
 		SELECT
-			  TITLE_NAME
+			  TITLE_SEQ
+			, TITLE_NAME
 			, (SELECT NAME_KO FROM public_code pc WHERE 1=1 AND pc.code_category_id = 102 AND pc.CODE = qs.question1) AS question1
 			, (SELECT NAME_KO FROM public_code pc WHERE 1=1 AND pc.code_category_id = 102 AND pc.CODE = qs.question2) AS question2
 			, (SELECT NAME_KO FROM public_code pc WHERE 1=1 AND pc.code_category_id = 102 AND pc.CODE = qs.question3) AS question3
@@ -24,43 +25,89 @@
 			JOIN TITLE_IMG TM ON TI.TITLE_CODE = TM.TITLE_CODE
 		WHERE
 			1=1
-			<choose>
-				<when test="question1 == null and question2 == null and question3 == null and question4 == null
-						and question5 == null and question6 == null and question6 == null">
-					AND qs.question1 = 'ch100'
-					AND qs.question2 = 'ch200'
-					AND qs.question3 = 'ch300'
-					AND qs.question4 = 'ch400'
-					AND qs.question5 = 'ch500'
-					AND qs.question6 = 'ch600'
-					AND qs.question7 = 'ch700'
-				</when>
-				<otherwise>
-					<if test="question1 != 'ch100' and question1 != 'ch103' and question1 != null">
-						AND qs.question1 = #{question1}
-					</if>
-					<if test="question2 != 'ch200' and question2 != null">
-						AND qs.question2 = #{question2}
-					</if>
-					<if test="question3 != 'ch300' and question3 != null">
-						AND qs.question3 = #{question3}
-					</if>
-					<if test="question4 != 'ch400' and question4 != null">
-						AND qs.question4 = #{question4}
-					</if>
-					<if test="question5 != 'ch500' and question5 != null">
-						AND qs.question5 = #{question5}
-					</if>
-					<if test="question6 != 'ch600' and question6 != null">
-						AND qs.question6 = #{question6}
-					</if>
-					<if test="question7 != 'ch700' and question7 != null">
-						AND qs.question7 = #{question7}
-					</if>
-				</otherwise>
-			</choose>
+			<if test="question1 != 'ch100' and question1 != 'ch103' and question1 != null">
+				AND qs.question1 = #{question1}
+			</if>
+			<if test="question2 != 'ch200' and question2 != null">
+				AND qs.question2 = #{question2}
+			</if>
+			<if test="question3 != 'ch300' and question3 != null">
+				AND qs.question3 = #{question3}
+			</if>
+			<if test="question4 != 'ch400' and question4 != null">
+				AND qs.question4 = #{question4}
+			</if>
+			<if test="question5 != 'ch500' and question5 != null">
+				AND qs.question5 = #{question5}
+			</if>
+			<if test="question6 != 'ch600' and question6 != null">
+				AND qs.question6 = #{question6}
+			</if>
+			<if test="question7 != 'ch700' and question7 != null">
+				AND qs.question7 = #{question7}
+			</if>
 		GROUP BY QS.QUESTION_SEQ
 		ORDER BY rand()
 		LIMIT 1
 	</select>
+	
+	<select id="findHaveTitle" resultType="halfandhalf.domain.TT0010.dto.TT0010Dto">
+		SELECT
+			  TIF.TITLE_NAME
+			, TIM.ICORN_FILE_PATH
+			, TIM.ICORN_FILE_ORIGINAL_NAME
+			, TIM.ICORN_FILE_MASKING_NAME
+		FROM
+			HAVE_TITLE HTT
+			JOIN TITLE_INFO TIF ON	HTT.TITLE_SEQ = TIF.TITLE_SEQ
+			JOIN TITLE_IMG TIM ON	TIF.TITLE_CODE = TIM.TITLE_CODE
+		WHERE
+			1=1
+			AND HTT.USER_ID = #{userId}
+	</select>
+
+	<select id="findAllTitleFromUser" resultType="halfandhalf.domain.TT0010.dto.TT0012Dto">
+		SELECT
+			  COUNT(TIF.TITLE_CODE) AS COUNT
+			, TIF.TITLE_NAME AS TITLE_NAME
+			, HTT.USER_ID AS USER_ID
+		FROM
+			TITLE_INFO TIF
+			LEFT JOIN HAVE_TITLE HTT ON HTT.TITLE_SEQ = TIF.TITLE_SEQ AND USER_ID = #{userId}
+		WHERE
+			1 = 1
+			GROUP BY TIF.TITLE_CODE
+	</select>
+
+	<select id="findTitleByIdSeq" resultType="halfandhalf.domain.TT0010.dto.TT0011Dto">
+		SELECT
+			  user_id
+			, title_seq
+			, get_title
+		FROM
+			have_title
+		WHERE
+			1=1
+			AND user_id = #{user_id}
+			AND title_seq = #{title_seq}
+	</select>
+
+	<select id="findCountTitle" resultType="halfandhalf.domain.TT0010.dto.TT0012Dto">
+		SELECT
+			USER_ID AS USER_ID
+			, COUNT(TITLE_SEQ) AS COUNT
+		FROM
+			HAVE_TITLE
+		WHERE
+			1=1
+			AND USER_ID = #{userId}
+	</select>
+
+	<insert id="insertHaveTitle" parameterType="halfandhalf.domain.TT0010.dto.TT0011Dto">
+		INSERT INTO
+			have_title
+			(user_id, title_seq, get_title)
+		VALUES
+			(#{user_id}, #{title_seq}, #{get_title})
+	</insert>
 </mapper>
