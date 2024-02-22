@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="halfandhalf.domain.MI0010.dao.MI0010Dao">
+	<select id="findMyInfo" resultType="halfandhalf.domain.MI0010.dto.MI0010Dto">
+		SELECT
+			  nickname
+			, utteok_nickname
+		FROM
+			oauth_login
+		WHERE
+			1=1
+			AND id = #{userId}
+	</select>
+</mapper>
