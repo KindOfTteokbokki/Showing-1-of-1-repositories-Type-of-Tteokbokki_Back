@@ -172,17 +172,3 @@ B
 troubleshooting.md,9\f\9f50835d850a66cd1691d62d63a29b42f359cd46
 j
 :src/main/java/halfandhalf/domain/ST0010/dto/ST0011Dto.java,c\d\cd772908421c786d742a7970288efc5b40b4d57c
-s
-Csrc/main/java/halfandhalf/com/config/websocker/WebSocketConfig.java,7\7\77093d837ce96783a68783d0b441be3432e5f199
-x
-Hsrc/main/java/halfandhalf/domain/LG0010/controller/LG0030Controller.java,b\e\be8070394876ea918cfcebb9bcdabfefc7d25c78
-j
-:src/main/java/halfandhalf/domain/LG0010/dto/LG0030Dto.java,1\d\1d36d17cf35e3e72816338d259559084218dbe8f
-r
-Bsrc/main/java/halfandhalf/domain/LG0010/service/LG0030Service.java,e\b\eb2a58863896654a19aab0ebdfdd347d66c82ee3
-z
-Jsrc/main/java/halfandhalf/domain/LG0010/serviceImpl/LG0030ServiceImpl.java,c\0\c0cba9a81e1bb354bfd5ddb92145e47042a9cfd7
-j
-:src/main/java/halfandhalf/domain/LG0010/dao/LG0030Dao.java,6\2\62ae2b9952868425d8e3ef64eb6fc6e06612d63f
-x
-Hsrc/main/java/halfandhalf/domain/MI0010/controller/MI0010Controller.java,e\4\e466795bc8f6373655ecaaeb387394436ebbc86c

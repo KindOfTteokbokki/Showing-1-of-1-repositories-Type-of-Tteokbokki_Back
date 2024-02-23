@@ -20,15 +20,9 @@ public class WebConfiguration implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new JwtInterceptor(jwtProvider, authTokensGenerator))
-                .addPathPatterns("/api/findStore")
                 .addPathPatterns("/api/myTaste")
                 .addPathPatterns("/api/saveRecommend")
-                .addPathPatterns("/api/getRecommendToPage")
-                .addPathPatterns("/api/haveTitle")
-                .addPathPatterns("/api/doNotHaveTitle")
-                .addPathPatterns("/api/myInfo")
-                .addPathPatterns("/api/modifyRecommend")
-                .addPathPatterns("/api/deleteRecommend");
+                .addPathPatterns("/api/getRecommendToPage"); // 나도추천할래 페이지
         System.out.println("WebConfiguration addInterceptors");
     }
 
