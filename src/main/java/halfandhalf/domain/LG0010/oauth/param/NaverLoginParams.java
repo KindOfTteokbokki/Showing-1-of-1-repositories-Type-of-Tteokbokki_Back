@@ -12,6 +12,10 @@ public class NaverLoginParams implements OAuthLoginParams {
     private String authorizationCode;
     private String state;
 
+    public NaverLoginParams(String authorizationCode) {
+        this.authorizationCode = authorizationCode;
+    }
+
     @Override
     public LG0021Dto oAuthProvider() {
         return LG0021Dto.NAVER;

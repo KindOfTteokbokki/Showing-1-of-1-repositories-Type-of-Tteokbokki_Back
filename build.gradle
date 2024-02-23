@@ -59,6 +59,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     // jasypt yml 암호화
     implementation 'com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.3'
+    // websocket
+    implementation 'org.springframework.boot:spring-boot-starter-websocket'
 //    // selenium 크롤링
 //    implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.17.0'
 //    testImplementation 'org.seleniumhq.selenium:selenium-java:4.17.0'

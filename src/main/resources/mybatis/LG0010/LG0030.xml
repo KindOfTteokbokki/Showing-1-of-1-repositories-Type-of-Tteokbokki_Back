@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="halfandhalf.domain.LG0010.dao.LG0030Dao">
+	<select id="checkIfEnabledNickName" resultType="halfandhalf.domain.LG0010.dto.LG0030Dto">
+		SELECT
+			utteok_nickname as nickname
+		FROM
+			oauth_login
+		WHERE
+			1=1
+			AND utteok_nickname  = #{utteok_nickname}
+	</select>
+</mapper>

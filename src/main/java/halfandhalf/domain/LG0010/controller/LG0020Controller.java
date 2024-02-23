@@ -11,36 +11,34 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/auth")
-@CrossOrigin(origins = {"http://www.utteok.com"}, allowCredentials = "true")
+@CrossOrigin(origins = {"http://118.67.132.171"}, allowCredentials = "true")
 public class LG0020Controller {
     private final LG0020ServiceImpl oAuthLoginService;
 
     @GetMapping("/tokenForKakao")
-    public String loginKakao(@RequestParam(value = "code", required = false) String code) {
+    public String tokenForKakao(@RequestParam(value = "code", required = false) String code) {
         return code;
     }
 
     @GetMapping("/tokenForNaver")
-    public String loginNaver(@RequestParam(value = "code", required = false) String code) {
+    public String tokenForNaver(@RequestParam(value = "code", required = false) String code) {
         return code;
     }
 
-    @PostMapping("/kakao")
-    public ResponseEntity<AuthTokens> loginKakao(@RequestBody KakaoLoginParams params) {
-//        토큰으로 회원 정보 얻는 두가지 방법
-//        AuthTokens getToken = oAuthLoginService.login(params);
-//        Long getId = (new AuthTokensGenerator(new JwtTokenProvider(secretKey))).extractMemberId(getToken.getAccessToken());
-//        LG0020Dto user = oAuthLoginService.findById(getId);
-
-//        JwtTokenProvider tokenProvider = new JwtTokenProvider(secretKey);
-//        AuthTokensGenerator authToken = new AuthTokensGenerator(tokenProvider);
-//        Long getId = authToken.extractMemberId(getToken.getAccessToken());
-
+    @GetMapping("/kakao")
+    public ResponseEntity<AuthTokens> loginKakao(@RequestParam(value = "code", required = false) String code) {
+        KakaoLoginParams params = new KakaoLoginParams(code);
         return ResponseEntity.ok(oAuthLoginService.login(params));
     }
 
-    @PostMapping("/naver")
-    public ResponseEntity<AuthTokens> loginNaver(@RequestBody NaverLoginParams params) {
+    @GetMapping("/naver")
+    public ResponseEntity<AuthTokens> loginNaver(@RequestParam(value = "code", required = false) String code) {
+        NaverLoginParams params = new NaverLoginParams(code);
         return ResponseEntity.ok(oAuthLoginService.login(params));
     }
+
+//    @PostMapping("/naver")
+//    public ResponseEntity<AuthTokens> loginNaver(@RequestBody NaverLoginParams params) {
+//        return ResponseEntity.ok(oAuthLoginService.login(params));
+//    }
 }

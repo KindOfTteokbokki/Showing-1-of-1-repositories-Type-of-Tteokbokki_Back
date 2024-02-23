@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = {"http://www.utteok.com"}, allowCredentials = "true")
+@CrossOrigin(origins = {"http://118.67.132.171"}, allowCredentials = "true")
 @RestController
 @RequestMapping("/api")
 public class CB0010Controller {

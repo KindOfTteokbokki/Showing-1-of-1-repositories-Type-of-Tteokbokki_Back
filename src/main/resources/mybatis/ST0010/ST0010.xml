@@ -25,7 +25,6 @@
 		-- findStore resultType ST0010Dto
 		SELECT
 			SI.STORE_SEQ
-			, SI.COUNT_STORE
 			, SI.STORE_NAME
 			, SI.STORE_ADDRESS
 			, SI.MENU_NAME

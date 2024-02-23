@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 @Mapper
-// LoginMapper
 public interface LG0020Dao {
     LG0020Dto findById(@Param("id") Long id);
     LG0020Dto findByNickname(@Param("nickname") String nickname, @Param("oAuthProvider") String oAuthProvider);
