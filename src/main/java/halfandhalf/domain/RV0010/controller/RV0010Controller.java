@@ -93,4 +93,54 @@ public class RV0010Controller {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("서버 내부 오류");
         }
     }
+
+    /*
+     *  나도 추천할래 수정하기
+     */
+    @PostMapping(value="/modifyRecommend", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> modifyRecommend(@ModelAttribute RV0010Dto rv0010Dto,
+                                             @RequestPart(value = "file", required=false) MultipartFile file,
+                                             HttpServletRequest request) throws Exception{
+        try {
+            String accessToken = jwtProvider.getAccessToken(request);
+            Long user_id = authTokensGenerator.extractMemberId(accessToken);
+
+            if(!rv0010Dto.getUser_id().equals(user_id)) {
+                return ResponseEntity.status(HttpStatus.FORBIDDEN).body("권한이 없습니다.");
+            }
+            else {
+                rV0010Service.modifyRecommend(rv0010Dto, file);
+                return new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+            }
+        }
+        catch (NullPointerException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("내용을 입력해 주세요");
+        }
+        catch(Exception e){
+            // 그 외 에러의 경우 500 메세지
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("서버 내부 오류");
+        }
+    }
+
+    /*
+     *  나도 추천할래 수정하기
+     */
+    @PostMapping(value="/deleteRecommend", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> deleteRecommend(@RequestBody RV0010Dto rv0010Dto, HttpServletRequest request){
+        try {
+            String accessToken = jwtProvider.getAccessToken(request);
+            Long user_id = authTokensGenerator.extractMemberId(accessToken);
+
+            if (rv0010Dto.getUser_id().equals(user_id)) {
+                rV0010Service.deleteRecommend(rv0010Dto);
+                return new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+            } else {
+                return ResponseEntity.status(HttpStatus.FORBIDDEN).body("권한이 없습니다.");
+            }
+        }
+        catch(Exception e){
+            // 그 외 에러의 경우 500 메세지
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("서버 내부 오류");
+        }
+    }
 }

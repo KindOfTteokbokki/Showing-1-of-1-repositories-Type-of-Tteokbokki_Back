@@ -15,4 +15,8 @@ public interface RV0010Dao {
     void saveRecommend(RV0010Dto rv0010Dto);
 
     List<RV0010Dto> findRecommendByPage(RV0011Dto rv0011Dto);
+
+    void modifyRecommend(RV0010Dto rv0010Dto);
+
+    void deleteRecommend(RV0010Dto rv0010Dto);
 }

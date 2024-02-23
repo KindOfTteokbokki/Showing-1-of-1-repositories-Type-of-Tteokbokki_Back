@@ -20,7 +20,7 @@ public class RV0010Dto {
     private Boolean my_recommend;
 
     @Builder
-    public RV0010Dto(String file_path, String file_original_name, String file_masking_name) {
+    public void setFile(String file_path, String file_original_name, String file_masking_name) {
         this.file_path = file_path;
         this.file_original_name = file_original_name;
         this.file_masking_name = file_masking_name;

@@ -19,7 +19,14 @@ public class file {
 //    주로 파일 시스템에서 파일을 읽거나 쓸 때 사용
     @Test
     void upload() {
+        dto dto = new dto();
+        dto.setA("A");
+        dto.setB("B");
+        dto.setDto("C");
 
+        System.out.println("A : " + dto.getA());
+        System.out.println("B : " + dto.getB());
+        System.out.println("C : " + dto.getC());
     }
 
 }

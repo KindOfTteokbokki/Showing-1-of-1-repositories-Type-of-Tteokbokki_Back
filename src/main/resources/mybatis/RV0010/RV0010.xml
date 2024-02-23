@@ -25,4 +25,20 @@
 		values
 			(#{user_id}, #{content}, #{file_path}, #{file_original_name}, #{file_masking_name}, SYSDATE());
 	</insert>
+
+	<update id="modifyRecommend" parameterType="halfandhalf.domain.RV0010.dto.RV0010Dto">
+		UPDATE
+			review_for_store
+		SET
+			  content = #{content}
+			, file_path = #{file_path}
+			, file_original_name = #{file_original_name}
+			, file_masking_name = #{file_masking_name}
+		WHERE
+			review_seq = #{review_seq}
+	</update>
+
+	<delete id="deleteRecommend" parameterType="halfandhalf.domain.RV0010.dto.RV0010Dto">
+		DELETE FROM review_for_store WHERE 1=1 AND review_seq = #{review_seq}
+	</delete>
 </mapper>
