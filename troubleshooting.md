@@ -34,7 +34,8 @@
         vi /etc/hosts.allow 해당 광역대는 허용
         vi /etc/hosts.deny 거부할 광역대
        yum install fail2ban jwhois
-    2) Nginx port 외에 접근 불허
+    2) 80 port 외에 접근 불허
+    3) 데이터베이스 특정 IP만 접근 가능
 3. deploy spring using jenkins
     1) nohup & kill -9 not working
         nohup 은 백그라운드에서 작업하는 것이고 kill -9은 기존 백그라운드 작업을 종료시키는 것이다.

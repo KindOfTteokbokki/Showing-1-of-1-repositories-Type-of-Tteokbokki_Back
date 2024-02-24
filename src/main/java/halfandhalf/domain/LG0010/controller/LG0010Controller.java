@@ -4,8 +4,8 @@ import halfandhalf.com.util.jwt.JwtUtils;
 import halfandhalf.domain.LG0010.dto.LG0011Dto;
 import halfandhalf.domain.LG0010.service.LG0010Service;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.AuthenticationException;
@@ -16,14 +16,11 @@ import javax.security.auth.login.LoginException;
 @RestController
 @CrossOrigin(origins = {"http://www.utteok.com"}, allowCredentials = "true")
 @RequestMapping("/api/login")
+@RequiredArgsConstructor
 public class LG0010Controller {
 
-    @Autowired
-    LG0010Service loginService;
-
-    // JWT 토큰 생성을 위해 필요
-    @Autowired
-    private JwtUtils jwtUtils;
+    private final LG0010Service loginService;
+    private final JwtUtils jwtUtils;
 
     @PostMapping("/signUp")
     public ResponseEntity<?> signUp(@RequestBody LG0011Dto memberDTO) {
@@ -33,7 +30,6 @@ public class LG0010Controller {
             return new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
         }
         catch (LoginException e){
-            System.out.println(e);
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
         }
         catch(Exception e){
@@ -53,7 +49,6 @@ public class LG0010Controller {
             return ResponseEntity.ok(new JwtResponse(jwt));
         }
         catch (LoginException e){
-            System.out.println(e);
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
         }
         catch (AuthenticationException e){

@@ -6,7 +6,6 @@ import halfandhalf.domain.LG0010.oauth.jwt.JwtTokenProvider;
 import halfandhalf.domain.ST0010.dto.ST0010Dto;
 import halfandhalf.domain.ST0010.service.ST0010Service;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -46,7 +45,7 @@ public class ST0010Controller {
      *  가게 정보 가져오기
      */
     @PostMapping(value="/findStore", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> getStoreInfo(@RequestBody ST0010Dto st0010Dto, HttpServletRequest request) {
+    public ResponseEntity<?> findStore(@RequestBody ST0010Dto st0010Dto, HttpServletRequest request) {
         try {
             String accessToken = jwtProvider.getAccessToken(request);
             Long user_id = 0L;
@@ -67,7 +66,7 @@ public class ST0010Controller {
      *  내 입맛 가져오기
      */
     @GetMapping(value="/myTaste", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> getTodos(HttpServletRequest request) {
+    public ResponseEntity<?> myTaste(HttpServletRequest request) {
         try {
             String accessToken = jwtProvider.getAccessToken(request);
             Long user_id = authTokensGenerator.extractMemberId(accessToken);

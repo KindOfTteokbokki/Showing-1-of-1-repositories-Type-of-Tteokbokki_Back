@@ -4,6 +4,7 @@ import halfandhalf.domain.QA0010.dao.QA0010Dao;
 import halfandhalf.domain.QA0010.dto.QA0011Dto;
 import halfandhalf.domain.QA0010.dto.QA0012Dto;
 import halfandhalf.domain.QA0010.service.QA0010Service;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,14 +12,10 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class QA0010ServiceImpl implements QA0010Service {
 
     private final QA0010Dao qA0010Dao;
-
-    @Autowired
-    public QA0010ServiceImpl(QA0010Dao qA0010Dao) {
-        this.qA0010Dao = qA0010Dao;
-    }
 
     @Override
     @Transactional(readOnly = true)
@@ -30,9 +27,5 @@ public class QA0010ServiceImpl implements QA0010Service {
     @Transactional(readOnly = true)
     public List<QA0012Dto> findAnswer() throws Exception {
         return qA0010Dao.findAnswer();
-    }
-
-    private List<?> makeList() {
-        return null;
     }
 }

@@ -8,5 +8,5 @@ import halfandhalf.domain.QA0010.dto.QA0012Dto;
 import java.util.List;
 
 public interface LD0010Service {
-    List<LD0010Dto> findLoading() throws Exception;
+    List<LD0010Dto> findLoading();
 }

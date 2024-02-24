@@ -3,8 +3,7 @@ package halfandhalf.domain.CB0010.controller;
 
 import halfandhalf.domain.CB0010.dto.CB0010Dto;
 import halfandhalf.domain.CB0010.service.CB0010Service;
-import halfandhalf.domain.RV0010.dto.RV0010Dto;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -15,14 +14,10 @@ import java.util.List;
 @CrossOrigin(origins = {"http://118.67.132.171"}, allowCredentials = "true")
 @RestController
 @RequestMapping("/api")
+@RequiredArgsConstructor
 public class CB0010Controller {
 
     private final CB0010Service cB0010Service;
-
-    @Autowired
-    public CB0010Controller(CB0010Service cB0010Service) {
-        this.cB0010Service = cB0010Service;
-    }
 
     /*
      *  꿀 조합 가져오기

@@ -33,4 +33,25 @@ public class TT0010Dto {
         this.question6 = question6;
         this.question7 = question7;
     }
+
+    @Override
+    public String toString() {
+        return "TT0010Dto{" +
+                "title_seq=" + title_seq +
+                ", title_name='" + title_name + '\'' +
+                ", icorn_file_path='" + icorn_file_path + '\'' +
+                ", icorn_file_original_name='" + icorn_file_original_name + '\'' +
+                ", icorn_file_masking_name='" + icorn_file_masking_name + '\'' +
+                ", img_file_path='" + img_file_path + '\'' +
+                ", img_file_original_name='" + img_file_original_name + '\'' +
+                ", img_file_masking_name='" + img_file_masking_name + '\'' +
+                ", question1='" + question1 + '\'' +
+                ", question2='" + question2 + '\'' +
+                ", question3='" + question3 + '\'' +
+                ", question4='" + question4 + '\'' +
+                ", question5='" + question5 + '\'' +
+                ", question6='" + question6 + '\'' +
+                ", question7='" + question7 + '\'' +
+                '}';
+    }
 }

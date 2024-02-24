@@ -17,4 +17,19 @@ public class TT0011Dto {
         this.user_id = user_id;
         this.title_seq = title_seq;
     }
+
+    public TT0011Dto(Long user_id, int title_seq, boolean get_title) {
+        this.user_id = user_id;
+        this.title_seq = title_seq;
+        this.get_title = get_title;
+    }
+
+    @Override
+    public String toString() {
+        return "TT0011Dto{" +
+                "user_id=" + user_id +
+                ", title_seq=" + title_seq +
+                ", get_title=" + get_title +
+                '}';
+    }
 }

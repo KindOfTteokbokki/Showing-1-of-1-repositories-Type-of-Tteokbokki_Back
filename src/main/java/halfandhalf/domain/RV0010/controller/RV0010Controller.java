@@ -49,7 +49,6 @@ public class RV0010Controller {
      */
     @PostMapping("/getRecommendToPage")
     public ResponseEntity<?> getRecommendToPage(@RequestBody RV0011Dto rv0011Dto, HttpServletRequest request) {
-//        https://epozen-dt.github.io/SpringBoot-pagination/
         try {
             String accessToken = jwtProvider.getAccessToken(request);
             Long user_id = 0L;  // main에서 4개만 가져올 때 사용

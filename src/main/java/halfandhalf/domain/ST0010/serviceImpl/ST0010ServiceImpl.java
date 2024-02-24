@@ -4,7 +4,7 @@ import halfandhalf.domain.ST0010.dao.ST0010Dao;
 import halfandhalf.domain.ST0010.dto.ST0010Dto;
 import halfandhalf.domain.ST0010.dto.ST0011Dto;
 import halfandhalf.domain.ST0010.service.ST0010Service;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,14 +12,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class ST0010ServiceImpl implements ST0010Service {
 
     private final ST0010Dao sT0010Dao;
-
-    @Autowired
-    public ST0010ServiceImpl(ST0010Dao sT0010Dao) {
-        this.sT0010Dao = sT0010Dao;
-    }
 
     @Override
     @Transactional(readOnly = true)
@@ -34,16 +30,16 @@ public class ST0010ServiceImpl implements ST0010Service {
 
         if(0 != user_id.intValue()) {
             ST0011Dto st0011Dto = new ST0011Dto(user_id, store.getStore_seq());
-
-            Optional<ST0011Dto> optional = Optional.ofNullable(sT0010Dao.findMyTasteByIdSeq(st0011Dto));
-
-            if(optional.isPresent()) {
-                optional.ifPresent(dao -> dao.setMenu_count(dao.getMenu_count() + 1));
-                sT0010Dao.updateStoreCount(optional.get());
-            } else {
-                st0011Dto.setMenu_count(1);
-                sT0010Dao.insertStoreCount(st0011Dto);
-            }
+            Optional.ofNullable(sT0010Dao.findMyTasteByIdSeq(st0011Dto))
+                    .ifPresentOrElse(
+                            getST0011Dto->{
+                                getST0011Dto.setMenu_count(getST0011Dto.getMenu_count() + 1);
+                                sT0010Dao.updateStoreCount(getST0011Dto);
+                            }
+                            ,()->{
+                                st0011Dto.setMenu_count(1);
+                                sT0010Dao.insertStoreCount(st0011Dto);
+                            });
         }
         return store;
     }

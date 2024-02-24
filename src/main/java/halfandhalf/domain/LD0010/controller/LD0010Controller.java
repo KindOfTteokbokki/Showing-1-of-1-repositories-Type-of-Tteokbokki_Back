@@ -3,7 +3,7 @@ package halfandhalf.domain.LD0010.controller;
 
 import halfandhalf.domain.LD0010.dto.LD0010Dto;
 import halfandhalf.domain.LD0010.service.LD0010Service;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -17,14 +17,10 @@ import java.util.List;
 @CrossOrigin(origins = {"http://www.utteok.com"}, allowCredentials = "true")
 @RestController
 @RequestMapping("/api")
+@RequiredArgsConstructor
 public class LD0010Controller {
 
     private final LD0010Service lD0010Service;
-
-    @Autowired
-    public LD0010Controller(LD0010Service lD0010Service) {
-        this.lD0010Service = lD0010Service;
-    }
 
     /*
      *  질문 및 답 가져오기
@@ -38,7 +34,6 @@ public class LD0010Controller {
         }
         catch(Exception e){
             // 그 외 에러의 경우 500 메세지
-            e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("서버 내부 오류");
         }
     }

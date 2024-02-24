@@ -5,11 +5,14 @@ import halfandhalf.domain.QA0010.dto.QA0010Dto;
 import halfandhalf.domain.QA0010.dto.QA0011Dto;
 import halfandhalf.domain.QA0010.dto.QA0012Dto;
 import halfandhalf.domain.QA0010.service.QA0010Service;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -17,22 +20,16 @@ import java.util.List;
 @CrossOrigin(origins = {"http://www.utteok.com"}, allowCredentials = "true")
 @RestController
 @RequestMapping("/api")
+@RequiredArgsConstructor
 public class QA0010Controller {
 
     private final QA0010Service qA0010Service;
 
-    @Autowired
-    public QA0010Controller(QA0010Service qA0010Service) {
-        this.qA0010Service = qA0010Service;
-    }
-
     /*
      *  질문 및 답 가져오기
      */
-//    //@CrossOrigin(origins = {"118.67.132.171:3000"},allowCredentials = "true")
-//    @RequestMapping(value = "/getQA", method = {RequestMethod.GET, RequestMethod.OPTIONS})
     @GetMapping(value="/getQA", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> getTodos1(HttpServletRequest request) {
+    public ResponseEntity<?> getQA(HttpServletRequest request) {
         try {
             List<QA0011Dto> qA0011Dto = qA0010Service.findQuestion();
             List<QA0012Dto> qA0012Dto = qA0010Service.findAnswer();

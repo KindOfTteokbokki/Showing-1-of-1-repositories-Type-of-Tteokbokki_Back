@@ -13,17 +13,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/auth")
 @CrossOrigin(origins = {"http://118.67.132.171"}, allowCredentials = "true")
 public class LG0020Controller {
+
     private final LG0020ServiceImpl oAuthLoginService;
-
-    @GetMapping("/tokenForKakao")
-    public String tokenForKakao(@RequestParam(value = "code", required = false) String code) {
-        return code;
-    }
-
-    @GetMapping("/tokenForNaver")
-    public String tokenForNaver(@RequestParam(value = "code", required = false) String code) {
-        return code;
-    }
 
     @GetMapping("/kakao")
     public ResponseEntity<AuthTokens> loginKakao(@RequestParam(value = "code", required = false) String code) {
@@ -36,9 +27,4 @@ public class LG0020Controller {
         NaverLoginParams params = new NaverLoginParams(code);
         return ResponseEntity.ok(oAuthLoginService.login(params));
     }
-
-//    @PostMapping("/naver")
-//    public ResponseEntity<AuthTokens> loginNaver(@RequestBody NaverLoginParams params) {
-//        return ResponseEntity.ok(oAuthLoginService.login(params));
-//    }
 }
