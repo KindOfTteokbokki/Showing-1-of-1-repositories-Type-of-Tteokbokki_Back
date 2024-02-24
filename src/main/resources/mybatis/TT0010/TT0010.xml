@@ -5,7 +5,7 @@
 	<select id="findTitle" resultType="halfandhalf.domain.TT0010.dto.TT0010Dto">
 		SELECT
 			  TITLE_SEQ
-			, TITLE_NAME
+			, PC.NAME_KO AS TITLE_NAME
 			, (SELECT NAME_KO FROM public_code pc WHERE 1=1 AND pc.code_category_id = 102 AND pc.CODE = qs.question1) AS question1
 			, (SELECT NAME_KO FROM public_code pc WHERE 1=1 AND pc.code_category_id = 102 AND pc.CODE = qs.question2) AS question2
 			, (SELECT NAME_KO FROM public_code pc WHERE 1=1 AND pc.code_category_id = 102 AND pc.CODE = qs.question3) AS question3
@@ -21,7 +21,8 @@
 			, TM.IMG_FILE_MASKING_NAME
 		FROM
 			TITLE_INFO TI
-			JOIN QUESTION_FOR_SELECT QS ON TI.TITLE_CODE = QS.CODE
+			JOIN PUBLIC_CODE PC ON PC.CODE = TI.TITLE_CODE
+			JOIN QUESTION_FOR_SELECT QS ON TI.QUESTION_SEQ = QS.QUESTION_SEQ
 			JOIN TITLE_IMG TM ON TI.TITLE_CODE = TM.TITLE_CODE
 		WHERE
 			1=1
@@ -53,7 +54,7 @@
 	
 	<select id="findHaveTitle" resultType="halfandhalf.domain.TT0010.dto.TT0010Dto">
 		SELECT
-			  TIF.TITLE_NAME
+			PBC.NAME_KO AS TITLE_NAME
 			, TIM.ICORN_FILE_PATH
 			, TIM.ICORN_FILE_ORIGINAL_NAME
 			, TIM.ICORN_FILE_MASKING_NAME
@@ -61,6 +62,7 @@
 			HAVE_TITLE HTT
 			JOIN TITLE_INFO TIF ON	HTT.TITLE_SEQ = TIF.TITLE_SEQ
 			JOIN TITLE_IMG TIM ON	TIF.TITLE_CODE = TIM.TITLE_CODE
+			JOIN PUBLIC_CODE PBC ON PBC.CODE = TIF.TITLE_CODE
 		WHERE
 			1=1
 			AND HTT.USER_ID = #{userId}
@@ -69,10 +71,11 @@
 	<select id="findAllTitleFromUser" resultType="halfandhalf.domain.TT0010.dto.TT0012Dto">
 		SELECT
 			  COUNT(TIF.TITLE_CODE) AS COUNT
-			, TIF.TITLE_NAME AS TITLE_NAME
-			, HTT.USER_ID AS USER_ID
+			, PBC.NAME_KO AS TITLE_NAME
+			, HTT.USER_ID AS USER_I
 		FROM
 			TITLE_INFO TIF
+			JOIN PUBLIC_CODE PBC ON PBC.CODE = TIF.TITLE_CODE
 			LEFT JOIN HAVE_TITLE HTT ON HTT.TITLE_SEQ = TIF.TITLE_SEQ AND USER_ID = #{userId}
 		WHERE
 			1 = 1
