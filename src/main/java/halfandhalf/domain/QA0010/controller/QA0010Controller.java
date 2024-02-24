@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
-@CrossOrigin(origins = {"http://www.utteok.com"}, allowCredentials = "true")
+@CrossOrigin(origins = {"http://118.67.132.171", "http://101.101.209.59"}, allowCredentials = "true")
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor

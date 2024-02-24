@@ -13,7 +13,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         registry.addEndpoint("/ws")
-                .setAllowedOrigins("http://118.67.132.171");
+                .setAllowedOrigins("http://118.67.132.171", "http://101.101.209.59");
     }
     //Message broker를 설정하기 위해 configureMessageBroker method를 overide 한다.
     @Override

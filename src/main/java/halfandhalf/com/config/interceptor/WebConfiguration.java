@@ -20,10 +20,8 @@ public class WebConfiguration implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new JwtInterceptor(jwtProvider, authTokensGenerator))
-                .addPathPatterns("/api/findStore")
                 .addPathPatterns("/api/myTaste")
                 .addPathPatterns("/api/saveRecommend")
-                .addPathPatterns("/api/getRecommendToPage")
                 .addPathPatterns("/api/haveTitle")
                 .addPathPatterns("/api/doNotHaveTitle")
                 .addPathPatterns("/api/myInfo")
@@ -35,7 +33,7 @@ public class WebConfiguration implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("http://www.utteok.com")
+                .allowedOrigins("http://118.67.132.171", "http://101.101.209.59")
                 .allowedMethods("GET","POST","DELETE","PUT")
                 .allowCredentials(true);
         System.out.println("WebConfiguration addCorsMappings");

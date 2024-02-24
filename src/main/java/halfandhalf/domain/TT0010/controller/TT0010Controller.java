@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Map;
 
 
-@CrossOrigin(origins = {"http://www.utteok.com"}, allowCredentials = "true")
+@CrossOrigin(origins = {"http://118.67.132.171", "http://101.101.209.59"}, allowCredentials = "true")
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
