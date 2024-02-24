@@ -46,10 +46,19 @@
     2) Log file branch processing
         nohup.out 에 쌓이는 로그를 확인할 때, 몇일만 두어도 파일이 커서 일 단위로 나누어 파일을 정리하고 싶었다.
     3) permission denied
-        이것으로 꾀 애먹었다.
-
-4. deploy react using jenkins
-    1) Typescript error
-
-
-
+        Jenkins 로 배포하며 폴더에 배포하거나 기존 jar 파일을 백업 폴더로 옮길 때 권한 문제가 되었다.
+        ls -al 명령어를 통해서 폴더의 권한을 확인하고 모두 root 로 작업하여 소유자와 그룹이 root 로 되어있었다.
+        chmod 755 folder 명령어로 소유자에게 모든 권한을 주고 chown jenkins folder 명령어로 소유자를 변경하여 해결하였다.
+3. java.sql.SQLNonTransientConnectionException: Could not connect to address=(host=ip)(port=3306)(type=master)
+   ACG 정책에서 3306과 8080 모두 0.0.0.0 ip로 변경하여 모두 받을 수 있게 열어줘야한다.
+   Nginx 로 입구가 된다고 생각하고 나머지는 안에서 이루어질 것이라 생각했지만 개념 부족이었다.
+4. CORS ERROR
+    1) 개념 (Cross Origin Resource Sharing 교차 출처 리소스 공유)
+        Origin(출처) 이란 Protocol host port 를 합한 것 이다. 다른 출처의 리소스 공유에 대한 허용/비허용 정책이다.
+        SOP(Same Origin Policy)라고 동일한 출처에만 리소스를 공유할 수 있다는 정책이 있다.
+   2) 해결
+        Nginx 포트는 80, 리액트 포트는 3000, spring 포트는 8080 같은 protocol 과 ip를 사용하지만 port 가 다르기에 출처가 다르다.
+        리액트에서 npm 미들웨어를 설치하고 프록시를 만들어 /api 엔드포인트는 8080을 호출하게 설정하고
+        Nginx 에서도 클라이언트가 /api 엔드포인트로 데이터를 요청하면 8080을 호출하게끔 프록시 설정을 하였다.
+        그러면 요청이 들어온 spring 은 origin 을 확인하고 @CrossOrigin 어노테이션에서 해당 origin 을 설정하여 허가를 해주었다.
+        또한 allowCredentials=true 로 함으로 origin 을 * 모두 허용하는 것을 방지하였다.

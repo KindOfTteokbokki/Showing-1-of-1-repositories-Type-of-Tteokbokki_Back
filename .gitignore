@@ -5,7 +5,6 @@ build/
 !**/src/test/**/build/
 *.log
 
-oauth_secret.yml
 jasypy_*
 
 ### IntelliJ IDEA ###
