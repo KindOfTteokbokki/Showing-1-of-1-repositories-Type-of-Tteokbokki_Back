@@ -41,7 +41,7 @@ public class JwtInterceptor implements HandlerInterceptor {
             System.out.println("access 존재합니다.");
             Optional<Long> user_id = Optional.ofNullable(authTokensGenerator.extractMemberId(accessToken));
             // 액세스 토큰이 유효 시
-            if (user_id.isPresent() && user_id.get().intValue() == Integer.valueOf(jwtProvider.extractSubject(accessToken))) {
+            if (user_id.isPresent() && user_id.get().intValue() == Integer.parseInt(jwtProvider.extractSubject(accessToken))) {
                 System.out.println("유효한 토큰 정보입니다. URI : {}"+ requestURI);
                 return true;
             } else {

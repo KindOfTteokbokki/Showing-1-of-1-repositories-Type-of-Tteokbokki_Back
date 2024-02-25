@@ -184,3 +184,5 @@ r
 Bsrc/main/java/halfandhalf/domain/LG0010/service/LG0030Service.java,e\b\eb2a58863896654a19aab0ebdfdd347d66c82ee3
 j
 :src/main/java/halfandhalf/domain/TT0010/dto/TT0011Dto.java,4\7\47b6ea160ee791a2d15dd5368f539e69009130cd
+s
+Csrc/main/java/halfandhalf/com/config/websocker/WebSocketConfig.java,7\7\77093d837ce96783a68783d0b441be3432e5f199

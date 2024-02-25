@@ -46,9 +46,7 @@ public class Upload {
         catch (Exception e){
             throw new FileUploadException("파일 업로드 오류");
         }
-        finally {
-            return imgFile;
-        }
+        return imgFile;
     }
 
     private Map<String, String> dir() {
