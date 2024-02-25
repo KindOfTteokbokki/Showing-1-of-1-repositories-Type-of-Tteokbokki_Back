@@ -62,3 +62,6 @@
         Nginx 에서도 클라이언트가 /api 엔드포인트로 데이터를 요청하면 8080을 호출하게끔 프록시 설정을 하였다.
         그러면 요청이 들어온 spring 은 origin 을 확인하고 @CrossOrigin 어노테이션에서 해당 origin 을 설정하여 허가를 해주었다.
         또한 allowCredentials=true 로 함으로 origin 을 * 모두 허용하는 것을 방지하였다.
+   3) 이해 안되는 부분
+        @CrossOrigin 에 Origin 설정을 도메인과 ip 둘 다 적용해야하는 이유가 이해가 안된다.
+        ip만 설정했었는데 403 에러가 발생하는 상황, 출처가 다르다고 생각되는 건지.

@@ -13,7 +13,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @RequiredArgsConstructor
 public class WebConfiguration implements WebMvcConfigurer {
 
-    private final JwtUtils jwtUtils;
     private final JwtTokenProvider jwtProvider; //JWT 유틸리티 객체 주입
     private final AuthTokensGenerator authTokensGenerator;
 
@@ -33,7 +32,10 @@ public class WebConfiguration implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("http://118.67.132.171", "http://101.101.209.59")
+                .allowedOrigins("http://118.67.132.171")
+                .allowedOrigins("http://dev.utteok.com")
+                .allowedOrigins("http://101.101.209.59")
+                .allowedOrigins("http://www.utteok.com")
                 .allowedMethods("GET","POST","DELETE","PUT")
                 .allowCredentials(true);
         System.out.println("WebConfiguration addCorsMappings");

@@ -4,6 +4,7 @@ import halfandhalf.domain.ST0010.dao.ST0010Dao;
 import halfandhalf.domain.ST0010.dto.ST0010Dto;
 import halfandhalf.domain.ST0010.dto.ST0011Dto;
 import halfandhalf.domain.ST0010.service.ST0010Service;
+import halfandhalf.domain.TT0010.dto.TT0010Dto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,10 +27,20 @@ public class ST0010ServiceImpl implements ST0010Service {
     @Override
     @Transactional
     public ST0010Dto findStore(ST0010Dto sT0010Dto, Long user_id) throws Exception {
-        ST0010Dto store = sT0010Dao.findStore(sT0010Dto);
+        final ST0010Dto[] store = {null};
+
+        Optional.ofNullable(sT0010Dao.findStore(sT0010Dto))
+                .ifPresentOrElse(
+                        is -> {
+                            store[0] = is;
+                        }
+                        , () -> {
+                            store[0] = sT0010Dao.findStore(new ST0010Dto("ch100", "ch200", "ch300", "ch400", "ch500", "ch600", "ch700"));
+                        }
+                );
 
         if(0 != user_id.intValue()) {
-            ST0011Dto st0011Dto = new ST0011Dto(user_id, store.getStore_seq());
+            ST0011Dto st0011Dto = new ST0011Dto(user_id, store[0].getStore_seq());
             Optional.ofNullable(sT0010Dao.findMyTasteByIdSeq(st0011Dto))
                     .ifPresentOrElse(
                             getST0011Dto->{
@@ -41,7 +52,7 @@ public class ST0010ServiceImpl implements ST0010Service {
                                 sT0010Dao.insertStoreCount(st0011Dto);
                             });
         }
-        return store;
+        return store[0];
     }
 
     @Override
