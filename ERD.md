@@ -1,1 +1,1 @@
-![utteok_ERD.png](..%2F..%2FUsers%2FHwang%2FDesktop%2F%C6%F7%C6%AE%C6%FA%B8%AE%BF%C0%2Futteok_ERD.png)
+![utteok_ERD](https://github.com/KindOfTteokbokki/Type-of-Tteokbokki_Back/assets/114146361/2aa328dc-174c-4d92-889f-be5e27227456)
