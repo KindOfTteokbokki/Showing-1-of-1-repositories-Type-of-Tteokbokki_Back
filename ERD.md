@@ -1,0 +1,1 @@
+![utteok_ERD.png](..%2F..%2FUsers%2FHwang%2FDesktop%2F%C6%F7%C6%AE%C6%FA%B8%AE%BF%C0%2Futteok_ERD.png)

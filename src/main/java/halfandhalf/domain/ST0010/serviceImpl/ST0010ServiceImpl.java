@@ -14,12 +14,12 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class ST0010ServiceImpl implements ST0010Service {
 
     private final ST0010Dao sT0010Dao;
 
     @Override
-    @Transactional(readOnly = true)
     public ST0010Dto findOneFromMyTaste(ST0010Dto st0010Dto) {
         return sT0010Dao.findOneFromMyTaste(st0010Dto);
     }
@@ -44,11 +44,13 @@ public class ST0010ServiceImpl implements ST0010Service {
             Optional.ofNullable(sT0010Dao.findMyTasteByIdSeq(st0011Dto))
                     .ifPresentOrElse(
                             getST0011Dto->{
-                                getST0011Dto.setMenu_count(getST0011Dto.getMenu_count() + 1);
+//                                getST0011Dto.setMenu_count(getST0011Dto.getMenu_count() + 1);
+                                getST0011Dto.addMenuCount();
                                 sT0010Dao.updateStoreCount(getST0011Dto);
                             }
                             ,()->{
-                                st0011Dto.setMenu_count(1);
+//                                st0011Dto.setMenu_count(1);
+                                st0011Dto.addMenuCount();
                                 sT0010Dao.insertStoreCount(st0011Dto);
                             });
         }
@@ -56,7 +58,6 @@ public class ST0010ServiceImpl implements ST0010Service {
     }
 
     @Override
-    @Transactional
     public List<ST0010Dto> findMyTasteByCount(Long user_id) {
         return sT0010Dao.findMyTasteByCount(user_id);
     }

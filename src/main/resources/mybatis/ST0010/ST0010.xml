@@ -5,7 +5,6 @@
 	<select id="findOneFromMyTaste" resultType="halfandhalf.domain.ST0010.dto.ST0010Dto">
 		SELECT
 			  SI.STORE_SEQ
-			, SI.COUNT_STORE
 			, SI.STORE_NAME
 			, SI.STORE_ADDRESS
 			, SI.MENU_NAME
@@ -73,8 +72,8 @@
 
 	<select id="findMyTasteByCount" parameterType="long" resultType="halfandhalf.domain.ST0010.dto.ST0010Dto">
 		SELECT
-			  STORE_SEQ
-			, COUNT_STORE
+			SI.STORE_SEQ
+			, MC.MENU_COUNT
 			, STORE_NAME
 			, MI.FILE_PATH
 			, MI.FILE_ORIGINAL_NAME
@@ -82,12 +81,24 @@
 		FROM
 			STORE_INFO SI
 			JOIN MENU_IMG MI ON MI.QUESTION_SEQ = SI.QUESTION_SEQ
+			JOIN MYTASTE_COUNT MC ON SI.STORE_SEQ = MC.STORE_SEQ
 		WHERE
 			1 = 1
-			AND (si.store_seq = (SELECT store_seq FROM MYTASTE_COUNT WHERE user_id = #{user_id} ORDER BY count_store DESC LIMIT 1 OFFSET 0)
-			OR si.store_seq = (SELECT store_seq FROM MYTASTE_COUNT WHERE user_id = #{user_id} ORDER BY count_store DESC LIMIT 1 OFFSET 1)
-			OR si.store_seq = (SELECT store_seq FROM MYTASTE_COUNT WHERE user_id = #{user_id} ORDER BY count_store DESC LIMIT 1 OFFSET 2)
-			OR si.store_seq = (SELECT store_seq FROM MYTASTE_COUNT WHERE user_id = #{user_id} ORDER BY count_store DESC LIMIT 1 OFFSET 3))
+			AND MC.USER_ID = #{user_id}
+		ORDER BY MC.MENU_COUNT DESC
+		LIMIT 4
+	</select>
+
+	<select id="findMyTasteById" resultType="halfandhalf.domain.ST0010.dto.ST0011Dto">
+		SELECT
+			user_id
+			, store_seq
+			, menu_count
+		FROM
+			mytaste_count
+		WHERE
+			1=1
+			AND user_id = #{user_id}
 	</select>
 
 	<select id="findMyTasteByIdSeq" resultType="halfandhalf.domain.ST0010.dto.ST0011Dto">

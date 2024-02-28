@@ -12,6 +12,7 @@ import java.util.List;
 @Setter
 public class ST0010Dto {
     private int store_seq;
+    private int menu_count;
     private String store_name;
     private String store_address;
     private String menu_name;
@@ -26,6 +27,9 @@ public class ST0010Dto {
     private String question5;
     private String question6;
     private String question7;
+
+    public ST0010Dto() {
+    }
 
     public ST0010Dto(String question1, String question2, String question3, String question4, String question5, String question6, String question7) {
         this.question1 = question1;
