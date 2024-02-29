@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = {"http://118.67.132.171", "http://101.101.209.59", "http://dev.utteok.com/", "http://www.utteok.com/"}, allowCredentials = "true")
+@CrossOrigin(origins = {"http://118.67.132.171", "http://101.101.209.59", "http://dev.utteok.com/", "http://www.utteok.com/", "http://localhost:3000"}, allowCredentials = "true")
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
@@ -22,7 +22,7 @@ public class CB0010Controller {
     /*
      *  꿀 조합 가져오기
      */
-    @GetMapping(value="/ViewOneFromCombination", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value="/ViewOneFromCombination", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> ViewOneFromCombination(@RequestBody CB0010Dto cb0010Dto) {
         try {
             CB0010Dto combination = cB0010Service.findOneFromCombination(cb0010Dto);

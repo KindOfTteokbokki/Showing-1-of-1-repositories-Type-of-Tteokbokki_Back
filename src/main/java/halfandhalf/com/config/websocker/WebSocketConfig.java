@@ -16,7 +16,8 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
                 .setAllowedOrigins("http://118.67.132.171")
                 .setAllowedOrigins("http://101.101.209.59")
                 .setAllowedOrigins("http://dev.utteok.com")
-                .setAllowedOrigins("http://www.utteok.com");
+                .setAllowedOrigins("http://www.utteok.com")
+                .setAllowedOrigins("http://localhost:3000");
     }
     //Message broker를 설정하기 위해 configureMessageBroker method를 overide 한다.
     @Override

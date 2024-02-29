@@ -22,9 +22,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(properties = "classpath:/application.yml")
-@TestPropertySource(properties = "spring.profiles.active=local")
-@TestPropertySource(properties = "jasypt.encryptor.password=")
-@TestPropertySource(properties = "jwt.secret-key=123bvdkjwefnkjsdkfjbnjaaaaaaaaaaaaaaaaaaaaaaawe234knvdskjsdjvknds")
+@TestPropertySource(properties = "spring.profiles.active=test")
 public class ST0010ServiceImplTest {
     @Autowired
     private ST0010ServiceImpl st0010ServiceImpl;

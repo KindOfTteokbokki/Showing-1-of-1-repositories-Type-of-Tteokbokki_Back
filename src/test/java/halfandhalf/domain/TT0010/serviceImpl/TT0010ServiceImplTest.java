@@ -25,8 +25,6 @@ import java.util.List;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(properties = "classpath:/application.yml")
 @TestPropertySource(properties = "spring.profiles.active=local")
-@TestPropertySource(properties = "jasypt.encryptor.password=")
-@TestPropertySource(properties = "jwt.secret-key=123bvdkjwefnkjsdkfjbnjaaaaaaaaaaaaaaaaaaaaaaawe234knvdskjsdjvknds")
 public class TT0010ServiceImplTest {
     @Autowired
     TT0010ServiceImpl tt0010Service;

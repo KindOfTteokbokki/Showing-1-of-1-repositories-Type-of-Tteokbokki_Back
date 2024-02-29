@@ -33,7 +33,7 @@ public class RV0010ServiceImpl implements RV0010Service {
     @Transactional
     public void saveRecommend(RV0010Dto rv0010Dto, MultipartFile file) throws Exception{
         Optional.ofNullable(rv0010Dto.getContent()).orElseThrow(() -> new NullPointerException("내용을 입력해 주세요"));
-        rV0010Dao.modifyRecommend(upload(rv0010Dto, file));
+        rV0010Dao.saveRecommend(upload(rv0010Dto, file));
     }
 
     @Override

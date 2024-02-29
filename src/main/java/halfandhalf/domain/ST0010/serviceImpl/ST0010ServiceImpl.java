@@ -44,13 +44,13 @@ public class ST0010ServiceImpl implements ST0010Service {
             Optional.ofNullable(sT0010Dao.findMyTasteByIdSeq(st0011Dto))
                     .ifPresentOrElse(
                             getST0011Dto->{
-//                                getST0011Dto.setMenu_count(getST0011Dto.getMenu_count() + 1);
-                                getST0011Dto.addMenuCount();
+                                getST0011Dto.setMenu_count(getST0011Dto.getMenu_count() + 1);
+//                                getST0011Dto.addMenuCount();
                                 sT0010Dao.updateStoreCount(getST0011Dto);
                             }
                             ,()->{
-//                                st0011Dto.setMenu_count(1);
-                                st0011Dto.addMenuCount();
+                                st0011Dto.setMenu_count(1);
+//                                st0011Dto.addMenuCount();
                                 sT0010Dao.insertStoreCount(st0011Dto);
                             });
         }
