@@ -59,7 +59,13 @@ public class TT0010ServiceImpl implements TT0010Service {
     @Override
     @Transactional(readOnly = true)
     public List<TT0012Dto> findAllTitleNotHave(Long userId) {
-        return tT0010Dao.findAllTitleNotHave(userId);
+        LinkedList<TT0012Dto> allTitleNotHave = tT0010Dao.findAllTitleNotHave(userId);
+        for(int i=0; i<allTitleNotHave.size(); i++) {
+            if(userId.equals(allTitleNotHave.get(i).getUser_id())) {
+                allTitleNotHave.remove(i);
+            }
+        }
+        return allTitleNotHave;
     }
 
     @Override

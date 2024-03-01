@@ -66,21 +66,34 @@
 		WHERE
 			1=1
 			AND HTT.USER_ID = #{userId}
+		GROUP BY PBC.NAME_KO
 		ORDER BY have_title_seq DESC
 	</select>
 
 	<select id="findAllTitleNotHave" resultType="halfandhalf.domain.TT0010.dto.TT0012Dto">
 		SELECT
-			  COUNT(TIF.TITLE_CODE) AS COUNT
+			COUNT(TIF.TITLE_CODE) AS COUNT
 			, PBC.NAME_KO AS TITLE_NAME
-			, HTT.USER_ID AS USER_I
+			, HTT.USER_ID AS USER_ID
 		FROM
-			TITLE_INFO TIF
-			JOIN PUBLIC_CODE PBC ON PBC.CODE = TIF.TITLE_CODE
-			LEFT JOIN HAVE_TITLE HTT ON HTT.TITLE_SEQ = TIF.TITLE_SEQ AND USER_ID != #{userId}
+			HAVE_TITLE HTT
+			LEFT JOIN TITLE_INFO TIF ON HTT.TITLE_SEQ = TIF.TITLE_SEQ
+			LEFT JOIN PUBLIC_CODE PBC ON PBC.CODE = TIF.TITLE_CODE
 		WHERE
-			1 = 1
-			GROUP BY TIF.TITLE_CODE
+			1=1
+			AND NOT TIF.TITLE_CODE IN
+				(
+					SELECT
+					TIF.TITLE_CODE
+					FROM
+					HAVE_TITLE HTT
+					LEFT JOIN TITLE_INFO TIF ON	HTT.TITLE_SEQ = TIF.TITLE_SEQ
+					LEFT JOIN PUBLIC_CODE PBC ON PBC.CODE = TIF.TITLE_CODE
+					WHERE
+					USER_ID = #{user_id}
+					GROUP BY TIF.TITLE_CODE
+				)
+		GROUP BY TIF.TITLE_CODE
 	</select>
 
 	<select id="findTitleByIdSeq" resultType="halfandhalf.domain.TT0010.dto.TT0011Dto">
@@ -99,13 +112,20 @@
 
 	<select id="findCountTitle" resultType="halfandhalf.domain.TT0010.dto.TT0012Dto">
 		SELECT
-			USER_ID AS USER_ID
-			, COUNT(TITLE_SEQ) AS COUNT
+			COUNT(A.USER_ID)  AS COUNT
 		FROM
-			HAVE_TITLE
+			(SELECT
+				USER_ID AS USER_ID
+			FROM
+				HAVE_TITLE HTT
+				JOIN TITLE_INFO TIF ON	HTT.TITLE_SEQ = TIF.TITLE_SEQ
+			WHERE
+				1=1
+				AND USER_ID = #{userId}
+			GROUP BY TIF.TITLE_CODE
+			) AS A
 		WHERE
 			1=1
-			AND USER_ID = #{userId}
 	</select>
 
 	<insert id="insertHaveTitle" parameterType="halfandhalf.domain.TT0010.dto.TT0011Dto">

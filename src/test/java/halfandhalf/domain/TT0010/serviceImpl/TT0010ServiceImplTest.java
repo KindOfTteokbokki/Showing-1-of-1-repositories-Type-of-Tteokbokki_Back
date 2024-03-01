@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -25,6 +26,7 @@ import java.util.List;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(properties = "classpath:/application.yml")
 @TestPropertySource(properties = "spring.profiles.active=local")
+@Transactional
 public class TT0010ServiceImplTest {
     @Autowired
     TT0010ServiceImpl tt0010Service;

@@ -1,5 +1,6 @@
 package halfandhalf.domain.LG0010.serviceImpl;
 
+import halfandhalf.com.util.getDate;
 import halfandhalf.domain.LG0010.dao.LG0020Dao;
 import halfandhalf.domain.LG0010.dto.LG0020Dto;
 import halfandhalf.domain.LG0010.oauth.client.RequestOAuthInfoService;
@@ -9,6 +10,7 @@ import halfandhalf.domain.LG0010.oauth.param.OAuthLoginParams;
 import halfandhalf.domain.LG0010.oauth.response.OAuthInfoResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.Optional;
 
@@ -33,9 +35,12 @@ public class LG0020ServiceImpl {
     }
 
     private Long newMember(OAuthInfoResponse oAuthInfoResponse) {
+        String StringValue = oAuthInfoResponse.getNickname();
+        String newStringValue = StringValue.replaceAll("[^ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9,. ]", "");
+        if(!StringUtils.hasText(newStringValue)) newStringValue = "utteok" + getDate.getCurrentTime("YYYYMMDDHHmmss");
         LG0020Dto member = LG0020Dto.builder()
                 .email(oAuthInfoResponse.getEmail())
-                .nickname(oAuthInfoResponse.getNickname())
+                .nickname(newStringValue)
                 .oAuthProvider(oAuthInfoResponse.getOAuthProvider())
                 .build();
         memberRepository.save(member);

@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -17,6 +18,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class RV0010ServiceImpl implements RV0010Service {
 
     @Value("${api.upload.dir.review}")
@@ -24,7 +26,6 @@ public class RV0010ServiceImpl implements RV0010Service {
     private final RV0010Dao rV0010Dao;
 
     @Override
-    @Transactional(readOnly = true)
     public RV0010Dto findOneFromRecommend(RV0010Dto rv0010Dto) {
         return rV0010Dao.findOneFromRecommend(rv0010Dto);
     }
@@ -37,7 +38,6 @@ public class RV0010ServiceImpl implements RV0010Service {
     }
 
     @Override
-    @Transactional
     public List<RV0010Dto> findRecommendByPage(RV0011Dto rv0011Dto) {
         rv0011Dto.setPageNum(rv0011Dto.getSize() * rv0011Dto.getPageNum());
         List<RV0010Dto> result = rV0010Dao.findRecommendByPage(rv0011Dto);
@@ -56,6 +56,7 @@ public class RV0010ServiceImpl implements RV0010Service {
     }
 
     @Override
+    @Transactional
     public void modifyRecommend(RV0010Dto rv0010Dto, MultipartFile file) throws Exception {
         Optional.ofNullable(rv0010Dto.getContent()).orElseThrow(() -> new NullPointerException("내용을 입력해 주세요"));
         rV0010Dao.modifyRecommend(upload(rv0010Dto, file));
@@ -68,7 +69,7 @@ public class RV0010ServiceImpl implements RV0010Service {
     }
 
     private RV0010Dto upload(RV0010Dto rv0010Dto, MultipartFile file) throws Exception {
-        if(file != null && !file.isEmpty()) {
+        if(!ObjectUtils.isEmpty(file)) {
             Map<String,String> uploadFile = new Upload(uploadDir, file).uploadImage();
             rv0010Dto.setFile(uploadFile.get("path"),uploadFile.get("original"),uploadFile.get("masking"));
         }
