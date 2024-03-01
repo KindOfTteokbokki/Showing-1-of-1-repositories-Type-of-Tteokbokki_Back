@@ -82,7 +82,7 @@ public class TT0010Controller {
         try {
             String accessToken = jwtProvider.getAccessToken(request);
             Long userId = authTokensGenerator.extractMemberId(accessToken);
-            List<TT0012Dto> haveTitle = tT0010Service.findAllTitleFromUser(userId);
+            List<TT0012Dto> haveTitle = tT0010Service.findAllTitleNotHave(userId);
             return ResponseEntity.ok(haveTitle);
         }
         catch(Exception e){

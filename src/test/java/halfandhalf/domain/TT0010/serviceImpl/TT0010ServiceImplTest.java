@@ -135,11 +135,11 @@ public class TT0010ServiceImplTest {
 
     @Test
     @DisplayName("모든 칭호 노출 - 칭호가 있는 경우")
-    public void findAllTitleFromUser() throws Exception {
+    public void findAllTitleNotHave() throws Exception {
         //given
 
         //when
-        List<TT0012Dto> allTitleFromUser = tt0010Service.findAllTitleFromUser(1L);
+        List<TT0012Dto> allTitleFromUser = tt0010Service.findAllTitleNotHave(1L);
         //then
         Assertions.assertThat(allTitleFromUser).isNotNull();
         System.out.println("allTitleFromUser.toString() : " + allTitleFromUser.toString());

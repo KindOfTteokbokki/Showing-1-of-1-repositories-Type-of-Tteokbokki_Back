@@ -66,9 +66,10 @@
 		WHERE
 			1=1
 			AND HTT.USER_ID = #{userId}
+		ORDER BY have_title_seq DESC
 	</select>
 
-	<select id="findAllTitleFromUser" resultType="halfandhalf.domain.TT0010.dto.TT0012Dto">
+	<select id="findAllTitleNotHave" resultType="halfandhalf.domain.TT0010.dto.TT0012Dto">
 		SELECT
 			  COUNT(TIF.TITLE_CODE) AS COUNT
 			, PBC.NAME_KO AS TITLE_NAME
@@ -76,7 +77,7 @@
 		FROM
 			TITLE_INFO TIF
 			JOIN PUBLIC_CODE PBC ON PBC.CODE = TIF.TITLE_CODE
-			LEFT JOIN HAVE_TITLE HTT ON HTT.TITLE_SEQ = TIF.TITLE_SEQ AND USER_ID = #{userId}
+			LEFT JOIN HAVE_TITLE HTT ON HTT.TITLE_SEQ = TIF.TITLE_SEQ AND USER_ID != #{userId}
 		WHERE
 			1 = 1
 			GROUP BY TIF.TITLE_CODE
@@ -93,6 +94,7 @@
 			1=1
 			AND user_id = #{user_id}
 			AND title_seq = #{title_seq}
+		group by title_seq
 	</select>
 
 	<select id="findCountTitle" resultType="halfandhalf.domain.TT0010.dto.TT0012Dto">

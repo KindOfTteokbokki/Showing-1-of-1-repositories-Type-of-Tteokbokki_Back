@@ -86,7 +86,7 @@
 			1 = 1
 			AND MC.USER_ID = #{user_id}
 		ORDER BY MC.MENU_COUNT DESC
-		LIMIT 4
+		LIMIT 3
 	</select>
 
 	<select id="findMyTasteById" resultType="halfandhalf.domain.ST0010.dto.ST0011Dto">

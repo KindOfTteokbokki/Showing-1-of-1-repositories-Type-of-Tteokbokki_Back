@@ -10,7 +10,7 @@ public interface TT0010Service {
 
     List<TT0010Dto> findHaveTitle(Long userId);
 
-    List<TT0012Dto> findAllTitleFromUser(Long userId);
+    List<TT0012Dto> findAllTitleNotHave(Long userId);
 
     TT0012Dto findCountTitle(Long userId);
 }

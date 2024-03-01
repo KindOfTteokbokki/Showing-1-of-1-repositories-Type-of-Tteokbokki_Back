@@ -68,8 +68,6 @@ r
 Bsrc/main/java/halfandhalf/domain/ST0010/service/ST0010Service.java,c\e\cec5cc31ffc5b8216ab1cd5557879d94d64a929f
 j
 :src/main/java/halfandhalf/domain/ST0010/dao/ST0010Dao.java,e\3\e393d0ea88bc812d4669ff8242bec7d6e4237078
-P
- src/test/java/ST0010/ST0010.java,d\4\d4a4d03accaf1dbc31953f08847b6ceae06a457b
 j
 :src/main/java/halfandhalf/domain/TT0010/dto/TT0010Dto.java,0\4\0434af0621863c8f3693aa2f3fc6eb51f8d55cb2
 r
@@ -94,8 +92,6 @@ r
 Bsrc/main/java/halfandhalf/domain/RV0010/service/RV0010Service.java,5\3\537eb5b9b7f9397aa3791c7031023d9bc5702ee3
 z
 Jsrc/main/java/halfandhalf/domain/RV0010/serviceImpl/RV0010ServiceImpl.java,9\a\9aa1f0a72628522320263738baaf775c400ff2f9
-R
-"src/test/java/fileUpload/file.java,6\e\6e8284b335dcf291340866217d31477641e3bc07
 p
 @src/main/java/halfandhalf/com/exception/FileUploadException.java,c\f\cf1ad5cafefdd7e0e440a13fd7753875e054af17
 _
