@@ -38,14 +38,21 @@ public class RV0010ServiceImpl implements RV0010Service {
 
     @Override
     @Transactional
-    public List<RV0010Dto> findRecommendByPage(RV0011Dto rv0011Dto, Long user_id) {
+    public List<RV0010Dto> findRecommendByPage(RV0011Dto rv0011Dto) {
         rv0011Dto.setPageNum(rv0011Dto.getSize() * rv0011Dto.getPageNum());
         List<RV0010Dto> result = rV0010Dao.findRecommendByPage(rv0011Dto);
         // 내가 추천한 글이면 true 반환 / 내 글에 대해 표시를 프론트단에서 처리하기 위함
         for(RV0010Dto dto : result) {
-            dto.setMy_recommend(user_id.equals(dto.getUser_id()));
+            dto.setMy_recommend(rv0011Dto.getUser_id().equals(dto.getUser_id()));
         }
         return result;
+    }
+
+    @Override
+    @Transactional
+    public List<RV0010Dto> getRecommendToPageInMyinfo(RV0011Dto rv0011Dto) {
+        rv0011Dto.setPageNum(rv0011Dto.getSize() * rv0011Dto.getPageNum());
+        return rV0010Dao.getRecommendToPageInMyinfo(rv0011Dto);
     }
 
     @Override

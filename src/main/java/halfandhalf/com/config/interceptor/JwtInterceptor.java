@@ -31,6 +31,7 @@ public class JwtInterceptor implements HandlerInterceptor {
 
         // 요청이 들어오면 실행되는 메서드
         String accessToken = jwtProvider.getAccessToken(request);
+        System.out.println("request.getHeader(Authorization) : "+ request.getHeader("Authorization")); //요청 url 로깅을 위해 가져옴
         System.out.println("JwtInterceptor Interceptor accessToken : "+ accessToken); //요청 url 로깅을 위해 가져옴
 
         // 비회원일 때(액세스 토큰이 없을 때)

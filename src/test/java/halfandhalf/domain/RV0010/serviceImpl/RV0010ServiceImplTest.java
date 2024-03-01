@@ -7,13 +7,18 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.junit.jupiter.api.Test;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.verify;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(properties = "classpath:/application.yml")
@@ -49,33 +54,40 @@ class RV0010ServiceImplTest {
     @DisplayName("사진 없이 컨텐츠만 저장")
     public void saveRecommend1() throws Exception {
         //given
-
+        RV0010Dto rv0010Dto = new RV0010Dto();
+        rv0010Dto.setContent("test_content");
+        MultipartFile file = new MockMultipartFile("", new FileInputStream(new File("")));
         //when
-
+        rv0010Service.saveRecommend(rv0010Dto, file);
         //then
-
+//        verify(saveRecommend).save(entity);
+//        Assertions.
     }
     @Test
     @DisplayName("사진 있이 컨텐츠와 저장")
     public void saveRecommend2() throws Exception {
         //given
-//        rv0010Service.upload();
-//        rv0010Service.saveRecommend();
+        RV0010Dto rv0010Dto = new RV0010Dto();
+        rv0010Dto.setContent("test_file");
+        MultipartFile file = new MockMultipartFile("0001.jpg"
+                , new FileInputStream(new File("C:\\Users\\Hwang\\Desktop\\서버구축\\img\\꿀조합\\0001.jpg")));
         //when
-
+        rv0010Service.saveRecommend(rv0010Dto, file);
         //then
-
+        File f = new File("C:\\workspace\\Type-of-Tteokbokki_Back\\utteok\\image\\review\\");
+        Assertions.assertThat(f.exists()).isNotNull();
     }
 
     @Test
     @DisplayName("사진 없음 컨텐츠 없음")
     public void saveRecommend3() throws Exception {
         //given
-
+        RV0010Dto rv0010Dto = new RV0010Dto();
+        MultipartFile file = new MockMultipartFile("", new FileInputStream(new File("")));
         //when
-
+        rv0010Service.saveRecommend(rv0010Dto, file);
         //then
-
+//        Assertions.assertThat()
     }
 
     @Test

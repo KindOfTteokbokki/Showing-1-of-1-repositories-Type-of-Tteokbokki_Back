@@ -24,4 +24,27 @@
 				#{pageNum}, #{size}
 		]]>
 	</select>
+	<select id="getRecommendToPageInMyinfo" parameterType="halfandhalf.domain.RV0010.dto.RV0011Dto" resultType="halfandhalf.domain.RV0010.dto.RV0010Dto">
+		<![CDATA[
+			SELECT
+				  @ROWNUM:=@ROWNUM+1 ROWNUM
+				, review_seq
+				, user_id
+				, CONTENT
+				, FILE_PATH
+				, FILE_ORIGINAL_NAME
+				, FILE_MASKING_NAME
+				, CREATE_DATE
+			FROM
+				  REVIEW_FOR_STORE
+				, (SELECT @ROWNUM:=0) R
+			WHERE
+				1=1
+				AND user_id = #{user_id}
+			ORDER BY
+				CREATE_DATE DESC
+			LIMIT
+				#{pageNum}, #{size}
+		]]>
+	</select>
 </mapper>

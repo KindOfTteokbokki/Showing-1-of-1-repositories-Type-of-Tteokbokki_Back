@@ -45,17 +45,36 @@ public class RV0010Controller {
     }
 
     /*
-     *  나도 추천할래
+     *  나도 추천할래 페이징
      */
     @PostMapping("/getRecommendToPage")
     public ResponseEntity<?> getRecommendToPage(@RequestBody RV0011Dto rv0011Dto, HttpServletRequest request) {
         try {
             String accessToken = jwtProvider.getAccessToken(request);
-            Long user_id = 0L;  // main에서 4개만 가져올 때 사용
+//            Long user_id = 0L;  // main에서 4개만 가져올 때 사용
             if(StringUtils.hasText(accessToken)) {
-                user_id = authTokensGenerator.extractMemberId(accessToken);
+//                user_id = authTokensGenerator.extractMemberId(accessToken);
+                rv0011Dto.setUser_id(authTokensGenerator.extractMemberId(accessToken));
             }
-            List<RV0010Dto> recommend = rV0010Service.findRecommendByPage(rv0011Dto, user_id);
+//            rv0011Dto.setUser_id(user_id);
+            List<RV0010Dto> recommend = rV0010Service.findRecommendByPage(rv0011Dto);
+            return ResponseEntity.ok(recommend);
+        }
+        catch(Exception e){
+            // 그 외 에러의 경우 500 메세지
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("서버 내부 오류");
+        }
+    }
+
+    /*
+     *  나도 추천할래
+     */
+    @PostMapping("/getRecommendToPageInMyinfo")
+    public ResponseEntity<?> getRecommendToPageInMyinfo(@RequestBody RV0011Dto rv0011Dto, HttpServletRequest request) {
+        try {
+            String accessToken = jwtProvider.getAccessToken(request);
+            rv0011Dto.setUser_id(authTokensGenerator.extractMemberId(accessToken));
+            List<RV0010Dto> recommend = rV0010Service.getRecommendToPageInMyinfo(rv0011Dto);
             return ResponseEntity.ok(recommend);
         }
         catch(Exception e){
@@ -88,7 +107,6 @@ public class RV0010Controller {
         }
         catch(Exception e){
             // 그 외 에러의 경우 500 메세지
-            e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("서버 내부 오류");
         }
     }
@@ -122,7 +140,7 @@ public class RV0010Controller {
     }
 
     /*
-     *  나도 추천할래 수정하기
+     *  나도 추천할래 삭제하기
      */
     @PostMapping(value="/deleteRecommend", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> deleteRecommend(@RequestBody RV0010Dto rv0010Dto, HttpServletRequest request){

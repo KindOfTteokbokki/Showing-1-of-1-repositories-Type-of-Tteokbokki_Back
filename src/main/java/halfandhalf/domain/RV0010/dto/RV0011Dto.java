@@ -10,6 +10,7 @@ import lombok.ToString;
 public class RV0011Dto {
     private int pageNum;
     private int size;
+    private Long user_id = 0L;
 
     public RV0011Dto() {
         this(1, 15);
