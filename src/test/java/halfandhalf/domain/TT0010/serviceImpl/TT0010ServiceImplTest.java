@@ -1,5 +1,7 @@
 package halfandhalf.domain.TT0010.serviceImpl;
 
+import halfandhalf.com.aop.login.EventImpl;
+import halfandhalf.com.exception.LoginException;
 import halfandhalf.domain.TT0010.dto.TT0010Dto;
 import halfandhalf.domain.TT0010.dto.TT0012Dto;
 import org.assertj.core.api.Assertions;
@@ -13,6 +15,7 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /*
@@ -25,11 +28,26 @@ import java.util.List;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(properties = "classpath:/application.yml")
-@TestPropertySource(properties = "spring.profiles.active=local")
+@TestPropertySource(properties = "spring.profiles.active=test")
 @Transactional
 public class TT0010ServiceImplTest {
     @Autowired
     TT0010ServiceImpl tt0010Service;
+
+    @Test
+    @DisplayName("")
+    public void EventImpl() throws Exception {
+        //given
+        EventImpl event = new EventImpl();
+        //when
+//        event.beforeEvent();
+        //then
+        org.junit.jupiter.api.Assertions.assertThrows(LoginException.class, () ->
+                {
+                    event.beforeEvent();
+                }
+        );
+    }
 
     @Test
     @DisplayName("칭호 노출 - 아무것도 선택 없음, 아이디 있음")

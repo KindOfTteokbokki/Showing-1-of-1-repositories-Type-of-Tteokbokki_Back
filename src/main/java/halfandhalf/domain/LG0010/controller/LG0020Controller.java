@@ -1,12 +1,18 @@
 package halfandhalf.domain.LG0010.controller;
 
+import halfandhalf.domain.LG0010.dto.LG0020Dto;
 import halfandhalf.domain.LG0010.oauth.jwt.AuthTokens;
+import halfandhalf.domain.LG0010.oauth.jwt.AuthTokensGenerator;
+import halfandhalf.domain.LG0010.oauth.jwt.JwtTokenProvider;
 import halfandhalf.domain.LG0010.oauth.param.KakaoLoginParams;
 import halfandhalf.domain.LG0010.oauth.param.NaverLoginParams;
+import halfandhalf.domain.LG0010.service.LG0030Service;
 import halfandhalf.domain.LG0010.serviceImpl.LG0020ServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequiredArgsConstructor
@@ -15,6 +21,9 @@ import org.springframework.web.bind.annotation.*;
 public class LG0020Controller {
 
     private final LG0020ServiceImpl oAuthLoginService;
+    private final LG0030Service lg0030Service;
+    private final JwtTokenProvider jwtProvider;
+    private final AuthTokensGenerator authTokensGenerator;
 
     @GetMapping("/kakao")
     public ResponseEntity<AuthTokens> loginKakao(@RequestParam(value = "code", required = false) String code) {

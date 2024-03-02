@@ -37,7 +37,7 @@ public class WebConfiguration implements WebMvcConfigurer {
                 .allowedOrigins("http://101.101.209.59")
                 .allowedOrigins("http://www.utteok.com")
                 .allowedOrigins("http://localhost:3000")
-                .allowedMethods("GET","POST","DELETE","PUT")
+                .allowedMethods("GET","POST","DELETE","PUT", "OPTIONS")
                 .allowCredentials(true);
         System.out.println("WebConfiguration addCorsMappings");
     }

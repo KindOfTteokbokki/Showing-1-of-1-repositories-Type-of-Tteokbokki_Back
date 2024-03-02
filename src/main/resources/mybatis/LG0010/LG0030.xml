@@ -11,4 +11,8 @@
 			1=1
 			AND utteok_nickname  = #{utteok_nickname}
 	</select>
+
+	<update id="registNickname" parameterType="halfandhalf.domain.LG0010.dto.LG0020Dto">
+		UPDATE OAUTH_LOGIN SET UTTEOK_NICKNAME = #{utteok_nickname} WHERE ID = #{id}
+	</update>
 </mapper>

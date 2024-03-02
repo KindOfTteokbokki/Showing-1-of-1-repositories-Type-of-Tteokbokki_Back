@@ -11,6 +11,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class LG0020Dto {
 
+    @Setter
     private Long id;
 
     private String email;
