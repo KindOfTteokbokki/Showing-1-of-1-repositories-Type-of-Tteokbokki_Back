@@ -55,13 +55,15 @@ public class LoginCheckAspect {
     public void LoginCheckNoEssential(JoinPoint jp) throws Throwable{
         userId= 0L;
         for (Object obj : jp.getArgs()) {
-            HttpServletRequest request = (HttpServletRequest) obj;
-            if(StringUtils.hasText(request.getHeader("Authorization"))){
-                Optional.ofNullable(authTokensGenerator.extractMemberId(jwtProvider.getAccessToken(request)))
-                        .ifPresent(a -> {
-                            userId = a;
-                            lg0020Dao.recentlyConnection(a);
-                        });
+            if (obj instanceof HttpServletRequest) {
+                HttpServletRequest request = (HttpServletRequest) obj;
+                if (StringUtils.hasText(request.getHeader("Authorization"))) {
+                    Optional.ofNullable(authTokensGenerator.extractMemberId(jwtProvider.getAccessToken(request)))
+                            .ifPresent(a -> {
+                                userId = a;
+                                lg0020Dao.recentlyConnection(a);
+                            });
+                }
             }
         }
     }

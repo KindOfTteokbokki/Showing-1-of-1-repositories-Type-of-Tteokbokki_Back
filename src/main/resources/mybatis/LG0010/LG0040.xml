@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="halfandhalf.domain.LG0010.dao.LG0040Dao">
+	<select id="checkIp" parameterType="halfandhalf.domain.LG0010.dto.LG0040Dto" resultType="halfandhalf.domain.LG0010.dto.LG0040Dto">
+		SELECT
+			  name
+			, ip
+		FROM
+			user_ip
+		WHERE
+			1=1
+			AND name  = #{name}
+			AND ip  = #{ip}
+	</select>
+
+	<update id="updateDateIp" parameterType="halfandhalf.domain.LG0010.dto.LG0040Dto">
+		UPDATE user_ip SET recent_date = SYSDATE() WHERE name = #{name} AND ip = #{ip}
+	</update>
+
+	<insert id="regIp" parameterType="halfandhalf.domain.LG0010.dto.LG0040Dto">
+		insert into
+			user_ip
+			(name, ip, create_date, recent_date)
+		values
+			(#{name}, #{ip}, SYSDATE(), SYSDATE())
+	</insert>
+</mapper>
