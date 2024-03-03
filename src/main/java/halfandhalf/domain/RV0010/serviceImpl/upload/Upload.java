@@ -1,6 +1,5 @@
 package halfandhalf.domain.RV0010.serviceImpl.upload;
 
-import halfandhalf.com.config.ResponseMessage;
 import halfandhalf.com.exception.FileUploadException;
 import halfandhalf.com.util.getDate;
 import org.springframework.web.multipart.MultipartFile;
@@ -57,8 +56,8 @@ public class Upload {
         // uploadDir을 사용하면 static처럼 뒤에 계속 날짜가 붙는다.
         dir.put("makeDir", makeDir);
 
-//        int dirIndex = makeDir.indexOf("/src/");
-        int dirIndex = makeDir.indexOf("utteok");  // local 전용
+        int dirIndex = makeDir.indexOf("/src/");
+//        int dirIndex = makeDir.indexOf("utteok");  // local 전용
         dir.put("dirPath", makeDir.substring(dirIndex));
         return dir;
     }
