@@ -1,5 +1,6 @@
 package halfandhalf.domain.LG0010.controller;
 
+import halfandhalf.com.config.ResponseMessage;
 import halfandhalf.com.util.jwt.JwtUtils;
 import halfandhalf.domain.LG0010.dto.LG0011Dto;
 import halfandhalf.domain.LG0010.service.LG0010Service;
@@ -16,11 +17,15 @@ import javax.security.auth.login.LoginException;
 @RestController
 @CrossOrigin(origins = {"http://118.67.132.171", "http://101.101.209.59", "http://dev.utteok.com/", "http://www.utteok.com/", "http://localhost:3000"}, allowCredentials = "true")
 @RequestMapping("/api/login")
-@RequiredArgsConstructor
 public class LG0010Controller {
 
     private final LG0010Service loginService;
     private final JwtUtils jwtUtils;
+
+    public LG0010Controller(LG0010Service loginService, JwtUtils jwtUtils) {
+        this.loginService = loginService;
+        this.jwtUtils = jwtUtils;
+    }
 
     @PostMapping("/signUp")
     public ResponseEntity<?> signUp(@RequestBody LG0011Dto memberDTO) {
@@ -34,7 +39,7 @@ public class LG0010Controller {
         }
         catch(Exception e){
             // 그 외 에러의 경우 500 메세지
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("서버 내부 오류");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ResponseMessage.valueOfCode("InternalServerError").getMessage());
         }
     }
 
@@ -57,7 +62,7 @@ public class LG0010Controller {
         }
         catch(Exception e){
             // 그 외 에러의 경우 500 메세지
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("서버 내부 오류");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ResponseMessage.valueOfCode("InternalServerError").getMessage());
         }
     }
 

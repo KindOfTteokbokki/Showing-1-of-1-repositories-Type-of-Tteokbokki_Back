@@ -13,11 +13,14 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class ST0010ServiceImpl implements ST0010Service {
 
     private final ST0010Dao sT0010Dao;
+
+    public ST0010ServiceImpl(ST0010Dao sT0010Dao) {
+        this.sT0010Dao = sT0010Dao;
+    }
 
     @Override
     public ST0010Dto findOneFromMyTaste(ST0010Dto st0010Dto) {

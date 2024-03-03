@@ -12,10 +12,13 @@ import org.springframework.util.StringUtils;
 import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
 public class MI0010ServiceImpl implements MI0010Service {
 
     private final MI0010Dao mi0010Dao;
+
+    public MI0010ServiceImpl(MI0010Dao mi0010Dao) {
+        this.mi0010Dao = mi0010Dao;
+    }
 
     @Override
     @Transactional(readOnly = true)

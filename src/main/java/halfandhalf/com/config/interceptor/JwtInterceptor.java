@@ -14,13 +14,17 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Optional;
 
 @Component
-@RequiredArgsConstructor
 public class JwtInterceptor implements HandlerInterceptor {
 
     private static final Logger logger = LoggerFactory.getLogger(JwtInterceptor.class);
 
     private final JwtTokenProvider jwtProvider; //JWT 유틸리티 객체 주입
     private final AuthTokensGenerator authTokensGenerator;
+
+    public JwtInterceptor(JwtTokenProvider jwtProvider, AuthTokensGenerator authTokensGenerator) {
+        this.jwtProvider = jwtProvider;
+        this.authTokensGenerator = authTokensGenerator;
+    }
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {

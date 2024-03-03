@@ -1,11 +1,11 @@
 package halfandhalf.domain.RV0010.serviceImpl;
 
+import halfandhalf.com.config.ResponseMessage;
 import halfandhalf.domain.RV0010.dao.RV0010Dao;
 import halfandhalf.domain.RV0010.dto.RV0010Dto;
 import halfandhalf.domain.RV0010.dto.RV0011Dto;
 import halfandhalf.domain.RV0010.service.RV0010Service;
 import halfandhalf.domain.RV0010.serviceImpl.upload.Upload;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,13 +17,16 @@ import java.util.Map;
 import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class RV0010ServiceImpl implements RV0010Service {
 
     @Value("${api.upload.dir.review}")
     private String uploadDir;
     private final RV0010Dao rV0010Dao;
+
+    public RV0010ServiceImpl(RV0010Dao rV0010Dao) {
+        this.rV0010Dao = rV0010Dao;
+    }
 
     @Override
     public RV0010Dto findOneFromRecommend(RV0010Dto rv0010Dto) {
@@ -33,7 +36,7 @@ public class RV0010ServiceImpl implements RV0010Service {
     @Override
     @Transactional
     public void saveRecommend(RV0010Dto rv0010Dto, MultipartFile file) throws Exception{
-        Optional.ofNullable(rv0010Dto.getContent()).orElseThrow(() -> new NullPointerException("내용을 입력해 주세요"));
+        Optional.ofNullable(rv0010Dto.getContent()).orElseThrow(() -> new NullPointerException(ResponseMessage.valueOfCode("InvalidParams").getMessage()));
         rV0010Dao.saveRecommend(upload(rv0010Dto, file));
     }
 
@@ -58,7 +61,7 @@ public class RV0010ServiceImpl implements RV0010Service {
     @Override
     @Transactional
     public void modifyRecommend(RV0010Dto rv0010Dto, MultipartFile file) throws Exception {
-        Optional.ofNullable(rv0010Dto.getContent()).orElseThrow(() -> new NullPointerException("내용을 입력해 주세요"));
+        Optional.ofNullable(rv0010Dto.getContent()).orElseThrow(() -> new NullPointerException(ResponseMessage.valueOfCode("InvalidParams").getMessage()));
         rV0010Dao.modifyRecommend(upload(rv0010Dto, file));
     }
 

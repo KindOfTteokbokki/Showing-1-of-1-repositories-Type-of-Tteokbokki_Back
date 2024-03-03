@@ -20,6 +20,7 @@
 				1=1
 			ORDER BY
 				CREATE_DATE DESC
+				, REVIEW_SEQ DESC
 			LIMIT
 				#{pageNum}, #{size}
 		]]>

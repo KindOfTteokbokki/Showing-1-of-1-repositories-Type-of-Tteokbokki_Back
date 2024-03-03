@@ -23,6 +23,13 @@
 			AND oAuthProvider = #{oAuthProvider}
 	</select>
 
+	<update id="recentlyConnection">
+		update oauth_login
+			set
+			recent_date = sysdate()
+		WHERE id = #{id}
+	</update>
+
 	<insert id="save">
 		insert into
 			oauth_login

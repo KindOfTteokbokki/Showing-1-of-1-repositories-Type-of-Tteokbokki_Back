@@ -16,7 +16,6 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 @Component
-@RequiredArgsConstructor
 public class KakaoApiClient implements OAuthApiClient {
 
     private static final String GRANT_TYPE = "authorization_code";
@@ -31,6 +30,10 @@ public class KakaoApiClient implements OAuthApiClient {
     private String clientId;
 
     private final RestTemplate restTemplate;
+
+    public KakaoApiClient(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
 
     @Override
     public LG0021Dto oAuthProvider() {

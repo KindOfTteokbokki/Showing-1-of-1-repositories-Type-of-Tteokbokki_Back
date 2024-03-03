@@ -14,10 +14,13 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
 public class TT0010ServiceImpl implements TT0010Service {
 
     private final TT0010Dao tT0010Dao;
+
+    public TT0010ServiceImpl(TT0010Dao tT0010Dao) {
+        this.tT0010Dao = tT0010Dao;
+    }
 
     @Override
     @Transactional

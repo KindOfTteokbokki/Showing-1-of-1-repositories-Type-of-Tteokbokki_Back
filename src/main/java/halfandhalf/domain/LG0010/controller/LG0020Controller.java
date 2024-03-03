@@ -15,15 +15,20 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
-@RequiredArgsConstructor
 @RequestMapping("/api/auth")
 @CrossOrigin(origins = {"http://118.67.132.171", "http://101.101.209.59", "http://dev.utteok.com/", "http://www.utteok.com/", "http://localhost:3000"}, allowCredentials = "true")
 public class LG0020Controller {
 
     private final LG0020ServiceImpl oAuthLoginService;
-    private final LG0030Service lg0030Service;
-    private final JwtTokenProvider jwtProvider;
-    private final AuthTokensGenerator authTokensGenerator;
+
+    public LG0020Controller(LG0020ServiceImpl oAuthLoginService) {
+        this.oAuthLoginService = oAuthLoginService;
+    }
+
+    @GetMapping("/naverForCode")
+    public String code(@RequestParam(value="code") String code) {
+        return code;
+    }
 
     @GetMapping("/kakao")
     public ResponseEntity<AuthTokens> loginKakao(@RequestParam(value = "code", required = false) String code) {

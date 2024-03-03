@@ -1,45 +1,63 @@
 package halfandhalf.domain.LG0010.controller;
 
+import halfandhalf.com.annotation.LoginCheckEssential;
+import halfandhalf.com.config.ResponseMessage;
 import halfandhalf.domain.LG0010.dto.LG0020Dto;
-import halfandhalf.domain.LG0010.oauth.jwt.AuthTokensGenerator;
-import halfandhalf.domain.LG0010.oauth.jwt.JwtTokenProvider;
 import halfandhalf.domain.LG0010.service.LG0030Service;
-import lombok.RequiredArgsConstructor;
-import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
+import static halfandhalf.com.aop.LoginCheckAspect.userId;
+
 @RestController
-@RequiredArgsConstructor
 @RequestMapping("/api")
 @CrossOrigin(origins = {"http://118.67.132.171", "http://101.101.209.59", "http://dev.utteok.com/", "http://www.utteok.com/", "http://localhost:3000"}, allowCredentials = "true")
 public class LG0030Controller {
-    private final SimpMessagingTemplate simpMessagingTemplate;
     private final LG0030Service lg0030Service;
-    private final JwtTokenProvider jwtProvider;
-    private final AuthTokensGenerator authTokensGenerator;
 
-//    @MessageMapping("/checkNickname")
+    public LG0030Controller(LG0030Service lg0030Service) {
+        this.lg0030Service = lg0030Service;
+    }
+
+    //    @MessageMapping("/checkNickname")
 //    public void sendMessage(LG0030Dto lg0030Dto, SimpMessageHeaderAccessor accessor) {
 //        lg0030Dto.setCheckNickname(lg0030Service.checkIfEnabledNickName(lg0030Dto.getNickname()));
 //
 //        simpMessagingTemplate.convertAndSend("/sub/checkNickname" + lg0030Dto.getChannelId(), lg0030Dto);
 //    }
-    
+
+    /*
+     * 닉네임 사용 여부 체크 - true 사용중 false 미사용
+     */
     @GetMapping("/checkNickname")
-    public boolean checkNickname(@RequestParam("nickname") String nickname){
-        return lg0030Service.checkIfEnabledNickName(nickname);
+    public ResponseEntity<?> checkNickname(@RequestParam("nickname") String nickname){
+        try {
+            return ResponseEntity.ok(lg0030Service.checkIfEnabledNickName(nickname));
+        }
+        catch(Exception e){
+            // 그 외 에러의 경우 500 메세지
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ResponseMessage.valueOfCode("InternalServerError").getMessage());
+        }
     }
 
+    /*
+     * 닉네임 등록
+     */
+    @LoginCheckEssential
     @PostMapping("/regiNickname")
-    public void regiNickname(@RequestBody LG0020Dto lg0020Dto, HttpServletRequest request){
-
-        String accessToken = jwtProvider.getAccessToken(request);
-        Long user_id = authTokensGenerator.extractMemberId(accessToken);
-
-        lg0020Dto.setId(user_id);
-        lg0030Service.registNickname(lg0020Dto);
+    public ResponseEntity<?> regiNickname(@RequestBody LG0020Dto lg0020Dto, HttpServletRequest request){
+        try {
+            lg0020Dto.setId(userId);
+            lg0030Service.registNickname(lg0020Dto);
+            return ResponseEntity.ok(ResponseMessage.valueOfCode("Ok").getMessage());
+        }
+        catch(Exception e){
+            // 그 외 에러의 경우 500 메세지
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ResponseMessage.valueOfCode("InternalServerError").getMessage());
+        }
     }
 
 }

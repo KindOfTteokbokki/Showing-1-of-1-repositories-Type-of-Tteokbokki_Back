@@ -16,10 +16,13 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 @Component
-@RequiredArgsConstructor
 public class NaverApiClient implements OAuthApiClient {
 
     private static final String GRANT_TYPE = "authorization_code";
+
+    public NaverApiClient(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
 
     @Value("${oauth.naver.url.auth}")
     private String authUrl;

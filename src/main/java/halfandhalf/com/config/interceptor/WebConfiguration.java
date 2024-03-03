@@ -1,6 +1,5 @@
 package halfandhalf.com.config.interceptor;
 
-import halfandhalf.com.util.jwt.JwtUtils;
 import halfandhalf.domain.LG0010.oauth.jwt.AuthTokensGenerator;
 import halfandhalf.domain.LG0010.oauth.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
@@ -10,11 +9,15 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-@RequiredArgsConstructor
 public class WebConfiguration implements WebMvcConfigurer {
 
     private final JwtTokenProvider jwtProvider; //JWT 유틸리티 객체 주입
     private final AuthTokensGenerator authTokensGenerator;
+
+    public WebConfiguration(JwtTokenProvider jwtProvider, AuthTokensGenerator authTokensGenerator) {
+        this.jwtProvider = jwtProvider;
+        this.authTokensGenerator = authTokensGenerator;
+    }
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
@@ -25,7 +28,9 @@ public class WebConfiguration implements WebMvcConfigurer {
                 .addPathPatterns("/api/doNotHaveTitle")
                 .addPathPatterns("/api/myInfo")
                 .addPathPatterns("/api/modifyRecommend")
-                .addPathPatterns("/api/deleteRecommend");
+                .addPathPatterns("/api/deleteRecommend")
+                .addPathPatterns("/api/checkNickname")
+                .addPathPatterns("/api/regiNickname");
         System.out.println("WebConfiguration addInterceptors");
     }
 

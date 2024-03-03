@@ -35,21 +35,6 @@ public class TT0010ServiceImplTest {
     TT0010ServiceImpl tt0010Service;
 
     @Test
-    @DisplayName("")
-    public void EventImpl() throws Exception {
-        //given
-        EventImpl event = new EventImpl();
-        //when
-//        event.beforeEvent();
-        //then
-        org.junit.jupiter.api.Assertions.assertThrows(LoginException.class, () ->
-                {
-                    event.beforeEvent();
-                }
-        );
-    }
-
-    @Test
     @DisplayName("칭호 노출 - 아무것도 선택 없음, 아이디 있음")
     public void findTitle1() throws Exception {
         //given

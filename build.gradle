@@ -63,6 +63,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-websocket'
     // AOP
     implementation 'org.springframework.boot:spring-boot-starter-aop'
+    // 유효성 검사
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
 //    // selenium 크롤링
 //    implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.17.0'
 //    testImplementation 'org.seleniumhq.selenium:selenium-java:4.17.0'

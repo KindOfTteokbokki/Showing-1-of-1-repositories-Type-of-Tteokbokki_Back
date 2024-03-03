@@ -10,9 +10,13 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
 public class LG0030ServiceImpl implements LG0030Service {
     private final LG0030Dao memberRepository;
+
+    public LG0030ServiceImpl(LG0030Dao memberRepository) {
+        this.memberRepository = memberRepository;
+    }
+
     public boolean checkIfEnabledNickName(String nickname){
         return Optional.ofNullable(memberRepository.checkIfEnabledNickName(nickname))
                 .map(LG0030Dto::getNickname)

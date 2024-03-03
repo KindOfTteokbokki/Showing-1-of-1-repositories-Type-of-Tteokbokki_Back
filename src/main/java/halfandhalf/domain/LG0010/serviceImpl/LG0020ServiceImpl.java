@@ -15,11 +15,16 @@ import org.springframework.util.StringUtils;
 import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
 public class LG0020ServiceImpl {
     private final LG0020Dao memberRepository;
     private final AuthTokensGenerator authTokensGenerator;
     private final RequestOAuthInfoService requestOAuthInfoService;
+
+    public LG0020ServiceImpl(LG0020Dao memberRepository, AuthTokensGenerator authTokensGenerator, RequestOAuthInfoService requestOAuthInfoService) {
+        this.memberRepository = memberRepository;
+        this.authTokensGenerator = authTokensGenerator;
+        this.requestOAuthInfoService = requestOAuthInfoService;
+    }
 
     public AuthTokens login(OAuthLoginParams params) {
         OAuthInfoResponse oAuthInfoResponse = requestOAuthInfoService.request(params);
@@ -35,12 +40,9 @@ public class LG0020ServiceImpl {
     }
 
     private Long newMember(OAuthInfoResponse oAuthInfoResponse) {
-        String StringValue = oAuthInfoResponse.getNickname();
-        String newStringValue = StringValue.replaceAll("[^ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9,. ]", "");
-        if(!StringUtils.hasText(newStringValue)) newStringValue = "utteok" + getDate.getCurrentTime("YYYYMMDDHHmmss");
         LG0020Dto member = LG0020Dto.builder()
                 .email(oAuthInfoResponse.getEmail())
-                .nickname(newStringValue)
+                .nickname(oAuthInfoResponse.getNickname())
                 .oAuthProvider(oAuthInfoResponse.getOAuthProvider())
                 .build();
         memberRepository.save(member);

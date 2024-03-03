@@ -12,10 +12,13 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class QA0010ServiceImpl implements QA0010Service {
 
     private final QA0010Dao qA0010Dao;
+
+    public QA0010ServiceImpl(QA0010Dao qA0010Dao) {
+        this.qA0010Dao = qA0010Dao;
+    }
 
     @Override
     @Transactional(readOnly = true)
