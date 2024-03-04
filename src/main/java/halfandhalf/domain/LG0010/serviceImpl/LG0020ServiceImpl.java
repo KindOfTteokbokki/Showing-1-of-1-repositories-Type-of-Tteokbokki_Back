@@ -1,6 +1,6 @@
 package halfandhalf.domain.LG0010.serviceImpl;
 
-import halfandhalf.com.util.getDate;
+import halfandhalf.com.util.Validation;
 import halfandhalf.domain.LG0010.dao.LG0020Dao;
 import halfandhalf.domain.LG0010.dto.LG0020Dto;
 import halfandhalf.domain.LG0010.oauth.client.RequestOAuthInfoService;
@@ -8,9 +8,7 @@ import halfandhalf.domain.LG0010.oauth.jwt.AuthTokens;
 import halfandhalf.domain.LG0010.oauth.jwt.AuthTokensGenerator;
 import halfandhalf.domain.LG0010.oauth.param.OAuthLoginParams;
 import halfandhalf.domain.LG0010.oauth.response.OAuthInfoResponse;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 import java.util.Optional;
 
@@ -33,7 +31,7 @@ public class LG0020ServiceImpl {
     }
 
     private Long findOrCreateMember(OAuthInfoResponse oAuthInfoResponse) {
-        return Optional.ofNullable(memberRepository.findByNickname(oAuthInfoResponse.getNickname()
+        return Optional.ofNullable(memberRepository.findByNickname(Validation.Nickname(oAuthInfoResponse.getNickname())
                         , String.valueOf(oAuthInfoResponse.getOAuthProvider())))
                 .map(LG0020Dto::getId)
                 .orElseGet(() -> newMember(oAuthInfoResponse));
@@ -42,7 +40,7 @@ public class LG0020ServiceImpl {
     private Long newMember(OAuthInfoResponse oAuthInfoResponse) {
         LG0020Dto member = LG0020Dto.builder()
                 .email(oAuthInfoResponse.getEmail())
-                .nickname(oAuthInfoResponse.getNickname())
+                .nickname(Validation.Nickname(oAuthInfoResponse.getNickname()))
                 .oAuthProvider(oAuthInfoResponse.getOAuthProvider())
                 .build();
         memberRepository.save(member);

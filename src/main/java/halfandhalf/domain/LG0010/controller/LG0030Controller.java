@@ -2,6 +2,7 @@ package halfandhalf.domain.LG0010.controller;
 
 import halfandhalf.com.annotation.LoginCheckEssential;
 import halfandhalf.com.config.ResponseMessage;
+import halfandhalf.com.exception.ValidationException;
 import halfandhalf.domain.LG0010.dto.LG0020Dto;
 import halfandhalf.domain.LG0010.service.LG0030Service;
 import org.springframework.http.HttpStatus;
@@ -53,6 +54,9 @@ public class LG0030Controller {
             lg0020Dto.setId(userId);
             lg0030Service.registNickname(lg0020Dto);
             return ResponseEntity.ok(ResponseMessage.valueOfCode("Ok").getMessage());
+        }
+        catch (ValidationException e) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(ResponseMessage.valueOfCode("Validation").getMessage());
         }
         catch(Exception e){
             // 그 외 에러의 경우 500 메세지

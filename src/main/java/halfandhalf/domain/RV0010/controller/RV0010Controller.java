@@ -2,6 +2,7 @@ package halfandhalf.domain.RV0010.controller;
 
 
 import halfandhalf.com.annotation.LoginCheckEssential;
+import halfandhalf.com.annotation.LoginCheckNoEssential;
 import halfandhalf.com.config.ResponseMessage;
 import halfandhalf.com.exception.FileUploadException;
 import halfandhalf.domain.LG0010.oauth.jwt.AuthTokensGenerator;
@@ -51,7 +52,7 @@ public class RV0010Controller {
     /*
      *  나도 추천할래 페이징
      */
-    @LoginCheckEssential
+    @LoginCheckNoEssential
     @PostMapping("/getRecommendToPage")
     public ResponseEntity<?> getRecommendToPage(@RequestBody RV0011Dto rv0011Dto, HttpServletRequest request) {
         try {
