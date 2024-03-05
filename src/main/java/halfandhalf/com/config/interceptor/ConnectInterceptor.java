@@ -24,12 +24,20 @@ public class ConnectInterceptor implements HandlerInterceptor {
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
         System.out.println("get IP : " + getClientIp(request));
-        String[] ip = getClientIp(request).split("/");
-        Optional.ofNullable(lg0040Dao.checkIp(new LG0040Dto(ip[0], ip[1])))
-                .ifPresentOrElse(
-                        (findIp)->lg0040Dao.updateDateIp(new LG0040Dto(findIp.getName(),findIp.getIp()))
-                        , () -> lg0040Dao.regIp(new LG0040Dto(ip[0], ip[1]))
-                );
+        String[] ip = new String[2];
+        try {
+            ip = getClientIp(request).split("/");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            ip[0] = "";
+            ip[1] = getClientIp(request);
+        } finally {
+            String[] finalIp = ip;
+            Optional.ofNullable(lg0040Dao.checkIp(new LG0040Dto(finalIp[0], finalIp[1])))
+                    .ifPresentOrElse(
+                            (findIp) -> lg0040Dao.updateDateIp(new LG0040Dto(findIp.getName(), findIp.getIp()))
+                            , () -> lg0040Dao.regIp(new LG0040Dto(finalIp[0], finalIp[1]))
+                    );
+        }
     }
 
     public static String getClientIp(HttpServletRequest request) throws UnknownHostException {
