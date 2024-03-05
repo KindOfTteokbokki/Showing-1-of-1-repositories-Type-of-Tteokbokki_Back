@@ -64,4 +64,19 @@ public class LG0030Controller {
         }
     }
 
+    /*
+     * 닉네임 존재 여부 확인
+     */
+    @LoginCheckEssential
+    @GetMapping("/useCheckNickName")
+    public ResponseEntity<?> useCheckNickName(HttpServletRequest request){
+        try {
+            return ResponseEntity.ok(lg0030Service.userCheckNickName(userId));
+        }
+        catch(Exception e){
+            // 그 외 에러의 경우 500 메세지
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ResponseMessage.valueOfCode("InternalServerError").getMessage());
+        }
+    }
+
 }

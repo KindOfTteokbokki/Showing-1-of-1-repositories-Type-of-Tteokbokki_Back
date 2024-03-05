@@ -7,4 +7,6 @@ public interface LG0030Service {
     boolean checkIfEnabledNickName(String nickname) throws ValidationException;
 
     void registNickname(LG0020Dto lg0020Dto) throws ValidationException;
+
+    boolean userCheckNickName(Long userId);
 }

@@ -32,6 +32,13 @@ public class LG0030ServiceImpl implements LG0030Service {
         memberRepository.registNickname(lg0020Dto);
     }
 
+    @Override
+    public boolean userCheckNickName(Long userId) {
+        return Optional.ofNullable(memberRepository.userCheckNickName(userId))
+                .map(LG0020Dto::getNickname)
+                .isPresent();
+    }
+
     private void validation(String name) throws ValidationException {
         if(!(name).equals(Validation.Nickname(name))) {
             throw new ValidationException(ResponseMessage.valueOfCode("Validation").getMessage());

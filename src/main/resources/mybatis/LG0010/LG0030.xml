@@ -12,6 +12,16 @@
 			AND utteok_nickname  = #{utteok_nickname}
 	</select>
 
+	<select id="userCheckNickName" resultType="halfandhalf.domain.LG0010.dto.LG0020Dto">
+		SELECT
+			utteok_nickname as nickname
+		FROM
+			oauth_login
+		WHERE
+			1=1
+			AND id  = #{userId}
+	</select>
+
 	<update id="registNickname" parameterType="halfandhalf.domain.LG0010.dto.LG0020Dto">
 		UPDATE OAUTH_LOGIN SET UTTEOK_NICKNAME = #{utteok_nickname} WHERE ID = #{id}
 	</update>

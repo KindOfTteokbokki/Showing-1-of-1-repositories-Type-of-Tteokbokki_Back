@@ -12,4 +12,6 @@ public interface LG0030Dao {
     LG0030Dto checkIfEnabledNickName(@Param("utteok_nickname") String nickname);
 
     void registNickname(LG0020Dto lg0020Dto);
+
+    LG0020Dto userCheckNickName(@Param("userId") Long userId);
 }
