@@ -34,8 +34,6 @@ public class WebConfiguration implements WebMvcConfigurer {
                 .addPathPatterns("/api/deleteRecommend")
                 .addPathPatterns("/api/checkNickname")
                 .addPathPatterns("/api/regiNickname");
-        registry.addInterceptor(new ConnectInterceptor(lg0040Dao))
-                .addPathPatterns("/api/*");
         System.out.println("WebConfiguration addInterceptors");
     }
 
