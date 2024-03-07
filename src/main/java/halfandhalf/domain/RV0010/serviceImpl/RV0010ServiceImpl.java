@@ -75,8 +75,6 @@ public class RV0010ServiceImpl implements RV0010Service {
         if(!ObjectUtils.isEmpty(file)) {
             Map<String,String> uploadFile = new Upload(uploadDir, file).uploadImage();
             rv0010Dto.setFile(uploadFile.get("path"),uploadFile.get("original"),uploadFile.get("masking"));
-        } else {
-            rv0010Dto.setFile(null,null,null);
         }
         return rv0010Dto;
     }

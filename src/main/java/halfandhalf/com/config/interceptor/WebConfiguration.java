@@ -14,12 +14,10 @@ public class WebConfiguration implements WebMvcConfigurer {
 
     private final JwtTokenProvider jwtProvider; //JWT 유틸리티 객체 주입
     private final AuthTokensGenerator authTokensGenerator;
-    private final LG0040Dao lg0040Dao;
 
-    public WebConfiguration(JwtTokenProvider jwtProvider, AuthTokensGenerator authTokensGenerator, LG0040Dao lg0040Dao) {
+    public WebConfiguration(JwtTokenProvider jwtProvider, AuthTokensGenerator authTokensGenerator) {
         this.jwtProvider = jwtProvider;
         this.authTokensGenerator = authTokensGenerator;
-        this.lg0040Dao = lg0040Dao;
     }
 
     @Override
