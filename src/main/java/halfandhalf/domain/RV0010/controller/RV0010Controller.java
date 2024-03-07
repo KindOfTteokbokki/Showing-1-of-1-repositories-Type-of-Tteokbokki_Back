@@ -10,7 +10,6 @@ import halfandhalf.domain.LG0010.oauth.jwt.JwtTokenProvider;
 import halfandhalf.domain.RV0010.dto.RV0010Dto;
 import halfandhalf.domain.RV0010.dto.RV0011Dto;
 import halfandhalf.domain.RV0010.service.RV0010Service;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -18,11 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
-
-import static halfandhalf.com.aop.LoginCheckAspect.userId;
-import static halfandhalf.com.config.ResponseMessage.INVALID_PARAMS;
-import static halfandhalf.com.config.ResponseMessage.valueOfCode;
+import java.util.Optional;
 
 @CrossOrigin(origins = {"http://118.67.132.171", "http://101.101.209.59", "http://dev.utteok.com/", "http://www.utteok.com/", "http://localhost:3000"}, allowCredentials = "true")
 @RestController
@@ -30,9 +25,13 @@ import static halfandhalf.com.config.ResponseMessage.valueOfCode;
 public class RV0010Controller {
 
     private final RV0010Service rV0010Service;
+    private final AuthTokensGenerator authTokensGenerator;
+    private final JwtTokenProvider jwtProvider;
 
-    public RV0010Controller(RV0010Service rV0010Service, JwtTokenProvider jwtProvider, AuthTokensGenerator authTokensGenerator) {
+    public RV0010Controller(RV0010Service rV0010Service, AuthTokensGenerator authTokensGenerator, JwtTokenProvider jwtProvider) {
         this.rV0010Service = rV0010Service;
+        this.authTokensGenerator = authTokensGenerator;
+        this.jwtProvider = jwtProvider;
     }
 
     /*
@@ -52,11 +51,15 @@ public class RV0010Controller {
     /*
      *  나도 추천할래 페이징
      */
-    @LoginCheckNoEssential
     @PostMapping("/getRecommendToPage")
     public ResponseEntity<?> getRecommendToPage(@RequestBody RV0011Dto rv0011Dto, HttpServletRequest request) {
         try {
-            rv0011Dto.setUser_id(userId);
+            final Long[] id = {0L};
+            Optional.ofNullable(request.getHeader("Authorization"))
+                    .ifPresent(a-> {
+                        id[0] = authTokensGenerator.extractMemberId(jwtProvider.getAccessToken(request));
+                    });
+            rv0011Dto.setUser_id(id[0]);
             return ResponseEntity.ok(rV0010Service.findRecommendByPage(rv0011Dto));
         }
         catch(Exception e){
@@ -72,7 +75,7 @@ public class RV0010Controller {
     @PostMapping("/getRecommendToPageInMyinfo")
     public ResponseEntity<?> getRecommendToPageInMyinfo(@RequestBody RV0011Dto rv0011Dto, HttpServletRequest request) {
         try {
-            rv0011Dto.setUser_id(userId);
+            rv0011Dto.setUser_id(authTokensGenerator.extractMemberId(jwtProvider.getAccessToken(request)));
             return ResponseEntity.ok(rV0010Service.getRecommendToPageInMyinfo(rv0011Dto));
         }
         catch(Exception e){
@@ -90,7 +93,7 @@ public class RV0010Controller {
                                            @RequestPart(value = "file", required=false) MultipartFile file,
                                            HttpServletRequest request) {
         try {
-            rv0010Dto.setUser_id(userId);
+            rv0010Dto.setUser_id(authTokensGenerator.extractMemberId(jwtProvider.getAccessToken(request)));
             rV0010Service.saveRecommend(rv0010Dto, file);
             return ResponseEntity.ok(ResponseMessage.valueOfCode("Ok").getMessage());
         } catch (FileUploadException e) {
@@ -112,7 +115,7 @@ public class RV0010Controller {
                                              @RequestPart(value = "file", required=false) MultipartFile file,
                                              HttpServletRequest request) throws Exception{
         try {
-            if(!rv0010Dto.getUser_id().equals(userId)) {
+            if(!rv0010Dto.getUser_id().equals(authTokensGenerator.extractMemberId(jwtProvider.getAccessToken(request)))) {
                 return ResponseEntity.status(HttpStatus.FORBIDDEN).body(ResponseMessage.valueOfCode("Forbidden").getMessage());
             }
             else {
@@ -136,7 +139,7 @@ public class RV0010Controller {
     @PostMapping(value="/deleteRecommend", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> deleteRecommend(@RequestBody RV0010Dto rv0010Dto, HttpServletRequest request){
         try {
-            if (rv0010Dto.getUser_id().equals(userId)) {
+            if (rv0010Dto.getUser_id().equals(authTokensGenerator.extractMemberId(jwtProvider.getAccessToken(request)))) {
                 rV0010Service.deleteRecommend(rv0010Dto);
                 return ResponseEntity.ok(ResponseMessage.valueOfCode("Ok").getMessage());
             } else {

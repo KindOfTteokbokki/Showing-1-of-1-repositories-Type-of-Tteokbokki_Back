@@ -4,6 +4,8 @@ import halfandhalf.com.annotation.LoginCheckEssential;
 import halfandhalf.com.config.ResponseMessage;
 import halfandhalf.com.exception.ValidationException;
 import halfandhalf.domain.LG0010.dto.LG0020Dto;
+import halfandhalf.domain.LG0010.oauth.jwt.AuthTokensGenerator;
+import halfandhalf.domain.LG0010.oauth.jwt.JwtTokenProvider;
 import halfandhalf.domain.LG0010.service.LG0030Service;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,16 +13,18 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
-import static halfandhalf.com.aop.LoginCheckAspect.userId;
-
 @RestController
 @RequestMapping("/api")
 @CrossOrigin(origins = {"http://118.67.132.171", "http://101.101.209.59", "http://dev.utteok.com/", "http://www.utteok.com/", "http://localhost:3000"}, allowCredentials = "true")
 public class LG0030Controller {
     private final LG0030Service lg0030Service;
+    private final AuthTokensGenerator authTokensGenerator;
+    private final JwtTokenProvider jwtProvider;
 
-    public LG0030Controller(LG0030Service lg0030Service) {
+    public LG0030Controller(LG0030Service lg0030Service, AuthTokensGenerator authTokensGenerator, JwtTokenProvider jwtProvider) {
         this.lg0030Service = lg0030Service;
+        this.authTokensGenerator = authTokensGenerator;
+        this.jwtProvider = jwtProvider;
     }
 
     //    @MessageMapping("/checkNickname")
@@ -51,7 +55,7 @@ public class LG0030Controller {
     @PostMapping("/regiNickname")
     public ResponseEntity<?> regiNickname(@RequestBody LG0020Dto lg0020Dto, HttpServletRequest request){
         try {
-            lg0020Dto.setId(userId);
+            lg0020Dto.setId(authTokensGenerator.extractMemberId(jwtProvider.getAccessToken(request)));
             lg0030Service.registNickname(lg0020Dto);
             return ResponseEntity.ok(ResponseMessage.valueOfCode("Ok").getMessage());
         }
@@ -71,7 +75,7 @@ public class LG0030Controller {
     @GetMapping("/useCheckNickName")
     public ResponseEntity<?> useCheckNickName(HttpServletRequest request){
         try {
-            return ResponseEntity.ok(lg0030Service.userCheckNickName(userId));
+            return ResponseEntity.ok(lg0030Service.userCheckNickName(authTokensGenerator.extractMemberId(jwtProvider.getAccessToken(request))));
         }
         catch(Exception e){
             // 그 외 에러의 경우 500 메세지
