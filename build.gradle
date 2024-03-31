@@ -68,6 +68,8 @@ dependencies {
 //    // selenium 크롤링
 //    implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.17.0'
 //    testImplementation 'org.seleniumhq.selenium:selenium-java:4.17.0'
+    // jpa
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 }
 
 tasks.named('bootBuildImage') {

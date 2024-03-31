@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Type-of-Tteokbokki_Back.utteok.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Type-of-Tteokbokki_Back.utteok.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/halfandhalf.utteok.main.iml" filepath="$PROJECT_DIR$/.idea/modules/halfandhalf.utteok.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/utteok.main.iml" filepath="$PROJECT_DIR$/.idea/modules/utteok.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/utteok.test.iml" filepath="$PROJECT_DIR$/.idea/modules/utteok.test.iml" />

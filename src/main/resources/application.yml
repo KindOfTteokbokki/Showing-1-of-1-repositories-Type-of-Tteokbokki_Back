@@ -25,6 +25,12 @@ spring:
   devtools:
     livereload:
       enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        format_sql: true
 
 mybatis:
   mapper-locations: mybatis/**/*.xml
@@ -49,6 +55,12 @@ spring:
     multipart:
       maxFileSize: 10MB
       maxRequestSize: 10MB
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        format_sql: true
 
 mybatis:
   mapper-locations: mybatis/**/*.xml
@@ -73,6 +85,12 @@ spring:
     multipart:
       maxFileSize: 10MB
       maxRequestSize: 10MB
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        format_sql: true
 
 mybatis:
   mapper-locations: mybatis/**/*.xml
