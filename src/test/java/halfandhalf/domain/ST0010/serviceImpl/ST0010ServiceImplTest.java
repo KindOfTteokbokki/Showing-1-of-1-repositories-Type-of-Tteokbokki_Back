@@ -1,11 +1,8 @@
 package halfandhalf.domain.ST0010.serviceImpl;
 
-import halfandhalf.domain.LG0010.oauth.jwt.AuthTokensGenerator;
-import halfandhalf.domain.LG0010.oauth.jwt.JwtTokenProvider;
 import halfandhalf.domain.ST0010.dao.ST0010Dao;
 import halfandhalf.domain.ST0010.dto.ST0010Dto;
 import halfandhalf.domain.ST0010.dto.ST0011Dto;
-import halfandhalf.domain.TT0010.dto.TT0010Dto;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
@@ -15,11 +12,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
 
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(properties = "classpath:/application.yml")

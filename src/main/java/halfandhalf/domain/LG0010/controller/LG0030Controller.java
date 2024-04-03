@@ -4,8 +4,8 @@ import halfandhalf.com.annotation.LoginCheckEssential;
 import halfandhalf.com.config.ResponseMessage;
 import halfandhalf.com.exception.ValidationException;
 import halfandhalf.domain.LG0010.dto.LG0020Dto;
-import halfandhalf.domain.LG0010.oauth.jwt.AuthTokensGenerator;
-import halfandhalf.domain.LG0010.oauth.jwt.JwtTokenProvider;
+import halfandhalf.domain.LG0010.oauth.jwt.AuthTokensGenerator_;
+import halfandhalf.domain.LG0010.oauth.jwt.JwtTokenProvider_;
 import halfandhalf.domain.LG0010.service.LG0030Service;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,10 +18,10 @@ import javax.servlet.http.HttpServletRequest;
 @CrossOrigin(origins = {"http://118.67.132.171", "http://101.101.209.59", "http://dev.utteok.com/", "http://www.utteok.com/", "http://localhost:3000"}, allowCredentials = "true")
 public class LG0030Controller {
     private final LG0030Service lg0030Service;
-    private final AuthTokensGenerator authTokensGenerator;
-    private final JwtTokenProvider jwtProvider;
+    private final AuthTokensGenerator_ authTokensGenerator;
+    private final JwtTokenProvider_ jwtProvider;
 
-    public LG0030Controller(LG0030Service lg0030Service, AuthTokensGenerator authTokensGenerator, JwtTokenProvider jwtProvider) {
+    public LG0030Controller(LG0030Service lg0030Service, AuthTokensGenerator_ authTokensGenerator, JwtTokenProvider_ jwtProvider) {
         this.lg0030Service = lg0030Service;
         this.authTokensGenerator = authTokensGenerator;
         this.jwtProvider = jwtProvider;

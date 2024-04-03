@@ -1,18 +1,11 @@
 package halfandhalf.domain.LG0010.controller;
 
-import halfandhalf.domain.LG0010.dto.LG0020Dto;
 import halfandhalf.domain.LG0010.oauth.jwt.AuthTokens;
-import halfandhalf.domain.LG0010.oauth.jwt.AuthTokensGenerator;
-import halfandhalf.domain.LG0010.oauth.jwt.JwtTokenProvider;
 import halfandhalf.domain.LG0010.oauth.param.KakaoLoginParams;
 import halfandhalf.domain.LG0010.oauth.param.NaverLoginParams;
-import halfandhalf.domain.LG0010.service.LG0030Service;
 import halfandhalf.domain.LG0010.serviceImpl.LG0020ServiceImpl;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/api/auth")

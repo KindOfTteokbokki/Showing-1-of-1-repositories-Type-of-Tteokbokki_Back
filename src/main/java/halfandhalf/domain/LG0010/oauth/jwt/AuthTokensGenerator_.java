@@ -1,19 +1,18 @@
 package halfandhalf.domain.LG0010.oauth.jwt;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
 @Component
-public class AuthTokensGenerator {
+public class AuthTokensGenerator_ {
     private static final String BEARER_TYPE = "Bearer";
     private static final long ACCESS_TOKEN_EXPIRE_TIME = 1000 * 60 * 30;            // 30분
     private static final long REFRESH_TOKEN_EXPIRE_TIME = 1000 * 60 * 60 * 24 * 7;  // 7일
 
-    private final JwtTokenProvider jwtTokenProvider;
+    private final JwtTokenProvider_ jwtTokenProvider;
 
-    public AuthTokensGenerator(JwtTokenProvider jwtTokenProvider) {
+    public AuthTokensGenerator_(JwtTokenProvider_ jwtTokenProvider) {
         this.jwtTokenProvider = jwtTokenProvider;
     }
 

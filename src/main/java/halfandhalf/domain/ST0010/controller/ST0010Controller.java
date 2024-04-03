@@ -2,10 +2,9 @@ package halfandhalf.domain.ST0010.controller;
 
 
 import halfandhalf.com.annotation.LoginCheckEssential;
-import halfandhalf.com.annotation.LoginCheckNoEssential;
 import halfandhalf.com.config.ResponseMessage;
-import halfandhalf.domain.LG0010.oauth.jwt.AuthTokensGenerator;
-import halfandhalf.domain.LG0010.oauth.jwt.JwtTokenProvider;
+import halfandhalf.domain.LG0010.oauth.jwt.AuthTokensGenerator_;
+import halfandhalf.domain.LG0010.oauth.jwt.JwtTokenProvider_;
 import halfandhalf.domain.ST0010.dto.ST0010Dto;
 import halfandhalf.domain.ST0010.service.ST0010Service;
 import org.springframework.http.HttpStatus;
@@ -22,9 +21,9 @@ import java.util.Optional;
 public class ST0010Controller {
 
     private final ST0010Service sT0010Service;
-    private final AuthTokensGenerator authTokensGenerator;
-    private final JwtTokenProvider jwtProvider;
-    public ST0010Controller(ST0010Service sT0010Service, AuthTokensGenerator authTokensGenerator, JwtTokenProvider jwtProvider) {
+    private final AuthTokensGenerator_ authTokensGenerator;
+    private final JwtTokenProvider_ jwtProvider;
+    public ST0010Controller(ST0010Service sT0010Service, AuthTokensGenerator_ authTokensGenerator, JwtTokenProvider_ jwtProvider) {
         this.sT0010Service = sT0010Service;
         this.authTokensGenerator = authTokensGenerator;
         this.jwtProvider = jwtProvider;

@@ -2,11 +2,9 @@ package halfandhalf.domain.TT0010.controller;
 
 
 import halfandhalf.com.annotation.LoginCheckEssential;
-import halfandhalf.com.annotation.LoginCheckNoEssential;
 import halfandhalf.com.config.ResponseMessage;
-import halfandhalf.com.util.jwt.JwtUtils;
-import halfandhalf.domain.LG0010.oauth.jwt.AuthTokensGenerator;
-import halfandhalf.domain.LG0010.oauth.jwt.JwtTokenProvider;
+import halfandhalf.domain.LG0010.oauth.jwt.AuthTokensGenerator_;
+import halfandhalf.domain.LG0010.oauth.jwt.JwtTokenProvider_;
 import halfandhalf.domain.TT0010.dto.TT0010Dto;
 import halfandhalf.domain.TT0010.dto.TT0012Dto;
 import halfandhalf.domain.TT0010.service.TT0010Service;
@@ -28,10 +26,10 @@ import java.util.Optional;
 public class TT0010Controller {
 
     private final TT0010Service tT0010Service;
-    private final AuthTokensGenerator authTokensGenerator;
-    private final JwtTokenProvider jwtProvider;
+    private final AuthTokensGenerator_ authTokensGenerator;
+    private final JwtTokenProvider_ jwtProvider;
 
-    public TT0010Controller(TT0010Service tT0010Service, AuthTokensGenerator authTokensGenerator, JwtTokenProvider jwtProvider) {
+    public TT0010Controller(TT0010Service tT0010Service, AuthTokensGenerator_ authTokensGenerator, JwtTokenProvider_ jwtProvider) {
         this.tT0010Service = tT0010Service;
         this.authTokensGenerator = authTokensGenerator;
         this.jwtProvider = jwtProvider;

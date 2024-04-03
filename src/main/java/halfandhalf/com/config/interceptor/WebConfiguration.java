@@ -1,9 +1,7 @@
 package halfandhalf.com.config.interceptor;
 
-import halfandhalf.domain.LG0010.dao.LG0040Dao;
-import halfandhalf.domain.LG0010.oauth.jwt.AuthTokensGenerator;
-import halfandhalf.domain.LG0010.oauth.jwt.JwtTokenProvider;
-import lombok.RequiredArgsConstructor;
+import halfandhalf.domain.LG0010.oauth.jwt.AuthTokensGenerator_;
+import halfandhalf.domain.LG0010.oauth.jwt.JwtTokenProvider_;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -12,10 +10,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class WebConfiguration implements WebMvcConfigurer {
 
-    private final JwtTokenProvider jwtProvider; //JWT 유틸리티 객체 주입
-    private final AuthTokensGenerator authTokensGenerator;
+    private final JwtTokenProvider_ jwtProvider; //JWT 유틸리티 객체 주입
+    private final AuthTokensGenerator_ authTokensGenerator;
 
-    public WebConfiguration(JwtTokenProvider jwtProvider, AuthTokensGenerator authTokensGenerator) {
+    public WebConfiguration(JwtTokenProvider_ jwtProvider, AuthTokensGenerator_ authTokensGenerator) {
         this.jwtProvider = jwtProvider;
         this.authTokensGenerator = authTokensGenerator;
     }

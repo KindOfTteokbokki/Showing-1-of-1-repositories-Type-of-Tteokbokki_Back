@@ -23,6 +23,11 @@
 	</select>
 
 	<update id="registNickname" parameterType="halfandhalf.domain.LG0010.dto.LG0020Dto">
-		UPDATE OAUTH_LOGIN SET UTTEOK_NICKNAME = #{utteok_nickname} WHERE ID = #{id}
+		UPDATE
+			OAUTH_LOGIN
+		SET
+			UTTEOK_NICKNAME = #{utteok_nickname}
+		WHERE
+			ID = #{id}
 	</update>
 </mapper>

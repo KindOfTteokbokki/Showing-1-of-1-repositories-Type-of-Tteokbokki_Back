@@ -5,7 +5,6 @@ import halfandhalf.domain.LG0010.oauth.param.OAuthLoginParams;
 import halfandhalf.domain.LG0010.oauth.response.KakaoInfoResponse;
 import halfandhalf.domain.LG0010.oauth.response.OAuthInfoResponse;
 import halfandhalf.domain.LG0010.oauth.token.KakaoTokens;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -16,7 +15,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 @Component
-public class KakaoApiClient implements OAuthApiClient {
+public class KakaoApiClient_ implements OAuthApiClient {
 
     private static final String GRANT_TYPE = "authorization_code";
 
@@ -31,7 +30,7 @@ public class KakaoApiClient implements OAuthApiClient {
 
     private final RestTemplate restTemplate;
 
-    public KakaoApiClient(RestTemplate restTemplate) {
+    public KakaoApiClient_(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 

@@ -3,8 +3,8 @@ package halfandhalf.domain.MI0010.controller;
 
 import halfandhalf.com.annotation.LoginCheckEssential;
 import halfandhalf.com.config.ResponseMessage;
-import halfandhalf.domain.LG0010.oauth.jwt.AuthTokensGenerator;
-import halfandhalf.domain.LG0010.oauth.jwt.JwtTokenProvider;
+import halfandhalf.domain.LG0010.oauth.jwt.AuthTokensGenerator_;
+import halfandhalf.domain.LG0010.oauth.jwt.JwtTokenProvider_;
 import halfandhalf.domain.MI0010.service.MI0010Service;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -22,10 +22,10 @@ import javax.servlet.http.HttpServletRequest;
 public class MI0010Controller {
 
     private final MI0010Service mI0010Service;
-    private final AuthTokensGenerator authTokensGenerator;
-    private final JwtTokenProvider jwtProvider;
+    private final AuthTokensGenerator_ authTokensGenerator;
+    private final JwtTokenProvider_ jwtProvider;
 
-    public MI0010Controller(MI0010Service mI0010Service, AuthTokensGenerator authTokensGenerator, JwtTokenProvider jwtProvider) {
+    public MI0010Controller(MI0010Service mI0010Service, AuthTokensGenerator_ authTokensGenerator, JwtTokenProvider_ jwtProvider) {
         this.mI0010Service = mI0010Service;
         this.authTokensGenerator = authTokensGenerator;
         this.jwtProvider = jwtProvider;

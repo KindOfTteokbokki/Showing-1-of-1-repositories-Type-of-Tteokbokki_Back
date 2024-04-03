@@ -2,11 +2,10 @@ package halfandhalf.domain.RV0010.controller;
 
 
 import halfandhalf.com.annotation.LoginCheckEssential;
-import halfandhalf.com.annotation.LoginCheckNoEssential;
 import halfandhalf.com.config.ResponseMessage;
 import halfandhalf.com.exception.FileUploadException;
-import halfandhalf.domain.LG0010.oauth.jwt.AuthTokensGenerator;
-import halfandhalf.domain.LG0010.oauth.jwt.JwtTokenProvider;
+import halfandhalf.domain.LG0010.oauth.jwt.AuthTokensGenerator_;
+import halfandhalf.domain.LG0010.oauth.jwt.JwtTokenProvider_;
 import halfandhalf.domain.RV0010.dto.RV0010Dto;
 import halfandhalf.domain.RV0010.dto.RV0011Dto;
 import halfandhalf.domain.RV0010.service.RV0010Service;
@@ -25,10 +24,10 @@ import java.util.Optional;
 public class RV0010Controller {
 
     private final RV0010Service rV0010Service;
-    private final AuthTokensGenerator authTokensGenerator;
-    private final JwtTokenProvider jwtProvider;
+    private final AuthTokensGenerator_ authTokensGenerator;
+    private final JwtTokenProvider_ jwtProvider;
 
-    public RV0010Controller(RV0010Service rV0010Service, AuthTokensGenerator authTokensGenerator, JwtTokenProvider jwtProvider) {
+    public RV0010Controller(RV0010Service rV0010Service, AuthTokensGenerator_ authTokensGenerator, JwtTokenProvider_ jwtProvider) {
         this.rV0010Service = rV0010Service;
         this.authTokensGenerator = authTokensGenerator;
         this.jwtProvider = jwtProvider;

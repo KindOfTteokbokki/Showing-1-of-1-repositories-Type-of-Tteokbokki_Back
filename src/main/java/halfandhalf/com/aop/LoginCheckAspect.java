@@ -2,10 +2,9 @@ package halfandhalf.com.aop;
 
 import halfandhalf.com.config.ResponseMessage;
 import halfandhalf.com.exception.LoginException;
-import halfandhalf.domain.LD0010.dao.LD0010Dao;
 import halfandhalf.domain.LG0010.dao.LG0020Dao;
-import halfandhalf.domain.LG0010.oauth.jwt.AuthTokensGenerator;
-import halfandhalf.domain.LG0010.oauth.jwt.JwtTokenProvider;
+import halfandhalf.domain.LG0010.oauth.jwt.AuthTokensGenerator_;
+import halfandhalf.domain.LG0010.oauth.jwt.JwtTokenProvider_;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
@@ -19,11 +18,11 @@ import javax.servlet.http.HttpServletRequest;
 @Aspect
 @Slf4j
 public class LoginCheckAspect {
-    private final JwtTokenProvider jwtProvider;
-    private final AuthTokensGenerator authTokensGenerator;
+    private final JwtTokenProvider_ jwtProvider;
+    private final AuthTokensGenerator_ authTokensGenerator;
     private final LG0020Dao lD0020Dao;
 
-    public LoginCheckAspect(JwtTokenProvider jwtProvider, AuthTokensGenerator authTokensGenerator, LG0020Dao lD0020Dao) {
+    public LoginCheckAspect(JwtTokenProvider_ jwtProvider, AuthTokensGenerator_ authTokensGenerator, LG0020Dao lD0020Dao) {
         this.jwtProvider = jwtProvider;
         this.authTokensGenerator = authTokensGenerator;
         this.lD0020Dao = lD0020Dao;

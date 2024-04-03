@@ -3,9 +3,9 @@ package halfandhalf.domain.LG0010.serviceImpl;
 import halfandhalf.com.util.Validation;
 import halfandhalf.domain.LG0010.dao.LG0020Dao;
 import halfandhalf.domain.LG0010.dto.LG0020Dto;
-import halfandhalf.domain.LG0010.oauth.client.RequestOAuthInfoService;
+import halfandhalf.domain.LG0010.oauth.client.RequestOAuthInfoService_;
 import halfandhalf.domain.LG0010.oauth.jwt.AuthTokens;
-import halfandhalf.domain.LG0010.oauth.jwt.AuthTokensGenerator;
+import halfandhalf.domain.LG0010.oauth.jwt.AuthTokensGenerator_;
 import halfandhalf.domain.LG0010.oauth.param.OAuthLoginParams;
 import halfandhalf.domain.LG0010.oauth.response.OAuthInfoResponse;
 import org.springframework.stereotype.Service;
@@ -15,10 +15,10 @@ import java.util.Optional;
 @Service
 public class LG0020ServiceImpl {
     private final LG0020Dao memberRepository;
-    private final AuthTokensGenerator authTokensGenerator;
-    private final RequestOAuthInfoService requestOAuthInfoService;
+    private final AuthTokensGenerator_ authTokensGenerator;
+    private final RequestOAuthInfoService_ requestOAuthInfoService;
 
-    public LG0020ServiceImpl(LG0020Dao memberRepository, AuthTokensGenerator authTokensGenerator, RequestOAuthInfoService requestOAuthInfoService) {
+    public LG0020ServiceImpl(LG0020Dao memberRepository, AuthTokensGenerator_ authTokensGenerator, RequestOAuthInfoService_ requestOAuthInfoService) {
         this.memberRepository = memberRepository;
         this.authTokensGenerator = authTokensGenerator;
         this.requestOAuthInfoService = requestOAuthInfoService;

@@ -5,7 +5,6 @@ import halfandhalf.domain.LG0010.oauth.param.OAuthLoginParams;
 import halfandhalf.domain.LG0010.oauth.response.NaverInfoResponse;
 import halfandhalf.domain.LG0010.oauth.response.OAuthInfoResponse;
 import halfandhalf.domain.LG0010.oauth.token.NaverTokens;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -16,11 +15,11 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 @Component
-public class NaverApiClient implements OAuthApiClient {
+public class NaverApiClient_ implements OAuthApiClient {
 
     private static final String GRANT_TYPE = "authorization_code";
 
-    public NaverApiClient(RestTemplate restTemplate) {
+    public NaverApiClient_(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 

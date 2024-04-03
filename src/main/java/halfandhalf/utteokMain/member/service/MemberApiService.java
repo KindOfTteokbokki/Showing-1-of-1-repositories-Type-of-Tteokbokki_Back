@@ -3,15 +3,16 @@ package halfandhalf.utteokMain.member.service;
 import halfandhalf.com.config.ResponseMessage;
 import halfandhalf.com.exception.ValidationException;
 import halfandhalf.com.util.Validation;
-import halfandhalf.domain.LG0010.dao.LG0030Dao;
-import halfandhalf.domain.LG0010.dto.LG0020Dto;
-import halfandhalf.domain.LG0010.dto.LG0030Dto;
+import halfandhalf.utteokMain.member.dto.MemberDto;
+import halfandhalf.utteokMain.member.entity.MemberEntity;
 import halfandhalf.utteokMain.member.repository.MemberRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
 @Service
+@Transactional(readOnly = true)
 public class MemberApiService {
     private final MemberRepository memberRepository;
 
@@ -21,21 +22,24 @@ public class MemberApiService {
 
     public boolean checkIfEnabledNickName(String nickname) throws ValidationException {
         validation(nickname);
-        return Optional.ofNullable(memberRepository.checkIfEnabledNickName(nickname))
-                .map(LG0030Dto::getNickname)
+        return Optional.ofNullable(memberRepository.findByUtteok_nickname(nickname))
+                .map(MemberEntity::getNickname)
                 .isPresent();
     }
 
-    @Override
-    public void registNickname(LG0020Dto lg0020Dto) throws ValidationException {
-        validation(lg0020Dto.getUtteok_nickname());
-        memberRepository.registNickname(lg0020Dto);
+    @Transactional
+    public void registNickname(MemberDto memberDto) throws ValidationException {
+        validation(memberDto.getUtteok_nickname());
+
+        memberRepository.findById(memberDto.getId())
+                .ifPresent(value -> {
+                    value.changeUtteok_nickname(memberDto.getUtteok_nickname());
+                });
     }
 
-    @Override
     public boolean userCheckNickName(Long userId) {
-        return Optional.ofNullable(memberRepository.userCheckNickName(userId))
-                .map(LG0020Dto::getNickname)
+        return Optional.ofNullable(memberRepository.findUtteok_nicknameById(userId))
+                .map(MemberEntity::getNickname)
                 .isPresent();
     }
 

@@ -1,8 +1,8 @@
 package halfandhalf.loginCheck;
 
 import halfandhalf.domain.CB0010.serviceImpl.CB0010ServiceImpl;
-import halfandhalf.domain.LG0010.oauth.jwt.AuthTokensGenerator;
-import halfandhalf.domain.LG0010.oauth.jwt.JwtTokenProvider;
+import halfandhalf.domain.LG0010.oauth.jwt.AuthTokensGenerator_;
+import halfandhalf.domain.LG0010.oauth.jwt.JwtTokenProvider_;
 import halfandhalf.domain.MI0010.controller.MI0010Controller;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -25,8 +25,10 @@ public class LoginCheckAnnotationTest {
     CB0010ServiceImpl cb0010Service;
     @Autowired
     MI0010Controller controller;
-    @Autowired JwtTokenProvider jwtProvider;
-    @Autowired AuthTokensGenerator authTokensGenerator;
+    @Autowired
+    JwtTokenProvider_ jwtProvider;
+    @Autowired
+    AuthTokensGenerator_ authTokensGenerator;
 
     @Test
     @DisplayName("")

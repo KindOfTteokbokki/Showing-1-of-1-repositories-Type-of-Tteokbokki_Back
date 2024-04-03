@@ -34,12 +34,14 @@ public class MemberService {
     }
 
     private Long findOrCreateMember(OAuthInfoResponse oAuthInfoResponse) {
-        return Optional.ofNullable(memberRepository.findByNickname(Validation.Nickname(oAuthInfoResponse.getNickname())
+        return Optional.ofNullable(
+                    memberRepository.findByNicknameAndOAuthProvider(Validation.Nickname(oAuthInfoResponse.getNickname())
                         , String.valueOf(oAuthInfoResponse.getOAuthProvider())))
                 .map(MemberEntity::getId)
                 .orElseGet(() -> newMember(oAuthInfoResponse));
     }
 
+    @Transactional
     private Long newMember(OAuthInfoResponse oAuthInfoResponse) {
         MemberEntity member = MemberEntity.builder()
                 .email(oAuthInfoResponse.getEmail())
@@ -47,7 +49,7 @@ public class MemberService {
                 .oAuthProvider(oAuthInfoResponse.getOAuthProvider())
                 .build();
         memberRepository.save(member);
-        return memberRepository.findByNickname(member.getNickname(), String.valueOf(member.getOAuthProvider())).getId();
+        return memberRepository.findByNicknameAndOAuthProvider(member.getNickname(), String.valueOf(member.getOAuthProvider())).getId();
     }
 
 }

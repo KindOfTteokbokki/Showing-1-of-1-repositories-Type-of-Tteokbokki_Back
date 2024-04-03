@@ -3,6 +3,7 @@ package halfandhalf.utteokMain.member.api;
 import halfandhalf.com.annotation.LoginCheckEssential;
 import halfandhalf.com.config.ResponseMessage;
 import halfandhalf.com.exception.ValidationException;
+import halfandhalf.utteokMain.member.dto.MemberDto;
 import halfandhalf.utteokMain.member.oauth.jwt.AuthTokensGenerator;
 import halfandhalf.utteokMain.member.oauth.jwt.JwtTokenProvider;
 import halfandhalf.utteokMain.member.service.MemberApiService;
@@ -44,11 +45,12 @@ public class MemberApiController {
      * 닉네임 등록
      */
     @LoginCheckEssential
-    @PostMapping("/regiUtteokNickname")
-    public ResponseEntity<?> regiNickname(@RequestBody LG0020Dto lg0020Dto, HttpServletRequest request){
+    @PatchMapping("/regiUtteokNickname")
+    public ResponseEntity<?> regiNickname(@RequestBody MemberDto memberDto, HttpServletRequest request){
         try {
-            lg0020Dto.setId(authTokensGenerator.extractMemberId(jwtProvider.getAccessToken(request)));
-            memberApiService.registNickname(lg0020Dto);
+            memberDto.setId(authTokensGenerator.extractMemberId(jwtProvider.getAccessToken(request)));
+            memberApiService.registNickname(memberDto);
+
             return ResponseEntity.ok(ResponseMessage.valueOfCode("Ok").getMessage());
         }
         catch (ValidationException e) {

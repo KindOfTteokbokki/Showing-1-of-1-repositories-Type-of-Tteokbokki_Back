@@ -1,12 +1,11 @@
 package halfandhalf.utteokMain.member.dto;
 
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
+@Setter
 public class MemberDto {
-    private String phrases;
-
-    public MemberDto(String phrases) {
-        this.phrases = phrases;
-    }
+    private Long id;
+    private String utteok_nickname;
 }

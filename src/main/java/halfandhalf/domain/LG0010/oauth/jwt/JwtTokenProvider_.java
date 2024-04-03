@@ -16,13 +16,13 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Component
-public class JwtTokenProvider {
+public class JwtTokenProvider_ {
 
     private final Key key;  // test 용
     public static final String AUTHORIZATION_HEADER = "Authorization"; //헤더 이름
 //    private static final Key secretKey = Keys.secretKeyFor(SignatureAlgorithm.HS256);
 
-    public JwtTokenProvider(@Value("${jwt.secret-key}") String secretKey) {
+    public JwtTokenProvider_(@Value("${jwt.secret-key}") String secretKey) {
         byte[] keyBytes = Decoders.BASE64.decode(secretKey);
         this.key = Keys.hmacShaKeyFor(keyBytes);
     }

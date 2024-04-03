@@ -1,14 +1,10 @@
 package halfandhalf.utteokMain.member.entity;
 
-import halfandhalf.domain.LG0010.dto.LG0021Dto;
 import halfandhalf.utteokMain.member.dto.MemberRoute;
 import lombok.Builder;
 import lombok.Getter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -25,11 +21,16 @@ public class MemberEntity {
 
     private String utteok_nickname;
 
+    @Enumerated(EnumType.STRING)
     private MemberRoute oAuthProvider;
 
     private LocalDateTime create_date;
 
     private LocalDateTime recent_date;
+
+    public void changeUtteok_nickname(String utteok_nickname) {
+        this.utteok_nickname = utteok_nickname;
+    }
 
     @Builder
     public MemberEntity(String email, String nickname, MemberRoute oAuthProvider) {
