@@ -22,7 +22,7 @@ public class MemberApiService {
 
     public boolean checkIfEnabledNickName(String nickname) throws ValidationException {
         validation(nickname);
-        return Optional.ofNullable(memberRepository.findByUtteok_nickname(nickname))
+        return Optional.ofNullable(memberRepository.findByUtteokNickname(nickname))
                 .map(MemberEntity::getNickname)
                 .isPresent();
     }
@@ -31,14 +31,18 @@ public class MemberApiService {
     public void registNickname(MemberDto memberDto) throws ValidationException {
         validation(memberDto.getUtteok_nickname());
 
-        memberRepository.findById(memberDto.getId())
-                .ifPresent(value -> {
-                    value.changeUtteok_nickname(memberDto.getUtteok_nickname());
-                });
+        if(!checkIfEnabledNickName(memberDto.getUtteok_nickname())){
+            memberRepository.findById(memberDto.getId())
+                    .ifPresent(value -> {
+                        value.changeUtteok_nickname(memberDto.getUtteok_nickname());
+                    });
+        } else {
+            throw new ValidationException(ResponseMessage.valueOfCode("Conflict").getMessage());
+        }
     }
 
     public boolean userCheckNickName(Long userId) {
-        return Optional.ofNullable(memberRepository.findUtteok_nicknameById(userId))
+        return Optional.ofNullable(memberRepository.findUtteokNicknameById(userId))
                 .map(MemberEntity::getNickname)
                 .isPresent();
     }

@@ -14,7 +14,7 @@ public enum ResponseMessage {
     , VALIDATION(403, "Validation", "올바른 데이터가 아닙니다.")
     , NOT_FOUND(404, "NotFound", "존재하지 않는 데이터입니다.")
     , CONFLICT(409, "Conflict", "데이터가 충돌되었습니다.")
-    , INTERNAL_SERVER_ERROR(500, "Conflict", "서버 내부 오류입니다.")
+    , INTERNAL_SERVER_ERROR(500, "InternalServerError", "서버 내부 오류입니다.")
     ;
 
     ResponseMessage (int status, String code, String message) {

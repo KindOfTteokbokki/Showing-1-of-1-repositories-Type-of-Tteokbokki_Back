@@ -19,23 +19,28 @@ public class MemberEntity {
 
     private String nickname;
 
-    private String utteok_nickname;
+    @Column(name = "utteok_nickname")
+    private String utteokNickname;
 
     @Enumerated(EnumType.STRING)
-    private MemberRoute oAuthProvider;
+    @Column(name = "oauthprovider")
+    private MemberRoute oauthProvider;
 
     private LocalDateTime create_date;
 
     private LocalDateTime recent_date;
 
     public void changeUtteok_nickname(String utteok_nickname) {
-        this.utteok_nickname = utteok_nickname;
+        this.utteokNickname = utteok_nickname;
+    }
+
+    public MemberEntity() {
     }
 
     @Builder
     public MemberEntity(String email, String nickname, MemberRoute oAuthProvider) {
         this.email = email;
         this.nickname = nickname;
-        this.oAuthProvider = oAuthProvider;
+        this.oauthProvider = oAuthProvider;
     }
 }

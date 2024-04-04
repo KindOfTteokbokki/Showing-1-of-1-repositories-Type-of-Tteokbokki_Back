@@ -7,9 +7,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface MemberRepository extends JpaRepository<MemberEntity, Long>  {
-    MemberEntity findByNicknameAndOAuthProvider(@Param("nickname") String nickname, @Param("oAuthProvider") String oAuthProvider);
+    MemberEntity findByNicknameAndOauthProvider(@Param("nickname") String nickname, @Param("oAuthProvider") String oAuthProvider);
 
-    MemberEntity findByUtteok_nickname(@Param("utteok_nickname") String nickname);
+    MemberEntity findByUtteokNickname(@Param("utteok_nickname") String nickname);
 
-    MemberEntity findUtteok_nicknameById(@Param("id") Long id);
+    MemberEntity findUtteokNicknameById(@Param("id") Long id);
 }
