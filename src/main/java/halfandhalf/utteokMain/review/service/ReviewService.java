@@ -5,9 +5,12 @@ import halfandhalf.utteokMain.review.dto.ReviewDto;
 import halfandhalf.utteokMain.review.entity.ReviewEntity;
 import halfandhalf.utteokMain.review.repository.ReviewRepository;
 import org.apache.ibatis.javassist.NotFoundException;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -27,5 +30,21 @@ public class ReviewService {
         } else {
             throw new NotFoundException(ResponseMessage.valueOfCode("NotFound").getMessage());
         }
+    }
+
+    public List<ReviewDto> findTop4ByOrderByIdDesc() {
+        return transDto(reviewRepository.findTop4ByOrderByIdDesc());
+    }
+
+    public List<ReviewDto> findSliceByOrderByIdDesc(Pageable pageable) {
+        return transDto(reviewRepository.findSliceByOrderByIdDesc(pageable).getContent());
+    }
+
+    private List<ReviewDto> transDto(List<ReviewEntity> entityList) {
+        List<ReviewDto> result = new ArrayList<>();
+        for (ReviewEntity reviewEntity : entityList) {
+            result.add(new ReviewDto(reviewEntity));
+        }
+        return result;
     }
 }

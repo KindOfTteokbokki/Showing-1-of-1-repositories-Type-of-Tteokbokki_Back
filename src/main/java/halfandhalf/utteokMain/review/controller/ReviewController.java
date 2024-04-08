@@ -3,6 +3,8 @@ package halfandhalf.utteokMain.review.controller;
 import halfandhalf.com.config.ResponseMessage;
 import halfandhalf.utteokMain.review.service.ReviewService;
 import org.apache.ibatis.javassist.NotFoundException;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -32,6 +34,36 @@ public class ReviewController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
         catch(Exception e){
+            // 그 외 에러의 경우 500 메세지
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ResponseMessage.valueOfCode("InternalServerError").getMessage());
+        }
+    }
+
+    /*
+     *  나도 추천할래 4개
+     */
+    @GetMapping("/fourFromReview")
+    public ResponseEntity<?> fourFromReview() {
+        try {
+            return ResponseEntity.ok(new Result(reviewService.findTop4ByOrderByIdDesc()));
+        }
+        catch(Exception e){
+            System.out.println("e.getMessage() = " + e.getMessage());
+            // 그 외 에러의 경우 500 메세지
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ResponseMessage.valueOfCode("InternalServerError").getMessage());
+        }
+    }
+
+    /*
+     *  나도 추천할래 페이징
+     */
+    @GetMapping("/reviewPage")
+    public ResponseEntity<?> reviewPage(@PageableDefault(size = 15) Pageable pageable) {
+        try {
+            return ResponseEntity.ok(new Result(reviewService.findSliceByOrderByIdDesc(pageable)));
+        }
+        catch(Exception e){
+            System.out.println("e.getMessage() = " + e.getMessage());
             // 그 외 에러의 경우 500 메세지
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ResponseMessage.valueOfCode("InternalServerError").getMessage());
         }
