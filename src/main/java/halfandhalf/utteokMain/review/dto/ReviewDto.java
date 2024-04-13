@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.util.ObjectUtils;
 
+import java.util.List;
+
 @Getter
 @Setter
 public class ReviewDto {

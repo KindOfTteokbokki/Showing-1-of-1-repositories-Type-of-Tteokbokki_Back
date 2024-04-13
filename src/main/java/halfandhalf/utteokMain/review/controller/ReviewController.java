@@ -1,6 +1,10 @@
 package halfandhalf.utteokMain.review.controller;
 
+import halfandhalf.com.annotation.LoginCheckEssential;
 import halfandhalf.com.config.ResponseMessage;
+import halfandhalf.domain.LG0010.oauth.jwt.AuthTokensGenerator_;
+import halfandhalf.domain.LG0010.oauth.jwt.JwtTokenProvider_;
+import halfandhalf.domain.RV0010.dto.RV0011Dto;
 import halfandhalf.utteokMain.review.service.ReviewService;
 import org.apache.ibatis.javassist.NotFoundException;
 import org.springframework.data.domain.Pageable;
@@ -10,15 +14,21 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+
 @CrossOrigin(origins = {"http://118.67.132.171", "http://101.101.209.59", "http://dev.utteok.com/", "http://www.utteok.com/", "http://localhost:3000"}, allowCredentials = "true")
 @RestController
 @RequestMapping("/api")
 public class ReviewController {
 
     private final ReviewService reviewService;
+    private final AuthTokensGenerator_ authTokensGenerator;
+    private final JwtTokenProvider_ jwtProvider;
 
-    public ReviewController(ReviewService reviewService) {
+    public ReviewController(ReviewService reviewService, AuthTokensGenerator_ authTokensGenerator, JwtTokenProvider_ jwtProvider) {
         this.reviewService = reviewService;
+        this.authTokensGenerator = authTokensGenerator;
+        this.jwtProvider = jwtProvider;
     }
 
     /*
@@ -68,6 +78,22 @@ public class ReviewController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ResponseMessage.valueOfCode("InternalServerError").getMessage());
         }
     }
+
+    /*
+     *  나도 추천할래
+     */
+    @LoginCheckEssential
+    @PostMapping("/reviewPageMyinfo")
+    public ResponseEntity<?> getRecommendToPageInMyinfo(Pageable pageable, HttpServletRequest request) {
+        try {
+            return ResponseEntity.ok(reviewService.findById(pageable, authTokensGenerator.extractMemberId(jwtProvider.getAccessToken(request))));
+        }
+        catch(Exception e){
+            // 그 외 에러의 경우 500 메세지
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ResponseMessage.valueOfCode("InternalServerError").getMessage());
+        }
+    }
+
 
     public static class Result<T> {
         private T data;

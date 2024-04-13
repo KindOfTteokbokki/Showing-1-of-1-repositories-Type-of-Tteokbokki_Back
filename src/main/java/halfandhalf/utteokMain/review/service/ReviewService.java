@@ -5,6 +5,7 @@ import halfandhalf.utteokMain.review.dto.ReviewDto;
 import halfandhalf.utteokMain.review.entity.ReviewEntity;
 import halfandhalf.utteokMain.review.repository.ReviewRepository;
 import org.apache.ibatis.javassist.NotFoundException;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,6 +28,15 @@ public class ReviewService {
 
         if(findOne.isPresent()) {
             return new ReviewDto(findOne.get());
+        } else {
+            throw new NotFoundException(ResponseMessage.valueOfCode("NotFound").getMessage());
+        }
+    }
+
+    public List<ReviewDto> findById(Pageable pageable, Long id) throws NotFoundException {
+        Page<ReviewEntity> findMyReview = reviewRepository.findById(pageable, id);
+        if(findMyReview.hasNext()) {
+            return findMyReview.map(ReviewDto::new).getContent();
         } else {
             throw new NotFoundException(ResponseMessage.valueOfCode("NotFound").getMessage());
         }
