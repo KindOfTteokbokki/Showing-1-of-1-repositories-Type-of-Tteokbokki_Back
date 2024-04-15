@@ -2,8 +2,10 @@ package halfandhalf.utteokMain.review.controller;
 
 import halfandhalf.com.annotation.LoginCheckEssential;
 import halfandhalf.com.config.ResponseMessage;
+import halfandhalf.com.exception.FileUploadException;
 import halfandhalf.domain.LG0010.oauth.jwt.AuthTokensGenerator_;
 import halfandhalf.domain.LG0010.oauth.jwt.JwtTokenProvider_;
+import halfandhalf.domain.RV0010.dto.RV0010Dto;
 import halfandhalf.domain.RV0010.dto.RV0011Dto;
 import halfandhalf.utteokMain.review.service.ReviewService;
 import org.apache.ibatis.javassist.NotFoundException;
@@ -13,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -93,6 +96,28 @@ public class ReviewController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ResponseMessage.valueOfCode("InternalServerError").getMessage());
         }
     }
+
+    /*
+     *  나도 추천할래 등록하기
+     */
+    @LoginCheckEssential
+    @PostMapping(value="/saveReview", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> saveRecommend(@RequestParam String content,
+                                           @RequestPart(value = "file", required=false) MultipartFile file,
+                                           HttpServletRequest request) {
+        try {
+            reviewService.saveReview(file, content, authTokensGenerator.extractMemberId(jwtProvider.getAccessToken(request)));
+            return ResponseEntity.ok(ResponseMessage.valueOfCode("Ok").getMessage());
+        } catch (FileUploadException e) {
+            // 파일 업로드 실패한 경우 에러 메세지 + 400 상태 코드 반환
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ResponseMessage.valueOfCode("InvalidParams").getMessage());
+        }
+        catch(Exception e){
+            // 그 외 에러의 경우 500 메세지
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ResponseMessage.valueOfCode("InternalServerError").getMessage());
+        }
+    }
+
 
 
     public static class Result<T> {

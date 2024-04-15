@@ -19,6 +19,7 @@ public class ReviewDto {
 
     private String file_path;
     private String file_original_name;
+    private String file_masking_name;
 
     public ReviewDto() {
     }
@@ -31,5 +32,9 @@ public class ReviewDto {
             this.file_path = entity.getFileManage().getFile_path();
             this.file_original_name = entity.getFileManage().getFile_original_name();
         }
+    }
+
+    public ReviewDto(Long id, String content, String path, String original, String masking) {
+
     }
 }

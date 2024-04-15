@@ -2,6 +2,7 @@ package halfandhalf.utteokMain.review.entity;
 
 
 import halfandhalf.utteokMain.manageEntity.FileManageEntity;
+import halfandhalf.utteokMain.review.dto.ReviewDto;
 import lombok.Getter;
 
 import javax.persistence.*;
@@ -30,5 +31,8 @@ public class ReviewEntity {
         this.user_id = user_id;
         this.create_date = create_date;
         this.fileManage = fileManage;
+    }
+
+    public ReviewEntity(ReviewDto upload) {
     }
 }

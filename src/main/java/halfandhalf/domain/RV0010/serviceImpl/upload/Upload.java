@@ -20,7 +20,7 @@ public class Upload {
         this.file = file;
     }
 
-    public Map<String,String> uploadImage() throws Exception {
+    public Map<String,String> uploadImage() throws FileUploadException {
         Map<String,String> imgFile = new HashMap<>();
         originalFileName = file.getOriginalFilename();
 
