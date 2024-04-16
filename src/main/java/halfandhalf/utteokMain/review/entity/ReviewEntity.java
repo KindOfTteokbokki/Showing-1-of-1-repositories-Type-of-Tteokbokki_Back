@@ -6,6 +6,7 @@ import halfandhalf.utteokMain.review.dto.ReviewDto;
 import lombok.Getter;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -16,8 +17,8 @@ public class ReviewEntity {
     private Long id;
 
     private String content;
-    private String user_id;
-    private String create_date;
+    private Long user_id;
+    private LocalDateTime create_date;
 
     @Embedded
     private FileManageEntity fileManage;
@@ -25,14 +26,17 @@ public class ReviewEntity {
     public ReviewEntity() {
     }
 
-    public ReviewEntity(Long id, String content, String user_id, String create_date, FileManageEntity fileManage) {
-        this.id = id;
-        this.content = content;
-        this.user_id = user_id;
-        this.create_date = create_date;
-        this.fileManage = fileManage;
-    }
+//    public ReviewEntity(Long id, String content, String user_id, LocalDateTime create_date, FileManageEntity fileManage) {
+//        this.id = id;
+//        this.content = content;
+//        this.user_id = user_id;
+//        this.create_date = create_date;
+//        this.fileManage = fileManage;
+//    }
 
-    public ReviewEntity(ReviewDto upload) {
+    public ReviewEntity(ReviewDto dto) {
+        this.content = dto.getContent();
+        this.user_id = dto.getId();
+        this.fileManage = new FileManageEntity(dto.getFile_path(), dto.getFile_original_name(), dto.getFile_masking_name());
     }
 }

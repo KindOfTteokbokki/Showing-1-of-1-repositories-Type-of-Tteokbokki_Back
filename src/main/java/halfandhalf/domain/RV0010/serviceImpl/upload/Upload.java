@@ -2,6 +2,7 @@ package halfandhalf.domain.RV0010.serviceImpl.upload;
 
 import halfandhalf.com.exception.FileUploadException;
 import halfandhalf.com.util.getDate;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -9,6 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+@Slf4j
 public class Upload {
 
     String originalFileName = "";
@@ -44,7 +46,8 @@ public class Upload {
             imgFile.put("masking",maskingFileName + extension);
         }
         catch (Exception e){
-            throw new FileUploadException("파일 누락, 또는 다른 형식으로 요청하였습니다");
+            log.error("Exception [Err_Location] : {}", e.getStackTrace()[0]);
+            throw new FileUploadException("파일 누락, 또는 다른 형식으로 요청하였습니다.");
         }
         return imgFile;
     }

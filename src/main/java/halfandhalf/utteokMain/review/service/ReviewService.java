@@ -2,25 +2,25 @@ package halfandhalf.utteokMain.review.service;
 
 import halfandhalf.com.config.ResponseMessage;
 import halfandhalf.com.exception.FileUploadException;
-import halfandhalf.domain.RV0010.dto.RV0010Dto;
-import halfandhalf.domain.RV0010.serviceImpl.upload.Upload;
 import halfandhalf.utteokMain.review.dto.ReviewDto;
 import halfandhalf.utteokMain.review.entity.ReviewEntity;
 import halfandhalf.utteokMain.review.repository.ReviewRepository;
+import halfandhalf.utteokMain.review.upload.UploadData;
+import halfandhalf.utteokMain.review.upload.UploadImg;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.ObjectUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 @Transactional(readOnly = true)
 public class ReviewService {
@@ -33,7 +33,6 @@ public class ReviewService {
         this.reviewRepository = reviewRepository;
     }
 
-    @Transactional(readOnly = true)
     public ReviewDto findById(Long seq) throws NotFoundException {
         Optional<ReviewEntity> findOne = reviewRepository.findById(seq);
 
@@ -44,7 +43,6 @@ public class ReviewService {
         }
     }
 
-    @Transactional(readOnly = true)
     public List<ReviewDto> findById(Pageable pageable, Long id) throws NotFoundException {
         Page<ReviewEntity> findMyReview = reviewRepository.findById(pageable, id);
         if(findMyReview.hasNext()) {
@@ -54,39 +52,44 @@ public class ReviewService {
         }
     }
 
-    @Transactional(readOnly = true)
     public List<ReviewDto> findTop4ByOrderByIdDesc() {
         return transDto(reviewRepository.findTop4ByOrderByIdDesc());
     }
 
-    @Transactional(readOnly = true)
     public List<ReviewDto> findSliceByOrderByIdDesc(Pageable pageable) {
         return transDto(reviewRepository.findSliceByOrderByIdDesc(pageable).getContent());
     }
 
-    public void saveReview(MultipartFile file, String content, Long id) {
+    @Transactional
+    public void saveReview(MultipartFile file, String content, Long id) throws FileUploadException {
         reviewRepository.save(new ReviewEntity(upload(file, content, id)));
+    }
+
+    @Transactional
+    public void modifyReview(ReviewDto dto, MultipartFile file) throws Exception {
+        reviewRepository.modifyRecommend(upload(rv0010Dto, file));
     }
 
     // Dto to Entity
     private List<ReviewDto> transDto(List<ReviewEntity> entityList) {
-        List<ReviewDto> result = new ArrayList<>();
-        for (ReviewEntity reviewEntity : entityList) {
-            result.add(new ReviewDto(reviewEntity));
-        }
-        return result;
+        return entityList.stream().map(ReviewDto::new).collect(Collectors.toList());
     }
 
     private ReviewDto upload(MultipartFile file, String content, Long id) throws FileUploadException {
-        String path = "";
-        String original = "";
-        String masking = "";
+        String path; String original; String masking;
 
-        Map<String,String> uploadFile = new Upload(ReviewService.uploadDir, file).uploadImage();
+        try{
+            UploadData uploadData = new UploadData(ReviewService.uploadDir, file);
+            UploadImg.uploadOperating(uploadData);
 
-        Optional.ofNullable(file)
-                .ifPresent(is -> new Upload(ReviewService.uploadDir, is));
+            path = uploadData.getDirPath();
+            original = uploadData.getOriginal();
+            masking = uploadData.getMasking();
+        } catch (FileUploadException e){
+            log.error("Exception [ReviewDto upload] : {}", e.getStackTrace()[0]);
+            throw new FileUploadException("파일 누락, 또는 다른 형식으로 요청하였습니다.");
+        }
 
-        return new ReviewDto(id, content, uploadFile.get("path"), uploadFile.get("original"), uploadFile.get("masking"));
+        return new ReviewDto(id, content, path, original, masking);
     }
 }
