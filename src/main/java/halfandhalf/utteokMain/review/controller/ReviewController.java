@@ -122,7 +122,7 @@ public class ReviewController {
      *  나도 추천할래 수정하기
      */
     @LoginCheckEssential
-    @PostMapping(value="/modifyReview", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PatchMapping(value="/modifyReview", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> modifyRecommend(@RequestBody ReviewDto dto,
                                              @RequestPart(value = "file", required=false) MultipartFile file,
                                              HttpServletRequest request) {

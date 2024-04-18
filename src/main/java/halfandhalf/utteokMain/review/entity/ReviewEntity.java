@@ -4,6 +4,7 @@ package halfandhalf.utteokMain.review.entity;
 import halfandhalf.utteokMain.manageEntity.FileManageEntity;
 import halfandhalf.utteokMain.review.dto.ReviewDto;
 import lombok.Getter;
+import org.springframework.util.StringUtils;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -26,17 +27,18 @@ public class ReviewEntity {
     public ReviewEntity() {
     }
 
-//    public ReviewEntity(Long id, String content, String user_id, LocalDateTime create_date, FileManageEntity fileManage) {
-//        this.id = id;
-//        this.content = content;
-//        this.user_id = user_id;
-//        this.create_date = create_date;
-//        this.fileManage = fileManage;
-//    }
+    public void changeData(ReviewDto dto) {
+        //id, content, path, original, masking
+        this.id = dto.getId();
+        this.content = dto.getContent();
+        if(StringUtils.hasText(dto.getFile_path()))
+            this.fileManage = new FileManageEntity(dto.getFile_path(), dto.getFile_original_name(), dto.getFile_masking_name());
+    }
 
     public ReviewEntity(ReviewDto dto) {
         this.content = dto.getContent();
         this.user_id = dto.getId();
-        this.fileManage = new FileManageEntity(dto.getFile_path(), dto.getFile_original_name(), dto.getFile_masking_name());
+        if(StringUtils.hasText(dto.getFile_path()))
+            this.fileManage = new FileManageEntity(dto.getFile_path(), dto.getFile_original_name(), dto.getFile_masking_name());
     }
 }

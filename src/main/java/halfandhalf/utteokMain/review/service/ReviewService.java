@@ -67,7 +67,9 @@ public class ReviewService {
 
     @Transactional
     public void modifyReview(ReviewDto dto, MultipartFile file) throws Exception {
-        reviewRepository.modifyRecommend(upload(rv0010Dto, file));
+        reviewRepository.findById(dto.getId())
+                .orElseThrow(() -> new IllegalArgumentException("해당하는 아이디가 없습니다 id : " + dto.getId()))
+                .changeData(upload(file, dto.getContent(), dto.getId()));   // dirty checking 을 통해 수정되는지 확인 필요
     }
 
     // Dto to Entity
