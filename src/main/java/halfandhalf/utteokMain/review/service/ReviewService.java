@@ -72,6 +72,11 @@ public class ReviewService {
                 .changeData(upload(file, dto.getContent(), dto.getId()));   // dirty checking 을 통해 수정되는지 확인 필요
     }
 
+    @Transactional
+    public void deleteReview(Long reviewSeq) {
+        reviewRepository.deleteById(reviewSeq);
+    }
+
     // Dto to Entity
     private List<ReviewDto> transDto(List<ReviewEntity> entityList) {
         return entityList.stream().map(ReviewDto::new).collect(Collectors.toList());

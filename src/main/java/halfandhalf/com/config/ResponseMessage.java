@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 @Getter
 public enum ResponseMessage {
-      OK(400, "Ok", "요청이 성공적으로 되었습니다.")
+      OK(200, "Ok", "요청이 성공적으로 되었습니다.")
     , INVALID_PARAMS(400, "InvalidParams", "필수데이터 누락, 또는 형식과 다른 데이터를 요청하셨습니다.")
     , UNAUTORIZED(401, "Unauthorized", "토큰 정보가 유효하지 않습니다.")
     , UNAVAILABLE(401, "Unavailable", "회원가입이 완료되지 않은 사용자입니다.")
