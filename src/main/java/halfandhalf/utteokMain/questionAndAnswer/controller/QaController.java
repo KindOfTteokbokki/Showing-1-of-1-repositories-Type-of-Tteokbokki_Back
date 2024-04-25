@@ -30,19 +30,12 @@ public class QaController {
      */
     @GetMapping(value="/questionAndAnswer", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> questionAndAnswer() {
-        try {
-            return ResponseEntity.ok(
-                    new Result(
-                              qaService.findByCodeIdAndUseYn("101", "Y")
-                            , qaService.findByCodeIdAndUseYn("102", "Y")
-                    )
-            );
-        }
-        catch(Exception e){
-            System.out.println("e = " + e.getMessage());
-            // 그 외 에러의 경우 500 메세지
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ResponseMessage.valueOfCode("InternalServerError").getMessage());
-        }
+        return ResponseEntity.ok(
+                new Result(
+                          qaService.findByCodeIdAndUseYn("101", "Y")
+                        , qaService.findByCodeIdAndUseYn("102", "Y")
+                )
+        );
     }
 
     public static class Result<T> {

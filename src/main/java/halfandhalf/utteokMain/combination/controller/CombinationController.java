@@ -26,12 +26,7 @@ public class CombinationController {
      */
     @GetMapping(value="/OneFromCombination", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> ViewOneFromCombination1(@RequestParam("combination_seq") Long combination_seq) {
-        try {
-            return ResponseEntity.ok(combinationService.findOneCombination(combination_seq));
-        } catch(Exception e){
-            // 그 외 에러의 경우 500 메세지
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ResponseMessage.valueOfCode("InternalServerError").getMessage());
-        }
+        return ResponseEntity.ok(combinationService.findOneCombination(combination_seq));
     }
 
     /*
@@ -39,13 +34,7 @@ public class CombinationController {
      */
     @GetMapping(value="/combinationFour", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> combination1() {
-        try {
-            return ResponseEntity.ok(new Result(combinationService.findCombination()));
-        }
-        catch(Exception e){
-            // 그 외 에러의 경우 500 메세지
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ResponseMessage.valueOfCode("InternalServerError").getMessage());
-        }
+        return ResponseEntity.ok(new Result(combinationService.findCombination()));
     }
 
     public static class Result<T> {
