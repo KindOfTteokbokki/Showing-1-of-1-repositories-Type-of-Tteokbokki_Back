@@ -19,7 +19,7 @@ public class QaService {
         this.qaRepository = qaRepository;
     }
 
-    @Cacheable
+    @Cacheable(value = "qaCache")
     public List<QaDto> findByCodeIdAndUseYn(String code_id, String use_yn) {
         List<QaEntity> qaEntityList = qaRepository.findByCodeIdAndUseYn(code_id, use_yn);
         List<QaDto> qaDtoList = new ArrayList<>();

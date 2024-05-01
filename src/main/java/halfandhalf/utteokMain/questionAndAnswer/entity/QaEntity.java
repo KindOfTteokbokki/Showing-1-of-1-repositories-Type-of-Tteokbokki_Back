@@ -24,6 +24,13 @@ public class QaEntity implements Serializable {
     public QaEntity() {
     }
 
+    public QaEntity(String code, String name, String codeId, String useYn) {
+        this.code = code;
+        this.name = name;
+        this.codeId = codeId;
+        this.useYn = useYn;
+    }
+
     public QaEntity(String code, String name) {
         this.code = code;
         this.name = name;

@@ -12,4 +12,7 @@ public class QaDto {
         this.code = qaEntity.getCode();
         this.name = qaEntity.getName();
     }
+
+    public QaDto() {
+    }
 }
