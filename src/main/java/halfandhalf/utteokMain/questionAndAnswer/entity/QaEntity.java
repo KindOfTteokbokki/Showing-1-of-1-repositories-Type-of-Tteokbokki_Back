@@ -3,11 +3,12 @@ package halfandhalf.utteokMain.questionAndAnswer.entity;
 import lombok.Getter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "public_code")
 @Getter
-public class QaEntity {
+public class QaEntity implements Serializable {
     @Id
     private String code;
 
