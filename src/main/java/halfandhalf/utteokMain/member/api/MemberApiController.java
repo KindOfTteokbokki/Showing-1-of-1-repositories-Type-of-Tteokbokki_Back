@@ -31,14 +31,8 @@ public class MemberApiController {
      * 닉네임 사용 여부 체크 - true 사용중 false 미사용
      */
     @GetMapping("/checkUtteokNickname")
-    public ResponseEntity<?> checkNickname(@RequestParam("nickname") String nickname){
-        try {
-            return ResponseEntity.ok(memberApiService.checkIfEnabledNickName(nickname));
-        }
-        catch(Exception e){
-            // 그 외 에러의 경우 500 메세지
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ResponseMessage.valueOfCode("InternalServerError").getMessage());
-        }
+    public ResponseEntity<?> checkNickname(@RequestParam("nickname") String nickname) throws ValidationException {
+        return ResponseEntity.ok(memberApiService.checkIfEnabledNickName(nickname));
     }
 
     /*
@@ -46,20 +40,11 @@ public class MemberApiController {
      */
     @LoginCheckEssential
     @PatchMapping("/regiUtteokNickname")
-    public ResponseEntity<?> regiNickname(@RequestBody MemberDto memberDto, HttpServletRequest request){
-        try {
-            memberDto.setId(authTokensGenerator.extractMemberId(jwtProvider.getAccessToken(request)));
-            memberApiService.registNickname(memberDto);
+    public ResponseEntity<?> regiNickname(@RequestBody MemberDto memberDto, HttpServletRequest request) throws ValidationException {
+        memberDto.setId(authTokensGenerator.extractMemberId(jwtProvider.getAccessToken(request)));
+        memberApiService.registNickname(memberDto);
 
-            return ResponseEntity.ok(ResponseMessage.valueOfCode("Ok").getMessage());
-        }
-        catch (ValidationException e) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(ResponseMessage.valueOfCode("Validation").getMessage());
-        }
-        catch(Exception e){
-            // 그 외 에러의 경우 500 메세지
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ResponseMessage.valueOfCode("InternalServerError").getMessage());
-        }
+        return ResponseEntity.ok(ResponseMessage.valueOfCode("Ok").getMessage());
     }
 
     /*
@@ -68,13 +53,7 @@ public class MemberApiController {
     @LoginCheckEssential
     @GetMapping("/isUtteokNickName")
     public ResponseEntity<?> useCheckNickName(HttpServletRequest request){
-        try {
-            return ResponseEntity.ok(memberApiService.userCheckNickName(authTokensGenerator.extractMemberId(jwtProvider.getAccessToken(request))));
-        }
-        catch(Exception e){
-            // 그 외 에러의 경우 500 메세지
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ResponseMessage.valueOfCode("InternalServerError").getMessage());
-        }
+        return ResponseEntity.ok(memberApiService.userCheckNickName(authTokensGenerator.extractMemberId(jwtProvider.getAccessToken(request))));
     }
 
 }

@@ -28,13 +28,7 @@ public class LoadingController {
      */
     @GetMapping(value="/loadingPage", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> loading() {
-        try {
-            return ResponseEntity.ok(loadingService.findTop1Random());
-        }
-        catch(Exception e){
-            // 그 외 에러의 경우 500 메세지
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ResponseMessage.valueOfCode("InternalServerError").getMessage());
-        }
+        return ResponseEntity.ok(loadingService.findTop1Random());
     }
 
 }
