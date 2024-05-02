@@ -3,6 +3,7 @@ package halfandhalf.utteokMain.combination.service;
 import halfandhalf.utteokMain.combination.dto.CombinationDto;
 import halfandhalf.utteokMain.combination.entity.CombinationEntity;
 import halfandhalf.utteokMain.combination.repository.CombinationRepository;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,6 +22,7 @@ public class CombinationService {
         return new CombinationDto(combinationRepository.findById(id));
     }
 
+    @Cacheable(value = "qaCache")
     public List<CombinationEntity> findCombination() {
         return combinationRepository.findTop4Random();
     }

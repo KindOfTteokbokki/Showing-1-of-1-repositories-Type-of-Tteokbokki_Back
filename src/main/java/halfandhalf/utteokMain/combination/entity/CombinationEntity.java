@@ -6,11 +6,12 @@ import lombok.Getter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.io.Serializable;
 
 @Entity
 @Getter
 @Table(name = "utteok_combination")
-public class CombinationEntity {
+public class CombinationEntity implements Serializable {
     @Id @GeneratedValue
     @Column(name = "combination_seq")
     private Long id;

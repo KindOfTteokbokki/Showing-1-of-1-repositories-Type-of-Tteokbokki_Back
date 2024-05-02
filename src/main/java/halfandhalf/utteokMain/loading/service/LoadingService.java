@@ -2,6 +2,7 @@ package halfandhalf.utteokMain.loading.service;
 
 import halfandhalf.utteokMain.loading.dto.LoadingDto;
 import halfandhalf.utteokMain.loading.repository.LoadingQueryRepository;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,6 +16,7 @@ public class LoadingService {
         this.loadingQueryRepository = loadingQueryRepository;
     }
 
+    @Cacheable(value = "qaCache")
     public LoadingDto findTop1Random() {
         return new LoadingDto(loadingQueryRepository.findTop1Random().getPhrases());
     }
