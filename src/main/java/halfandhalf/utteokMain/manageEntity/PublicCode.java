@@ -14,5 +14,6 @@ public class PublicCode {
     private char use_yn;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private Long code_category_id;
+    @JoinColumn(referencedColumnName = "code_category_id")
+    private PublicCodeCategory publicCodeCategory;
 }

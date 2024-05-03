@@ -13,7 +13,7 @@ public class StoreCountEntity {
     @Column(name = "mytaste_count_seq")
     private Long id;
 
-    private String user_id;
+    private Long user_id;
     private Long store_seq;
     private int menu_count;
     private boolean get_title;

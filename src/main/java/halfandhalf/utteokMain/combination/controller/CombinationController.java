@@ -3,6 +3,7 @@ package halfandhalf.utteokMain.combination.controller;
 import halfandhalf.com.config.ResponseMessage;
 import halfandhalf.utteokMain.combination.entity.CombinationEntity;
 import halfandhalf.utteokMain.combination.service.CombinationService;
+import lombok.Getter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -37,12 +38,9 @@ public class CombinationController {
         return ResponseEntity.ok(new Result(combinationService.findCombination()));
     }
 
+    @Getter
     public static class Result<T> {
-        private T data;
-
-        public T getData() {
-            return data;
-        }
+        private final T data;
 
         public Result(T data) {
             this.data = data;

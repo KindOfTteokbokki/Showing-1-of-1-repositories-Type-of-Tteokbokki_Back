@@ -29,7 +29,7 @@ public class ST0010ServiceImpl implements ST0010Service {
 
     @Override
     @Transactional
-    public ST0010Dto findStore(ST0010Dto sT0010Dto, Long user_id) throws Exception {
+    public ST0010Dto findStore(ST0010Dto sT0010Dto, Long user_id) {
         final ST0010Dto[] store = {null};
 
         Optional.ofNullable(sT0010Dao.findStore(sT0010Dto))

@@ -18,13 +18,16 @@ public class TitleEntity {
     private Long question_seq;
     private String title_code;
 
-    @OneToOne(mappedBy = "title_code", fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(referencedColumnName = "title_code")
     TitleImgEntity menuImgEntity;
 
-    @OneToOne(mappedBy = "question_seq", fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(referencedColumnName = "question_seq")
     QuestionEntity questionEntity;
 
-    @OneToOne(mappedBy = "title_seq", fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(referencedColumnName = "title_seq")
     HaveTitleEntity haveTitleEntity;
 
 }
