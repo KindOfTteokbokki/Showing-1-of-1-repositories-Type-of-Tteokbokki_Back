@@ -2,11 +2,9 @@ package halfandhalf.utteokMain.main.store.entity;
 
 import halfandhalf.utteokMain.main.commonEntity.QuestionEntity;
 import halfandhalf.utteokMain.main.store.dto.StoreDto;
-import halfandhalf.utteokMain.manageEntity.FileManageEntity;
 import lombok.Getter;
 
 import javax.persistence.*;
-import java.util.Optional;
 
 @Entity
 @Getter
@@ -22,7 +20,6 @@ public class StoreEntity {
     private String menu_name;
     private String review;
     private char franchise_yn;
-
     private Long question_seq;
 
     @OneToOne(fetch = FetchType.LAZY)

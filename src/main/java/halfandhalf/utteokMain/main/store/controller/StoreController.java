@@ -3,7 +3,6 @@ package halfandhalf.utteokMain.main.store.controller;
 import halfandhalf.com.annotation.LoginCheckEssential;
 import halfandhalf.domain.LG0010.oauth.jwt.AuthTokensGenerator_;
 import halfandhalf.domain.LG0010.oauth.jwt.JwtTokenProvider_;
-import halfandhalf.domain.ST0010.dto.ST0010Dto;
 import halfandhalf.utteokMain.main.commonDto.QuestionDto;
 import halfandhalf.utteokMain.main.store.service.StoreService;
 import lombok.Getter;
@@ -50,7 +49,7 @@ public class StoreController {
                 .ifPresent(a-> {
                     ref.id = authTokensGenerator.extractMemberId(jwtProvider.getAccessToken(request));
                 });
-        return ResponseEntity.ok(storeService.findTasteInfo(dto, ref.id));
+        return ResponseEntity.ok(storeService.findStoreInfo(dto, ref.id));
     }
 
     /*
