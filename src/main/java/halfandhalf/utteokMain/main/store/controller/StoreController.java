@@ -42,14 +42,10 @@ public class StoreController {
      */
     @PostMapping(value="/findTasteInfo", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> findTasteInfo(@RequestBody QuestionDto dto, HttpServletRequest request) {
-        var ref = new Object() {
-            Long id;
-        };
-        Optional.ofNullable(request.getHeader("Authorization"))
-                .ifPresent(a-> {
-                    ref.id = authTokensGenerator.extractMemberId(jwtProvider.getAccessToken(request));
-                });
-        return ResponseEntity.ok(storeService.findStoreInfo(dto, ref.id));
+        return ResponseEntity.ok(storeService.findStoreInfo(
+                dto,
+                authTokensGenerator.extractMemberId(jwtProvider.getAccessToken(request)) != null ? authTokensGenerator.extractMemberId(jwtProvider.getAccessToken(request)) : 0
+        ));
     }
 
     /*

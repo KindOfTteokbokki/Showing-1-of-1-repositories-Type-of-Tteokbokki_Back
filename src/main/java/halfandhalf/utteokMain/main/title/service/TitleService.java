@@ -1,10 +1,11 @@
-package halfandhalf.utteokMain.main.store.service;
+package halfandhalf.utteokMain.main.title.service;
 
 import halfandhalf.utteokMain.main.commonDto.QuestionDto;
-import halfandhalf.utteokMain.main.store.dto.StoreDto;
 import halfandhalf.utteokMain.main.store.entity.StoreEntity;
-import halfandhalf.utteokMain.main.store.repository.StoreCountRepository;
-import halfandhalf.utteokMain.main.store.repository.StoreRepository;
+import halfandhalf.utteokMain.main.title.dto.StoreDto;
+import halfandhalf.utteokMain.main.title.dto.TitleDto;
+import halfandhalf.utteokMain.main.title.repository.StoreCountRepository;
+import halfandhalf.utteokMain.main.title.repository.StoreRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,21 +13,21 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class StoreService {
+public class TitleService {
 
     private final StoreRepository storeRepository;
     private final StoreCountRepository storeCountRepository;
 
-    public StoreService(StoreRepository storeRepository, StoreCountRepository storeCountRepository) {
+    public TitleService(StoreRepository storeRepository, StoreCountRepository storeCountRepository) {
         this.storeRepository = storeRepository;
         this.storeCountRepository = storeCountRepository;
     }
 
-    public StoreDto findOneTaste(Long id) {
+    public TitleDto findOneTaste(Long id) {
         return storeRepository.findById(id).orElseThrow(NullPointerException::new).changeStoreEntity();
     }
 
-    public StoreDto findStoreInfo(QuestionDto dto, Long id) {
+    public TitleDto findStoreInfo(QuestionDto dto, Long id) {
         StoreEntity storeInfo = Optional.ofNullable(storeRepository.findTasteByQuestion(dto))
                 .orElseGet(() -> storeRepository.findTasteByQuestion(QuestionDto.getInstance()));
 
@@ -39,7 +40,7 @@ public class StoreService {
         return storeInfo.changeStoreEntity();
     }
 
-    public List<StoreDto> findMyTaste(Long userId) {
+    public List<TitleDto> findMyTaste(Long userId) {
         return storeRepository.findTop3MyTasteByUserIdOrderByMenuCountDesc(userId)
                 .stream()
                 .map(StoreEntity::changeStoreEntity)
