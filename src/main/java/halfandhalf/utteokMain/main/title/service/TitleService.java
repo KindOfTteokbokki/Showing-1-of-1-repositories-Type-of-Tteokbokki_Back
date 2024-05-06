@@ -1,49 +1,58 @@
 package halfandhalf.utteokMain.main.title.service;
 
 import halfandhalf.utteokMain.main.commonDto.QuestionDto;
-import halfandhalf.utteokMain.main.store.entity.StoreEntity;
-import halfandhalf.utteokMain.main.title.dto.StoreDto;
 import halfandhalf.utteokMain.main.title.dto.TitleDto;
-import halfandhalf.utteokMain.main.title.repository.StoreCountRepository;
-import halfandhalf.utteokMain.main.title.repository.StoreRepository;
+import halfandhalf.utteokMain.main.title.entity.HaveTitleEntity;
+import halfandhalf.utteokMain.main.title.entity.TitleEntity;
+import halfandhalf.utteokMain.main.title.repository.HavaTitleRepository;
+import halfandhalf.utteokMain.main.title.repository.TitleRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
+@Transactional(readOnly = true)
 public class TitleService {
 
-    private final StoreRepository storeRepository;
-    private final StoreCountRepository storeCountRepository;
+    private final TitleRepository titleRepository;
+    private final HavaTitleRepository havaTitleRepository;
 
-    public TitleService(StoreRepository storeRepository, StoreCountRepository storeCountRepository) {
-        this.storeRepository = storeRepository;
-        this.storeCountRepository = storeCountRepository;
+    public TitleService(TitleRepository storeRepository, HavaTitleRepository havaTitleRepository) {
+        this.titleRepository = storeRepository;
+        this.havaTitleRepository = havaTitleRepository;
     }
 
-    public TitleDto findOneTaste(Long id) {
-        return storeRepository.findById(id).orElseThrow(NullPointerException::new).changeStoreEntity();
-    }
+    @Transactional
+    public TitleDto findTitleByQuestionAndId(QuestionDto dto, long id) {
+        TitleEntity title = Optional.ofNullable(titleRepository.findTitle(dto))
+                .orElseGet(() -> titleRepository.findTitle(QuestionDto.getInstance()));
 
-    public TitleDto findStoreInfo(QuestionDto dto, Long id) {
-        StoreEntity storeInfo = Optional.ofNullable(storeRepository.findTasteByQuestion(dto))
-                .orElseGet(() -> storeRepository.findTasteByQuestion(QuestionDto.getInstance()));
-
-        if(!id.equals(0L)) {
-            storeInfo.getStoreCountEntity().incrementCount();
-            Optional.ofNullable(storeCountRepository.findByUserIdAndSeq(id, storeInfo.getId()))
-                    .orElseGet(()->storeCountRepository.save(storeInfo.getStoreCountEntity()));
+        if (id != 0L) {
+            Optional.ofNullable(titleRepository.findTitleByIdAndSeq(id, title.getId()))
+                    .orElseGet(() -> {
+                        title.getHaveTitleEntity().haveTitle();
+                        return titleRepository.save(title);
+                    });
         }
-
-        return storeInfo.changeStoreEntity();
+        return title.changeTitleEntity();
     }
 
-    public List<TitleDto> findMyTaste(Long userId) {
-        return storeRepository.findTop3MyTasteByUserIdOrderByMenuCountDesc(userId)
+    public List<TitleDto> findHaveTitle(Long userId) {
+        return havaTitleRepository.findByUseId(userId)
                 .stream()
-                .map(StoreEntity::changeStoreEntity)
+                .map(HaveTitleEntity::changeHavaTitleEntity)
                 .collect(Collectors.toList());
+    }
+
+    public List<TitleDto> findAllTitleNotHave(Long userId) {
+        return havaTitleRepository.findByIdNotIn(
+                    havaTitleRepository.findByUseId(userId)
+                            .stream()
+                            .filter(e -> Objects.equals(e.getUser_id(), userId))
+                            .map(HaveTitleEntity::getTitle_seq)
+                            .collect(Collectors.toList())
+            ).stream().map(HaveTitleEntity::changeHavaTitleEntity).collect(Collectors.toList());
     }
 }

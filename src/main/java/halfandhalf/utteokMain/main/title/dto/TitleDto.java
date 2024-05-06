@@ -8,14 +8,14 @@ import lombok.Setter;
 @Setter
 @Builder
 public class TitleDto {
-    private Long store_seq;
-    private String store_name;
-    private String store_address;
-    private String menu_name;
-    private String review;
-    private String file_path;
-    private String file_original_name;
-    private String file_masking_name;
+    private Long title_seq;
+    private String title_name;
+    private String icorn_file_path;
+    private String icorn_file_original_name;
+    private String icorn_file_masking_name;
+    private String img_file_path;
+    private String img_file_original_name;
+    private String img_file_masking_name;
     private String question1;
     private String question2;
     private String question3;
@@ -23,6 +23,7 @@ public class TitleDto {
     private String question5;
     private String question6;
     private String question7;
-    private int menu_count;
+    private int title_count;
     private Long user_id;
+    private boolean get_title;
 }

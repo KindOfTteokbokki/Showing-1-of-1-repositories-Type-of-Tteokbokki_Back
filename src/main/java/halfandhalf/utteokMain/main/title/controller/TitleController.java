@@ -1,15 +1,12 @@
 package halfandhalf.utteokMain.main.title.controller;
 
 import halfandhalf.com.annotation.LoginCheckEssential;
-import halfandhalf.com.config.ResponseMessage;
 import halfandhalf.domain.LG0010.oauth.jwt.AuthTokensGenerator_;
 import halfandhalf.domain.LG0010.oauth.jwt.JwtTokenProvider_;
-import halfandhalf.domain.TT0010.dto.TT0010Dto;
-import halfandhalf.domain.TT0010.dto.TT0012Dto;
+import halfandhalf.utteokMain.main.commonDto.QuestionDto;
 import halfandhalf.utteokMain.main.title.dto.TitleDto;
 import halfandhalf.utteokMain.main.title.service.TitleService;
 import lombok.Getter;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -36,9 +33,9 @@ public class TitleController {
      *  질문 및 답 가져오기
      */
     @PostMapping(value="/findTitle", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> findTitle(@RequestBody TitleDto TitleDto, HttpServletRequest request) {
-        return ResponseEntity.ok(titleService.findTitle(
-                TitleDto,
+    public ResponseEntity<?> findTitle(@RequestBody QuestionDto dto, HttpServletRequest request) {
+        return ResponseEntity.ok(titleService.findTitleByQuestionAndId(
+                dto ,
                 authTokensGenerator.extractMemberId(jwtProvider.getAccessToken(request)) != null ? authTokensGenerator.extractMemberId(jwtProvider.getAccessToken(request)) : 0
         ));
     }
@@ -49,14 +46,15 @@ public class TitleController {
     @LoginCheckEssential
     @GetMapping(value = "/haveTitle", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> haveTitle (HttpServletRequest request) {
-        List<TT0010Dto> haveTitle = titleService.findHaveTitle(authTokensGenerator.extractMemberId(jwtProvider.getAccessToken(request)));
-        TT0012Dto countTitle = titleService.findCountTitle(authTokensGenerator.extractMemberId(jwtProvider.getAccessToken(request)));
 
-        Map<String, Object> responseData = new HashMap<>();
-        responseData.put("haveTitle", haveTitle);
-        responseData.put("countTitle", countTitle);
+        List<TitleDto> haveTitle = titleService.findHaveTitle(authTokensGenerator.extractMemberId(jwtProvider.getAccessToken(request)));
 
-        return ResponseEntity.ok(responseData);
+        return ResponseEntity.ok(
+                new Result(
+                        haveTitle.size()+1
+                        , haveTitle
+                )
+        );
     }
 
     /*
@@ -65,14 +63,22 @@ public class TitleController {
     @LoginCheckEssential
     @GetMapping(value = "/doNotHaveTitle", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> doNotHaveTitle (HttpServletRequest request) {
-        return ResponseEntity.ok(titleService.findAllTitleNotHave(authTokensGenerator.extractMemberId(jwtProvider.getAccessToken(request))));
+        return ResponseEntity.ok(
+                new Result(titleService.findAllTitleNotHave(authTokensGenerator.extractMemberId(jwtProvider.getAccessToken(request))))
+        );
     }
 
     @Getter
     public static class Result {
+        private int count;
         private final Collection<?> data;
 
         public Result(Collection<?> data) {
+            this.data = data;
+        }
+
+        public Result(int count, Collection<?> data) {
+            this.count = count;
             this.data = data;
         }
     }
