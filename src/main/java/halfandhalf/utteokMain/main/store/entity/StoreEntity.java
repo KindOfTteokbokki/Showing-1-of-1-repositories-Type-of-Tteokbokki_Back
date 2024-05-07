@@ -52,7 +52,7 @@ public class StoreEntity {
                 .question6(questionEntity.getQuestion6())
                 .question7(questionEntity.getQuestion7())
                 .menu_count(storeCountEntity.getMenu_count())
-                .user_id(storeCountEntity.getUser_id())
+                .user_id(storeCountEntity.getUserId())
                 .build();
     }
 }

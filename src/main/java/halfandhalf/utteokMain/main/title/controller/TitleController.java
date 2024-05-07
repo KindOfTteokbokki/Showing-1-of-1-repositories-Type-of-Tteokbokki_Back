@@ -32,7 +32,7 @@ public class TitleController {
     /*
      *  질문 및 답 가져오기
      */
-    @PostMapping(value="/findTitle", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value="/findTitleByQuestion", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> findTitle(@RequestBody QuestionDto dto, HttpServletRequest request) {
         return ResponseEntity.ok(titleService.findTitleByQuestionAndId(
                 dto ,
@@ -44,7 +44,7 @@ public class TitleController {
      *  가지고 있는 칭호 가져오기
      */
     @LoginCheckEssential
-    @GetMapping(value = "/haveTitle", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/userHaveTitle", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> haveTitle (HttpServletRequest request) {
 
         List<TitleDto> haveTitle = titleService.findHaveTitle(authTokensGenerator.extractMemberId(jwtProvider.getAccessToken(request)));
@@ -61,7 +61,7 @@ public class TitleController {
      *  없는 칭호
      */
     @LoginCheckEssential
-    @GetMapping(value = "/doNotHaveTitle", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/userDoNotHaveTitle", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> doNotHaveTitle (HttpServletRequest request) {
         return ResponseEntity.ok(
                 new Result(titleService.findAllTitleNotHave(authTokensGenerator.extractMemberId(jwtProvider.getAccessToken(request))))

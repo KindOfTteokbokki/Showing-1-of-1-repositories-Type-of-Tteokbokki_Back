@@ -2,6 +2,7 @@ package halfandhalf.utteokMain.main.store.repository;
 
 import halfandhalf.utteokMain.main.commonDto.QuestionDto;
 import halfandhalf.utteokMain.main.store.entity.StoreEntity;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -13,22 +14,6 @@ import java.util.Optional;
 
 @Repository
 public interface StoreRepository extends JpaRepository<StoreEntity, Long> {
-    @Query(value = "" +
-            "select * from store_info si " +
-                "join fetch question_for_select qs on si.question_seq = qs.question_seq " +
-                "join fetch menu_img mi on mi.question_seq = qs.question_seq " +
-            "where 1=1 " +
-                "and qs.question1 = :question1 " +
-                "and qs.question2 = :question2 " +
-                "and qs.question3 = :question3 " +
-                "and qs.question4 = :question4 " +
-                "and qs.question5 = :question5 " +
-                "and qs.question6 = :question6 " +
-                "and qs.question7 = :question7 " +
-            "order by rand() " +
-            "limit 1", nativeQuery = true)
-    StoreEntity findTasteByQuestion(@RequestBody QuestionDto dto);
-
     @Query(value = "" +
             "select * from store_info si " +
             "join fetch menu_img mi on mi.question_seq = si.question_seq " +

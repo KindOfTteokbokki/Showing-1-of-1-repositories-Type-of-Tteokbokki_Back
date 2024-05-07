@@ -1,5 +1,7 @@
 package halfandhalf.utteokMain.main.commonEntity;
 
+import halfandhalf.utteokMain.main.store.entity.StoreEntity;
+import halfandhalf.utteokMain.main.title.entity.TitleEntity;
 import lombok.Getter;
 
 import javax.persistence.*;
@@ -21,4 +23,12 @@ public class QuestionEntity {
     private String question5;
     private String question6;
     private String question7;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(referencedColumnName = "question_seq")
+    StoreEntity storeEntity;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(referencedColumnName = "question_seq")
+    TitleEntity titleEntity;
 }

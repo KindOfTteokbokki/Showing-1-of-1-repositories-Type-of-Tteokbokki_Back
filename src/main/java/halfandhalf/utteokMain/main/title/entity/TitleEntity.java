@@ -5,7 +5,6 @@ import halfandhalf.utteokMain.main.title.dto.TitleDto;
 import lombok.Getter;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Getter
@@ -27,7 +26,7 @@ public class TitleEntity {
     QuestionEntity questionEntity;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(referencedColumnName = "title_seq")
+    @JoinColumn(referencedColumnName = "titleSeq")
     HaveTitleEntity haveTitleEntity;
 
     public TitleDto changeTitleEntity() {
@@ -48,7 +47,7 @@ public class TitleEntity {
                 .question6(questionEntity.getQuestion6())
                 .question7(questionEntity.getQuestion7())
 //                .title_count()
-                .user_id(haveTitleEntity.getUser_id())
+                .user_id(haveTitleEntity.getUserId())
                 .get_title(haveTitleEntity.isGet_title())
                 .build();
     }
